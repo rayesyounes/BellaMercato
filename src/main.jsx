@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 
 import App from "./App.jsx";
-import "./styles/App.css";
+import "./assets/styles/App.css";
 import {ChakraProvider} from "@chakra-ui/react";
 
 
