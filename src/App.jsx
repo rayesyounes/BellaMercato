@@ -5,7 +5,6 @@ import {
     Route,
 } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout.jsx";
-import AuthLayout from "./layouts/AuthLayout.jsx";
 
 import Profile from "./pages/Profile.jsx";
 import Home from "./pages/Home.jsx";
@@ -35,10 +34,6 @@ function App() {
                     <Route path="/About" element={<About />} />
                     <Route path="/Contact" element={<Contact />} />
                     <Route path="/Cart" element={<Cart />} />
-                </Route>
-                <Route path="/" element={<AuthLayout />}>
-                    <Route path="/login" element={<Home />} />
-                    <Route path="/register" element={<Home />} />
                 </Route>
             </>
         )
