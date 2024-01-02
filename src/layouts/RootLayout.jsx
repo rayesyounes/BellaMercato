@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Grid, GridItem, Box } from "@chakra-ui/react";
-import Header from "../components/header/HeaderComponent.jsx";
-import Footer from "../components/footer/FooterComonent.jsx";
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function RootLayout() {
     return (

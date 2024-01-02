@@ -22,7 +22,7 @@ import Create from "./pages/Create.jsx";
 function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
-            <>
+            
                 <Route path="/" element={<RootLayout />}>
                     <Route index element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -35,7 +35,7 @@ function App() {
                     <Route path="/Contact" element={<Contact />} />
                     <Route path="/Cart" element={<Cart />} />
                 </Route>
-            </>
+            
         )
     );
 
