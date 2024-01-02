@@ -6,7 +6,7 @@ import Footer from "../components/Footer.jsx";
 export default function RootLayout() {
     return (
         <div className="rootlayout">
-            <Box px={"3rem"}>
+            <Box >
                 <Grid
                     // templateColumns={"repeat(12, 1fr)"}
                     // templateRows={"auto 8fr 1fr"}
