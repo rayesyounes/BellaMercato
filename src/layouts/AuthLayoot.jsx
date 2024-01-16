@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import LoginForm from "../components/LoginForm";
-import RegisterForm from "../components/RegisterForm";
+import LoginForm from "../components/forms/LoginForm";
+import RegisterForm from "../components/forms/RegisterForm";
 import { Box, Text, VStack } from "@chakra-ui/react";
 
 

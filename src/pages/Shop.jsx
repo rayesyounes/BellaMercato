@@ -1,5 +1,4 @@
 import CardProduct from "../components/CardProduct";
-import LandingSwiper from "../components/LandingSwiper";
 
 export default function Shop() {
     return (
