@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
-export default function LandingSwiper() {
+export default function CardSwiper() {
     return (
         <Swiper
             slidesPerView={4}
