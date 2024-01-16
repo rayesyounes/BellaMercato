@@ -1,0 +1,97 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "price": 999.99,
+      "description": "High-performance laptop with the latest specifications.",
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "price": 499.99,
+      "description": "Feature-rich smartphone with a large display.",
+      "stock": 100
+    },
+    {
+      "id": 3,
+      "name": "Headphones",
+      "price": 79.99,
+      "description": "Wireless over-ear headphones with noise cancellation.",
+      "stock": 30
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "password": "hashed_password",
+      "address": "123 Main St, Cityville"
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "email": "jane.smith@example.com",
+      "password": "hashed_password",
+      "address": "456 Oak St, Townsville"
+    }
+  ],
+  "carts": [
+    {
+      "user_id": 1,
+      "items": [
+        {
+          "product_id": 1,
+          "quantity": 2
+        },
+        {
+          "product_id": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 1179.97
+    },
+    {
+      "user_id": 2,
+      "items": [
+        {
+          "product_id": 2,
+          "quantity": 1
+        }
+      ],
+      "total": 499.99
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "products": [
+        {
+          "product_id": 1,
+          "quantity": 2
+        },
+        {
+          "product_id": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2023-01-15T08:30:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "products": [
+        {
+          "product_id": 2,
+          "quantity": 1
+        }
+      ],
+      "total": 499.99,
+      "order_date": "2023-02-01T12:15:00Z"
+    }
+  ]
+}

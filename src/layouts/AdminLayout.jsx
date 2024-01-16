@@ -1,23 +1,27 @@
-import {
-    Routes,
-    Route
-} from "react-router-dom";
-
-import Users from "../pages/admin/Users.jsx";
-import Orders from "../pages/admin/Orders.jsx";
-import Products from "../pages/admin/Products.jsx";
-import Dashboard from "../pages/admin/Dashboard.jsx";
+import { Outlet, Link } from "react-router-dom";
 
 function AdminLayout() {
-
     return (
         <div>
-            <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/products" element={<Products />} />
-            </Routes>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/admin/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/users">Users</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/orders">Orders</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/products">Products</Link>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <Outlet />
+            </div>
         </div>
     );
 }
