@@ -78,7 +78,7 @@ export default function Header() {
                         About Us
                     </Box>
                 </NavLink>
-                <NavLink as={ChakraLink} className="navlink" to="#">
+                <NavLink as={ChakraLink} className="navlink" to="#contact">
                     <Box as="span" {...linkStyles}>
                         Contact
                     </Box>
