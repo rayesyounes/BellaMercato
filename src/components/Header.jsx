@@ -18,16 +18,9 @@ import Logo from "./Logo.jsx";
 
 export default function Header() {
     const { isOpen, onToggle } = useDisclosure();
-    const { colorMode } = useColorMode();
 
     const linkStyles = {
         textDecoration: "none",
-        _hover: {
-            textDecoration: "none",
-            color: colorMode === "dark" ? "teal.300" : "teal.500",
-            borderBottom: "3px solid",
-            paddingBottom: "0.5rem",
-        },
         _focus: { boxShadow: "none" }, // Remove default focus outline
     };
 
@@ -65,27 +58,27 @@ export default function Header() {
 
             {/* Desktop Menu */}
             <HStack spacing="20px" display={{ base: "none", md: "flex" }}>
-                <NavLink as={ChakraLink} to="/shop">
+                <NavLink as={ChakraLink} className="navlink" to="/shop">
                     <Box as="span" {...linkStyles}>
                         Shop
                     </Box>
                 </NavLink>
-                <NavLink as={ChakraLink} to="/sales">
+                <NavLink as={ChakraLink} className="navlink" to="/sales">
                     <Box as="span" {...linkStyles}>
                         Sales
                     </Box>
                 </NavLink>
-                <NavLink as={ChakraLink} to="#">
+                <NavLink as={ChakraLink} className="navlink" to="#">
                     <Box as="span" {...linkStyles}>
                         Mission
                     </Box>
                 </NavLink>
-                <NavLink as={ChakraLink} to="#">
+                <NavLink as={ChakraLink} className="navlink" to="#">
                     <Box as="span" {...linkStyles}>
                         About Us
                     </Box>
                 </NavLink>
-                <NavLink as={ChakraLink} to="#">
+                <NavLink as={ChakraLink} className="navlink" to="#">
                     <Box as="span" {...linkStyles}>
                         Contact
                     </Box>
@@ -126,7 +119,7 @@ export default function Header() {
             <Spacer />
 
             <HStack display={{ base: "none", md: "flex" }}>
-                <Modal/>
+                <Modal />
             </HStack>
 
             <Box display={{ md: "none" }} ml={5}>
