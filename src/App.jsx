@@ -20,17 +20,21 @@ function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" element={<RootLayout />}>
+                {/* publicRoute */}
                 <Route index element={<Home />} />
+                <Route path="login" element={<Home />} /> {/* add props to open  auth modal */}
+                <Route path="profile" element={<Profile />} />
+                <Route path="shop" element={<Shop />} />
+                <Route path="sales" element={<Sales />} />
+                <Route path="cart" element={<Cart />} />
+
+                {/* protectedRoute */}
                 <Route path="/admin/*" element={<AdminLayout />}>
                     <Route index element={<Dashboard />} />
                     <Route path="users" element={<Users />} />
                     <Route path="orders" element={<Orders />} />
                     <Route path="products" element={<Products />} />
                 </Route>
-                <Route path="profile" element={<Profile />} />
-                <Route path="shop" element={<Shop />} />
-                <Route path="sales" element={<Sales />} />
-                <Route path="cart" element={<Cart />} />
             </Route>
         )
     );

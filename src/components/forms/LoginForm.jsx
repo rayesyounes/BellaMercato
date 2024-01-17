@@ -1,13 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     FormControl,
     FormLabel,
     Input,
     Button,
     Text,
+    Box,
     VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCredetials } from "../../features/auth/authSlice";
+import { useLoginMutation } from "../../features/auth/authApiSlice";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
@@ -17,11 +22,28 @@ const MotionButton = motion(Button);
 export default function AnimatedLoginForm() {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const errRef = useRef();
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
+    const [errMsg, setErrMsg] = useState("");
+
+    const [login, { isLoading }] = useLoginMutation();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        emailRef.current.focus();
+    }, []);
+
+    useEffect(() => {
+        setErrMsg("");
+    }, [user, password]);
 
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Simple email validation
@@ -41,14 +63,49 @@ export default function AnimatedLoginForm() {
             setPasswordError(null);
         }
 
+        try {
+            const userData = await login({ user, password }).unwrap();
+            dispatch(setCredetials({ ...userData, user }));
+            setUser("");
+            setPassword("");
+            navigate("/admin/dashboard");
+        } catch (err) {
+            if (!err?.originalStatus) {
+                // isLoading: true until timeout occurs
+                setErrMsg("No Server Response");
+            } else if (err.originalStatus === 400) {
+                setErrMsg("Missing Username or Password");
+            } else if (err.originalStatus === 401) {
+                setErrMsg("Unauthorized");
+            } else {
+                setErrMsg("Login Failed");
+            }
+            errRef.current.focus();
+        }
+
         // Clear any previous errors
         setEmailError(null);
         setPasswordError(null);
-
     };
 
-    return (
+    const handleUserInput = (e) => setUser(e.target.value);
+
+    const handlePwdInput = (e) => setPassword(e.target.value);
+
+    const content = isLoading ? (
+        <h1>Loading...</h1>
+    ) : (
         <form onSubmit={handleSubmit}>
+            <Box
+                as="p"
+                fontSize="2xl"
+                mb={5}
+                ref={errRef}
+                className={errMsg ? "errmsg" : "offscreen"}
+                aria-live="assertive"
+            >
+                {errMsg}
+            </Box>
             <VStack spacing={5} align="stretch">
                 <MotionFormControl
                     initial={{ opacity: 0, y: -20 }}
@@ -62,6 +119,8 @@ export default function AnimatedLoginForm() {
                         type="email"
                         placeholder="Enter your email"
                         isInvalid={!!emailError}
+                        onChange={handleUserInput}
+                        value={user}
                         variant="flushed"
                     />
                     {emailError && (
@@ -90,6 +149,8 @@ export default function AnimatedLoginForm() {
                         type="password"
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
+                        onChange={handlePwdInput}
+                        value={password}
                         variant="flushed"
                     />
                     {passwordError && (
@@ -120,4 +181,6 @@ export default function AnimatedLoginForm() {
             </VStack>
         </form>
     );
+
+    return content;
 }
