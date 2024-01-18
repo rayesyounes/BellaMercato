@@ -1,9 +1,11 @@
+// App.js
 import {
     createBrowserRouter,
     createRoutesFromElements,
     RouterProvider,
     Route,
 } from "react-router-dom";
+import {useSelector} from "react-redux";
 import RootLayout from "./layouts/RootLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Home from "./pages/Home.jsx";
@@ -17,31 +19,34 @@ import Products from "./pages/admin/Products.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
 
 function App() {
+    const {isAuthenticated, isAdmin} = useSelector((state) => state.auth);
+
     const router = createBrowserRouter(
         createRoutesFromElements(
-            <Route path="/" element={<RootLayout />}>
+            <Route path="/" element={<RootLayout/>}>
                 {/* publicRoute */}
-                <Route index element={<Home />} />
-                <Route path="login" element={<Home />} /> {/* add props to open  auth modal */}
-                <Route path="profile" element={<Profile />} />
-                <Route path="shop" element={<Shop />} />
-                <Route path="sales" element={<Sales />} />
-                <Route path="cart" element={<Cart />} />
+                <Route index element={<Home/>}/>
+                <Route path="profile" element={<Profile/>}/>
+                <Route path="shop" element={<Shop/>}/>
+                <Route path="sales" element={<Sales/>}/>
 
                 {/* protectedRoute */}
-                <Route path="/admin/*" element={<AdminLayout />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="users" element={<Users />} />
-                    <Route path="orders" element={<Orders />} />
-                    <Route path="products" element={<Products />} />
-                </Route>
+                {isAuthenticated && <Route path="cart" element={<Cart/>}/>}
+                {isAdmin && (
+                    <Route path="/admin/*" element={<AdminLayout/>}>
+                        <Route index element={<Dashboard/>}/>
+                        <Route path="users" element={<Users/>}/>
+                        <Route path="orders" element={<Orders/>}/>
+                        <Route path="products" element={<Products/>}/>
+                    </Route>
+                )}
             </Route>
         )
     );
 
     return (
         <div>
-            <RouterProvider router={router} />
+            <RouterProvider router={router}/>
         </div>
     );
 }

@@ -36,7 +36,7 @@ export default function ModalComponent() {
                     </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <AuthLayoot state={state} setState={setState} />
+                        <AuthLayoot state={state} onClose={onClose} setState={setState} />
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -28,14 +28,16 @@
       "username": "john_doe",
       "email": "john.doe@example.com",
       "password": "hashed_password",
-      "address": "123 Main St, Cityville"
+      "address": "123 Main St, Cityville",
+      "isAdmin": true
     },
     {
       "id": 2,
       "username": "jane_smith",
       "email": "jane.smith@example.com",
       "password": "hashed_password",
-      "address": "456 Oak St, Townsville"
+      "address": "456 Oak St, Townsville",
+      "isAdmin": false
     }
   ],
   "carts": [

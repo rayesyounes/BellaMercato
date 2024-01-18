@@ -1,52 +1,49 @@
-import { useEffect, useRef, useState } from "react";
+import {motion} from "framer-motion";
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import {useEffect, useRef, useState} from "react";
+import {loginAuth} from "../../features/auth/authAction.js";
+import {useNavigate} from "react-router-dom";
 import {
     FormControl,
     FormLabel,
     Input,
     Button,
     Text,
-    Box,
     VStack,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setCredetials } from "../../features/auth/authSlice";
-import { useLoginMutation } from "../../features/auth/authApiSlice";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
 const MotionInput = motion(Input);
 const MotionButton = motion(Button);
 
-export default function AnimatedLoginForm() {
+export default function AnimatedLoginForm({onClose}) {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {isAuthenticated, isAdmin, isLoading, error} = useSelector((state) => state.auth);
+
     const emailRef = useRef();
     const passwordRef = useRef();
-    const errRef = useRef();
-    const navigate = useNavigate();
-
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
-    const [errMsg, setErrMsg] = useState("");
-
-    const [login, { isLoading }] = useLoginMutation();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        emailRef.current.focus();
-    }, []);
-
-    useEffect(() => {
-        setErrMsg("");
-    }, [user, password]);
-
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
 
-    const handleSubmit = async (e) => {
+    useEffect(() => {
+        if (isAuthenticated) {
+            if (isAdmin) {
+                onClose();
+                navigate("/admin");
+            } else {
+                onClose();
+                navigate("/");
+            }
+        }
+    }, [isAuthenticated, isAdmin, isLoading, error]);
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Simple email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailRef.current.value)) {
             setEmailError("Invalid email address");
@@ -55,63 +52,29 @@ export default function AnimatedLoginForm() {
             setEmailError(null);
         }
 
-        // Simple password validation
-        if (passwordRef.current.value.length < 6) {
-            setPasswordError("Password must be at least 6 characters");
+        if (passwordRef.current.value.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
             return;
         } else {
             setPasswordError(null);
         }
 
-        try {
-            const userData = await login({ user, password }).unwrap();
-            dispatch(setCredetials({ ...userData, user }));
-            setUser("");
-            setPassword("");
-            navigate("/admin/dashboard");
-        } catch (err) {
-            if (!err?.originalStatus) {
-                // isLoading: true until timeout occurs
-                setErrMsg("No Server Response");
-            } else if (err.originalStatus === 400) {
-                setErrMsg("Missing Username or Password");
-            } else if (err.originalStatus === 401) {
-                setErrMsg("Unauthorized");
-            } else {
-                setErrMsg("Login Failed");
-            }
-            errRef.current.focus();
-        }
+        const authCredential = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value
+        };
 
-        // Clear any previous errors
-        setEmailError(null);
-        setPasswordError(null);
+        dispatch(loginAuth(authCredential));
     };
 
-    const handleUserInput = (e) => setUser(e.target.value);
-
-    const handlePwdInput = (e) => setPassword(e.target.value);
-
-    const content = isLoading ? (
-        <h1>Loading...</h1>
-    ) : (
+    return (
         <form onSubmit={handleSubmit}>
-            <Box
-                as="p"
-                fontSize="2xl"
-                mb={5}
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-            >
-                {errMsg}
-            </Box>
             <VStack spacing={5} align="stretch">
                 <MotionFormControl
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -20}}
+                    transition={{duration: 0.3}}
                 >
                     <FormLabel>Email</FormLabel>
                     <MotionInput
@@ -119,18 +82,16 @@ export default function AnimatedLoginForm() {
                         type="email"
                         placeholder="Enter your email"
                         isInvalid={!!emailError}
-                        onChange={handleUserInput}
-                        value={user}
                         variant="flushed"
                     />
                     {emailError && (
                         <MotionText
                             color="red.500"
                             fontSize="sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
                         >
                             {emailError}
                         </MotionText>
@@ -138,10 +99,10 @@ export default function AnimatedLoginForm() {
                 </MotionFormControl>
 
                 <MotionFormControl
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -20}}
+                    transition={{duration: 0.3, delay: 0.2}}
                 >
                     <FormLabel>Password</FormLabel>
                     <MotionInput
@@ -149,18 +110,16 @@ export default function AnimatedLoginForm() {
                         type="password"
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
-                        onChange={handlePwdInput}
-                        value={password}
                         variant="flushed"
                     />
                     {passwordError && (
                         <MotionText
                             color="red.500"
                             fontSize="sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
                         >
                             {passwordError}
                         </MotionText>
@@ -171,16 +130,14 @@ export default function AnimatedLoginForm() {
                     type="submit"
                     colorScheme="teal"
                     mt={4}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3, delay: 0.4 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.3, delay: 0.4}}
                 >
                     Login
                 </MotionButton>
             </VStack>
         </form>
     );
-
-    return content;
 }
