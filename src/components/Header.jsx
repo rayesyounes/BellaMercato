@@ -1,10 +1,10 @@
 import {Link as ReactRouterLink, NavLink} from "react-router-dom";
-import {HamburgerIcon, CloseIcon} from "@chakra-ui/icons";
 import {useSelector} from "react-redux";
 import AuthModal from "./modals/AuthModal.jsx";
 import Logo from "./Logo.jsx";
 
-import "../assets/Cart.svg";
+import CartSvg from "../assets/Cart.svg";
+import MobileMenu from "./menus/MobileMenu.jsx";
 
 
 import {
@@ -14,41 +14,42 @@ import {
     Spacer,
     HStack,
     Box,
-    IconButton,
-    Collapse,
     useDisclosure,
 } from "@chakra-ui/react";
 import {useEffect, useState} from "react";
+import HeaderTag from "./tags/HeaderTag.jsx";
+import HeaderMenu from "./menus/HeaderMenu.jsx";
 
 export default function Header() {
     const [hidden, setHidden] = useState(false);
+    const [admin, setAdmin] = useState(false);
+    const [loading, setLoading] = useState(true);
     const {isOpen, onToggle} = useDisclosure();
-    const {isAuthenticated, isAdmin, isLoading, error} = useSelector((state) => state.auth);
+    const {isAuthenticated, isAdmin, isLoading, user} = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if (isAuthenticated || isAdmin) {
-            setHidden(true);
+        if (isLoading) {
+            setLoading(true);
         } else {
-            setHidden(false);
+            setLoading(false);
+            if (isAuthenticated) {
+                setHidden(true);
+                if (isAdmin) {
+                    setAdmin(true);
+                } else {
+                    setAdmin(false);
+                }
+            } else {
+                setHidden(false);
+            }
         }
-    }, [isAuthenticated, isAdmin, isLoading, error]);
+
+    }, [isAuthenticated, isAdmin, isLoading]);
+
 
     const linkStyles = {
         textDecoration: "none",
         _focus: {boxShadow: "none"},
-    };
-
-    const menuItemStyles = {
-        padding: "8px",
-        borderBottom: "1px solid #ddd",
-        textAlign: "center",
-        fontSize: "1.2rem",
-        color: "teal.500",
-        textDecoration: "none",
-        _hover: {
-            color: "teal.700",
-            bg: "gray.100",
-        },
     };
 
     return (
@@ -97,112 +98,38 @@ export default function Header() {
                     </Box>
                 </NavLink>
                 <Spacer/>
-                <NavLink as={ChakraLink} to="/profile">
-                    <Box as="span" {...linkStyles}>
-
-                    </Box>
-                </NavLink>
-                <NavLink as={ChakraLink} to="/cart">
-                    <Box as="span" {...linkStyles}>
-
-                    </Box>
-                </NavLink>
+                <Spacer/>
+                <Spacer/>
+                {isAuthenticated && (
+                    <>
+                        <NavLink as={ChakraLink} to="/cart">
+                            <Box as="span" {...linkStyles}>
+                                <img src={CartSvg} alt={"cart"}/>
+                            </Box>
+                        </NavLink>
+                        <Box>
+                            <Box as="span" {...linkStyles}>
+                                <HeaderMenu>
+                                    <HeaderTag user={user}/>
+                                < /HeaderMenu>
+                            </Box>
+                        </Box>
+                    </>
+                )}
             </HStack>
 
-            <Spacer/>
+            {!hidden && (
+                <>
+                    <Spacer/>
+                    <HStack display={{base: "none", md: "flex"}}>
+                        <AuthModal/>
+                    </HStack>
+                </>)
+            }
 
-            <HStack display={{base: "none", md: "flex"}}>
-                {!hidden && <AuthModal />}
-            </HStack>
-
-            <Box display={{md: "none"}} ml={5}>
-                <IconButton
-                    icon={isOpen ? <CloseIcon/> : <HamburgerIcon/>}
-                    onClick={onToggle}
-                    variant="ghost"
-                    aria-label="Toggle Navigation"
-                />
-            </Box>
-
-            <Collapse in={isOpen} animateOpacity>
-                <Box
-                    p="10px"
-                    bg="white"
-                    position="absolute"
-                    top="60px"
-                    left="0"
-                    right="0"
-                    zIndex="999"
-                    display={{md: "none"}}
-                >
-                    <Flex direction="column" align="center">
-                        <NavLink
-                            as={ChakraLink}
-                            to="/shop"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Shop
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="/sales"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Sales
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="#"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Mission
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="#"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            About Us
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="#"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Contact
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="/profile"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Profile
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="/cart"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Cart
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            to="/dashboard"
-                            {...linkStyles}
-                            style={menuItemStyles}
-                        >
-                            Dashboard
-                        </NavLink>
-                    </Flex>
-                </Box>
-            </Collapse>
+            {/* Mobile Menu */}
+            <MobileMenu />
         </Flex>
-    );
+    )
+        ;
 }
