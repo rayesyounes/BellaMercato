@@ -10,10 +10,10 @@ import {
     Button,
 } from "@chakra-ui/react";
 
-import AuthLayoot from "../layouts/AuthLayoot";
+import AuthLayout from "../../layouts/AuthLayoot.jsx";
 import { useState } from "react";
 
-export default function ModalComponent() {
+export default function AuthModal() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [state, setState] = useState(true);
 
@@ -36,7 +36,7 @@ export default function ModalComponent() {
                     </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <AuthLayoot state={state} setState={setState} />
+                        <AuthLayout state={state} onClose={onClose} setState={setState} />
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -1,12 +1,7 @@
-import { useLocation, Navigate, Outlet, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../features/auth/authSlice";
+import { Outlet, Link } from "react-router-dom";
 
 function AdminLayout() {
-    const token = useSelector(selectCurrentToken);
-    const location = useLocation();
-
-    return token ? (
+    return (
         <div>
             <nav>
                 <ul>
@@ -28,8 +23,6 @@ function AdminLayout() {
                 <Outlet />
             </div>
         </div>
-    ) : (
-        <Navigate to="/login" state={{ from: location }} replace />
     );
 }
 

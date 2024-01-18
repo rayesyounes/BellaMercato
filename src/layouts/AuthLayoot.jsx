@@ -4,11 +4,11 @@ import RegisterForm from "../components/forms/RegisterForm";
 import { Box, Text, VStack } from "@chakra-ui/react";
 
 
-export default function AuthLayout({ state, setState }) {
+export default function AuthLayout({ state, setState, onClose }) {
     return (
         <Box p={0} m={0}>
             <VStack spacing={6} align="stretch">
-                <Box>{state ? <LoginForm /> : <RegisterForm />}</Box>
+                <Box>{state ? <LoginForm onClose={onClose} /> : <RegisterForm />}</Box>
             </VStack>
 
             <VStack>
