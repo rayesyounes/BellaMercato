@@ -26,12 +26,14 @@ function App() {
             <Route path="/" element={<RootLayout/>}>
                 {/* publicRoute */}
                 <Route index element={<Home/>}/>
-                <Route path="profile" element={<Profile/>}/>
                 <Route path="shop" element={<Shop/>}/>
                 <Route path="sales" element={<Sales/>}/>
 
                 {/* protectedRoute */}
                 {isAuthenticated && <Route path="cart" element={<Cart/>}/>}
+                {isAuthenticated && <Route path="profile" element={<Profile/>}/>}
+
+                {/* adminRoute */}
                 {isAdmin && (
                     <Route path="/admin/*" element={<AdminLayout/>}>
                         <Route index element={<Dashboard/>}/>

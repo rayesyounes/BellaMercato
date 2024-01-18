@@ -1,4 +1,4 @@
-import CardProduct from "../components/CardProduct";
+import CardProduct from "../components/cards/CardProduct.jsx";
 
 export default function Shop() {
     return (
