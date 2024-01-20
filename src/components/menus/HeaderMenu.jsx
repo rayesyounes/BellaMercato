@@ -6,17 +6,26 @@ import {
     MenuItem,
     MenuList,
 } from "@chakra-ui/react";
-import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {Link, useNavigate} from "react-router-dom";
+import {logoutAuth} from "../../features/auth/authAction.js";
 
 
 export default function HeaderMenu({children}) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const SignOut = () => {
+        navigate("/");
+        dispatch(logoutAuth());
+    }
+
     return (<Menu>
             <MenuButton>
                 {children}
             </MenuButton>
             <MenuList>
                 <MenuGroup title='Profile'>
-                    <MenuItem >
+                    <MenuItem>
                         <Link to="/profile">My Account</Link>
                     </MenuItem>
                     <MenuItem>
@@ -24,9 +33,8 @@ export default function HeaderMenu({children}) {
                     </MenuItem>
                 </MenuGroup>
                 <MenuDivider/>
-                <MenuGroup title='Help'>
-                    <MenuItem>Docs</MenuItem>
-                    <MenuItem>FAQ</MenuItem>
+                <MenuGroup title='Sign out'>
+                    <MenuItem  onClick={() => SignOut()}>Sign Out</MenuItem>
                 </MenuGroup>
             </MenuList>
         </Menu>

@@ -7,7 +7,7 @@ function HeaderTag ({user}){
             <Avatar
                 src={avatar}
                 size='xs'
-                name='Segun Adebayo'
+                name={user.username}
                 ml={-1}
                 mr={2}
             />

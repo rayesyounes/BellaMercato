@@ -5,7 +5,7 @@ import Logo from "./Logo.jsx";
 
 import CartSvg from "../assets/Cart.svg";
 import MobileMenu from "./menus/MobileMenu.jsx";
-
+import "../assets/styles/header.css"
 
 import {
     Flex,
@@ -15,16 +15,17 @@ import {
     HStack,
     Box,
     useDisclosure,
+    Text,
 } from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import HeaderTag from "./tags/HeaderTag.jsx";
 import HeaderMenu from "./menus/HeaderMenu.jsx";
 
 export default function Header() {
-    const [hidden, setHidden] = useState(false);
+    // const {isOpen, onToggle} = useDisclosure();
+    const [hidden, setHidden] = useState(true);
     const [admin, setAdmin] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const {isOpen, onToggle} = useDisclosure();
+    const [loading, setLoading] = useState(false);
     const {isAuthenticated, isAdmin, isLoading, user} = useSelector((state) => state.auth);
 
     useEffect(() => {
@@ -32,18 +33,17 @@ export default function Header() {
             setLoading(true);
         } else {
             setLoading(false);
-            if (isAuthenticated) {
-                setHidden(true);
-                if (isAdmin) {
-                    setAdmin(true);
-                } else {
-                    setAdmin(false);
-                }
-            } else {
-                setHidden(false);
-            }
         }
-
+        if (isAuthenticated) {
+            setHidden(false);
+        } else {
+            setHidden(true);
+        }
+        if (isAdmin) {
+            setAdmin(true);
+        } else {
+            setAdmin(false);
+        }
     }, [isAuthenticated, isAdmin, isLoading]);
 
 
@@ -62,44 +62,42 @@ export default function Header() {
             borderColor="gray.200"
         >
             {/* Logo */}
-            <Heading as="h1" fontSize="xl" fontWeight="bold" colorScheme="teal">
-                <ChakraLink as={ReactRouterLink} to="/" {...linkStyles}>
-                    <Logo fontSize="1.5rem">RAYSTORE</Logo>
-                </ChakraLink>
-            </Heading>
+            <Logo>RAYSTORE</Logo>
 
             <Spacer/>
 
             {/* Desktop Menu */}
             <HStack spacing="20px" display={{base: "none", md: "flex"}}>
-                <NavLink as={ChakraLink} className="navlink" to="/shop">
-                    <Box as="span" {...linkStyles}>
-                        Shop
-                    </Box>
-                </NavLink>
-                <NavLink as={ChakraLink} className="navlink" to="/sales">
-                    <Box as="span" {...linkStyles}>
-                        Sales
-                    </Box>
-                </NavLink>
-                <NavLink as={ChakraLink} className="navlink" to="#">
-                    <Box as="span" {...linkStyles}>
-                        Mission
-                    </Box>
-                </NavLink>
-                <NavLink as={ChakraLink} className="navlink" to="#">
-                    <Box as="span" {...linkStyles}>
-                        About Us
-                    </Box>
-                </NavLink>
-                <NavLink as={ChakraLink} className="navlink" to="#contact">
-                    <Box as="span" {...linkStyles}>
-                        Contact
-                    </Box>
-                </NavLink>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
+                {!admin && (<>
+                    <NavLink as={ChakraLink} className="navlink" to="/shop">
+                        <Box as="span" {...linkStyles}>
+                            Shop
+                        </Box>
+                    </NavLink>
+                    <NavLink as={ChakraLink} className="navlink" to="/sales">
+                        <Box as="span" {...linkStyles}>
+                            Sales
+                        </Box>
+                    </NavLink>
+                    <NavLink as={ChakraLink} className="navlink" to="#">
+                        <Box as="span" {...linkStyles}>
+                            Mission
+                        </Box>
+                    </NavLink>
+                    <NavLink as={ChakraLink} className="navlink" to="#">
+                        <Box as="span" {...linkStyles}>
+                            About Us
+                        </Box>
+                    </NavLink>
+                    <NavLink as={ChakraLink} className="navlink" to="#contact">
+                        <Box as="span" {...linkStyles}>
+                            Contact
+                        </Box>
+                    </NavLink>
+                    <Spacer/>
+                    <Spacer/>
+                    <Spacer/>
+                </>)}
                 {isAuthenticated && (
                     <>
                         <NavLink as={ChakraLink} to="/cart">
@@ -118,7 +116,7 @@ export default function Header() {
                 )}
             </HStack>
 
-            {!hidden && (
+            {hidden && (
                 <>
                     <Spacer/>
                     <HStack display={{base: "none", md: "flex"}}>
@@ -128,7 +126,7 @@ export default function Header() {
             }
 
             {/* Mobile Menu */}
-            <MobileMenu />
+            <MobileMenu/>
         </Flex>
     )
         ;

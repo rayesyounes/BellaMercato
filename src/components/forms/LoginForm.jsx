@@ -8,6 +8,8 @@ import {
     FormControl,
     FormLabel,
     Input,
+    InputGroup,
+    InputRightElement,
     Button,
     Text,
     VStack,
@@ -28,6 +30,9 @@ export default function AnimatedLoginForm({onClose}) {
     const passwordRef = useRef();
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
+
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -105,25 +110,32 @@ export default function AnimatedLoginForm({onClose}) {
                     transition={{duration: 0.3, delay: 0.2}}
                 >
                     <FormLabel>Password</FormLabel>
-                    <MotionInput
-                        ref={passwordRef}
-                        type="password"
-                        placeholder="Enter your password"
-                        isInvalid={!!passwordError}
-                        variant="flushed"
-                    />
-                    {passwordError && (
-                        <MotionText
-                            color="red.500"
-                            fontSize="sm"
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            exit={{opacity: 0}}
-                            transition={{duration: 0.3}}
-                        >
-                            {passwordError}
-                        </MotionText>
-                    )}
+                    <InputGroup size='md'>
+                        <MotionInput
+                            ref={passwordRef}
+                            type={show ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            isInvalid={!!passwordError}
+                            variant="flushed"
+                        />
+                        <InputRightElement width='4.5rem'>
+                            <Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>
+                                {show ? 'Hide' : 'Show'}
+                            </Button>
+                        </InputRightElement>
+                        {passwordError && (
+                            <MotionText
+                                color="red.500"
+                                fontSize="sm"
+                                initial={{opacity: 0}}
+                                animate={{opacity: 1}}
+                                exit={{opacity: 0}}
+                                transition={{duration: 0.3}}
+                            >
+                                {passwordError}
+                            </MotionText>
+                        )}
+                    </InputGroup>
                 </MotionFormControl>
 
                 <MotionButton
