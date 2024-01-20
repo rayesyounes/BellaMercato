@@ -4,19 +4,25 @@ export default function Dashboard() {
 
 
     return (
-        <SimpleGrid columns={4} spacing={2} minChildWidth={'250px'} p={'10px'} >
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-            <Box bg={"white"} h={'200px'} border={"1px solid"}></Box>            
-        </SimpleGrid>
+        <Container p={4} maxW="container.xl">
+            <SimpleGrid columns={2} spacing={10}>
+                <Box p={5} shadow="md" borderWidth="1px">
+                    <Heading fontSize="xl" mb={2}>Total Users</Heading>
+                    <Text fontSize="4xl">100</Text>
+                </Box>
+                <Box p={5} shadow="md" borderWidth="1px">
+                    <Heading fontSize="xl" mb={2}>Total Orders</Heading>
+                    <Text fontSize="4xl">100</Text>
+                </Box>
+                <Box p={5} shadow="md" borderWidth="1px">
+                    <Heading fontSize="xl" mb={2}>Total Products</Heading>
+                    <Text fontSize="4xl">100</Text>
+                </Box>
+                <Box p={5} shadow="md" borderWidth="1px">
+                    <Heading fontSize="xl" mb={2}>Total Sales</Heading>
+                    <Text fontSize="4xl">100</Text>
+                </Box>
+            </SimpleGrid>
+        </Container>
     )
 }

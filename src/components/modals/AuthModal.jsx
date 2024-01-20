@@ -10,6 +10,7 @@ import {
     Button,
 } from "@chakra-ui/react";
 
+import {ArrowForwardIcon} from "@chakra-ui/icons";
 import AuthLayout from "../../layouts/AuthLayoot.jsx";
 import { useState } from "react";
 
@@ -24,6 +25,7 @@ export default function AuthModal() {
                 variant="solid"
                 colorScheme="teal"
                 onClick={onOpen}
+                rightIcon={<ArrowForwardIcon />}
             >
                 Login
             </Button>

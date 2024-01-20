@@ -1,4 +1,4 @@
-import { loginStart, loginSuccess, loginFailure } from "./authSlice";
+import { loginStart, loginSuccess, loginFailure, logout, clearAuthError } from "./authSlice";
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3000";
@@ -25,3 +25,11 @@ export const loginAuth = (authCredential) => async (dispatch) => {
         dispatch(loginFailure({ error: "An error occurred during login" }));
     }
 };
+
+export const logoutAuth = () => (dispatch) => {
+    dispatch(logout());
+};
+
+export const resetErors = () => (dispatch) => {
+    dispatch(clearAuthError());
+}

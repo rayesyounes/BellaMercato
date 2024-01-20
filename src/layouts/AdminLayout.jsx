@@ -1,28 +1,20 @@
-import { Outlet, Link } from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import {Grid, GridItem} from "@chakra-ui/react";
+import AdminPanel from "../components/panels/AdminPanel.jsx";
 
 function AdminLayout() {
     return (
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/admin/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/users">Users</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/orders">Orders</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products">Products</Link>
-                    </li>
-                </ul>
-            </nav>
-            <div>
-                <Outlet />
-            </div>
-        </div>
+        <>
+            <Grid templateColumns='250px 1fr' bg="gray.100" h='100vh'>
+                <GridItem>
+                    <AdminPanel/>
+                </GridItem>
+                <GridItem>
+
+                    <Outlet/>
+                </GridItem>
+            </Grid>
+        </>
     );
 }
 

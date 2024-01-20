@@ -8,10 +8,13 @@ import {
     FormControl,
     FormLabel,
     Input,
+    InputGroup,
+    InputRightElement,
     Button,
     Text,
     VStack,
 } from "@chakra-ui/react";
+import {clearAuthError} from "../../features/auth/authSlice.js";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
@@ -29,20 +32,32 @@ export default function AnimatedLoginForm({onClose}) {
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
 
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
+
     useEffect(() => {
         if (isAuthenticated) {
             if (isAdmin) {
                 onClose();
-                navigate("/admin");
+                navigate('/admin');
             } else {
                 onClose();
-                navigate("/");
+                navigate('/');
             }
+        } else if (error) {
+            setPasswordError(null);
+            setPasswordError(error);
+
+            dispatch(clearAuthError());
         }
-    }, [isAuthenticated, isAdmin, isLoading, error]);
+    }, [isAuthenticated, isAdmin, isLoading, error, onClose, navigate, dispatch]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setEmailError(null);
+        setPasswordError(null);
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailRef.current.value)) {
@@ -65,6 +80,7 @@ export default function AnimatedLoginForm({onClose}) {
         };
 
         dispatch(loginAuth(authCredential));
+
     };
 
     return (
@@ -105,13 +121,20 @@ export default function AnimatedLoginForm({onClose}) {
                     transition={{duration: 0.3, delay: 0.2}}
                 >
                     <FormLabel>Password</FormLabel>
-                    <MotionInput
-                        ref={passwordRef}
-                        type="password"
-                        placeholder="Enter your password"
-                        isInvalid={!!passwordError}
-                        variant="flushed"
-                    />
+                    <InputGroup size='md'>
+                        <MotionInput
+                            ref={passwordRef}
+                            type={show ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            isInvalid={!!passwordError}
+                            variant="flushed"
+                        />
+                        <InputRightElement width='4.5rem'>
+                            <Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>
+                                {show ? 'Hide' : 'Show'}
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
                     {passwordError && (
                         <MotionText
                             color="red.500"
@@ -138,6 +161,6 @@ export default function AnimatedLoginForm({onClose}) {
                     Login
                 </MotionButton>
             </VStack>
-        </form>
+        </ form>
     );
 }
