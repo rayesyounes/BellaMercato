@@ -4,7 +4,7 @@ import { Text } from "@chakra-ui/react";
 const Logo = ({ children }) => {
     return (
         <Link to="/">
-            <Text fontSize="1.5rem" color="teal.500">
+            <Text fontSize="1.5rem">
                 {children}
             </Text>
         </Link>

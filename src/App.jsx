@@ -12,6 +12,7 @@ import Home from "./pages/Home.jsx";
 import Shop from "./pages/Shop.jsx";
 import Sales from "./pages/Sales.jsx";
 import Cart from "./pages/Cart.jsx";
+import CheckOut from "./pages/CheckOut.jsx";
 import Profile from "./pages/Profile.jsx";
 import Users from "./pages/admin/Users.jsx";
 import Orders from "./pages/admin/Orders.jsx";
@@ -31,12 +32,14 @@ function App() {
 
                 {/* protectedRoute */}
                 {isAuthenticated && <Route path="cart" element={<Cart/>}/>}
+                {isAuthenticated && <Route path="checkout" element={<CheckOut />}/>}
                 {isAuthenticated && <Route path="profile" element={<Profile/>}/>}
 
                 {/* adminRoute */}
                 {isAdmin && (
                     <Route path="/admin/*" element={<AdminLayout/>}>
                         <Route index element={<Dashboard/>}/>
+                        <Route path="dashboard" element={<Dashboard/>}/>
                         <Route path="users" element={<Users/>}/>
                         <Route path="orders" element={<Orders/>}/>
                         <Route path="products" element={<Products/>}/>

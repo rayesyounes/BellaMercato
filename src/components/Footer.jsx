@@ -11,14 +11,14 @@ import Logo from "./Logo";
 
 function Footer() {
     return (
-        <Box bg={"teal.500"} color={"white"} p={"10px"}>
+        <Box bg={"teal.500"} color={"white"} p={4}>
             <Flex justifyContent="space-between" alignItems="center" my={5}>
                 <Box>
                     <Heading
                         as="h1"
                         fontSize="xl"
                         fontWeight="bold"
-                        colorScheme="teal"
+                        colorScheme="white"
                     >
                         <Logo fontSize="1.5rem">RAYSTORE</Logo>
                     </Heading>

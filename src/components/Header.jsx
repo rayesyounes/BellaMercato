@@ -20,6 +20,7 @@ import {
 import {useEffect, useState} from "react";
 import HeaderTag from "./tags/HeaderTag.jsx";
 import HeaderMenu from "./menus/HeaderMenu.jsx";
+import CartDrawer from "./drawers/CartDrawer.jsx";
 
 export default function Header() {
     // const {isOpen, onToggle} = useDisclosure();
@@ -55,14 +56,15 @@ export default function Header() {
     return (
         <Flex
             as="nav"
-            p="10px"
+            p={4}
             bg="white"
             alignItems="center"
             borderBottom="1px"
             borderColor="gray.200"
         >
             {/* Logo */}
-            <Logo>RAYSTORE</Logo>
+            {isAdmin ? <Heading as='h3' size='lg'>ADMIN</Heading>
+                : <Logo>RAYSTORE</Logo> }
 
             <Spacer/>
 
@@ -100,18 +102,12 @@ export default function Header() {
                 </>)}
                 {isAuthenticated && (
                     <>
-                        <NavLink as={ChakraLink} to="/cart">
-                            <Box as="span" {...linkStyles}>
-                                <img src={CartSvg} alt={"cart"}/>
-                            </Box>
-                        </NavLink>
-                        <Box>
-                            <Box as="span" {...linkStyles}>
-                                <HeaderMenu>
-                                    <HeaderTag user={user}/>
-                                < /HeaderMenu>
-                            </Box>
-                        </Box>
+                        {!isAdmin && (
+                            <CartDrawer/>
+                        )}
+                        <HeaderMenu>
+                            <HeaderTag user={user}/>
+                        </HeaderMenu>
                     </>
                 )}
             </HStack>
@@ -128,6 +124,5 @@ export default function Header() {
             {/* Mobile Menu */}
             <MobileMenu/>
         </Flex>
-    )
-        ;
+    );
 }
