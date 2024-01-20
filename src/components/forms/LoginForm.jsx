@@ -14,6 +14,7 @@ import {
     Text,
     VStack,
 } from "@chakra-ui/react";
+import {clearAuthError} from "../../features/auth/authSlice.js";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
@@ -38,16 +39,25 @@ export default function AnimatedLoginForm({onClose}) {
         if (isAuthenticated) {
             if (isAdmin) {
                 onClose();
-                navigate("/admin");
+                navigate('/admin');
             } else {
                 onClose();
-                navigate("/");
+                navigate('/');
             }
+        } else if (error) {
+            setPasswordError(null);
+            setPasswordError(error);
+
+            dispatch(clearAuthError());
         }
-    }, [isAuthenticated, isAdmin, isLoading, error]);
+    }, [isAuthenticated, isAdmin, isLoading, error, onClose, navigate, dispatch]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setEmailError(null);
+        setPasswordError(null);
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailRef.current.value)) {
@@ -70,6 +80,7 @@ export default function AnimatedLoginForm({onClose}) {
         };
 
         dispatch(loginAuth(authCredential));
+
     };
 
     return (
@@ -123,19 +134,19 @@ export default function AnimatedLoginForm({onClose}) {
                                 {show ? 'Hide' : 'Show'}
                             </Button>
                         </InputRightElement>
-                        {passwordError && (
-                            <MotionText
-                                color="red.500"
-                                fontSize="sm"
-                                initial={{opacity: 0}}
-                                animate={{opacity: 1}}
-                                exit={{opacity: 0}}
-                                transition={{duration: 0.3}}
-                            >
-                                {passwordError}
-                            </MotionText>
-                        )}
                     </InputGroup>
+                    {passwordError && (
+                        <MotionText
+                            color="red.500"
+                            fontSize="sm"
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
+                        >
+                            {passwordError}
+                        </MotionText>
+                    )}
                 </MotionFormControl>
 
                 <MotionButton
@@ -150,6 +161,6 @@ export default function AnimatedLoginForm({onClose}) {
                     Login
                 </MotionButton>
             </VStack>
-        </form>
+        </ form>
     );
 }

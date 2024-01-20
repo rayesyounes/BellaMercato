@@ -38,6 +38,14 @@
       "password": "hashed_password",
       "address": "456 Oak St, Townsville",
       "isAdmin": false
+    },
+    {
+      "username": "rayesyounes",
+      "email": "rayesyounes@gmail.com",
+      "password": "11111111",
+      "address": "",
+      "isAdmin": false,
+      "id": 3
     }
   ],
   "carts": [

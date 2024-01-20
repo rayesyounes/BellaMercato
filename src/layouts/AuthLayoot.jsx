@@ -8,7 +8,7 @@ export default function AuthLayout({ state, setState, onClose }) {
     return (
         <Box p={0} m={0}>
             <VStack spacing={6} align="stretch">
-                <Box>{state ? <LoginForm onClose={onClose} /> : <RegisterForm />}</Box>
+                <Box>{state ? <LoginForm onClose={onClose} /> : <RegisterForm setState={setState} />}</Box>
             </VStack>
 
             <VStack>
@@ -18,7 +18,7 @@ export default function AuthLayout({ state, setState, onClose }) {
                         : "Already have an account? "}
                     <Text
                         as="span"
-                        onClick={() => setState(!state)}
+                        onClick={() => setState(prev => !prev)}
                         color="teal"
                         _hover={{ cursor: "pointer", color: "blue.600" }}
                     >

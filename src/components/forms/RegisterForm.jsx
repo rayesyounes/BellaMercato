@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {useRef, useState} from "react";
 import {
     FormControl,
     FormLabel,
@@ -7,14 +7,15 @@ import {
     Text,
     VStack,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
+import axios from "axios";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
 const MotionInput = motion(Input);
 const MotionButton = motion(Button);
 
-export default function Register() {
+export default function Register({setState}) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
@@ -23,48 +24,73 @@ export default function Register() {
     const [passwordError, setPasswordError] = useState(null);
     const [confirmPasswordError, setConfirmPasswordError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Clear previous errors
+        setEmailError(null);
+        setPasswordError(null);
+        setConfirmPasswordError(null);
 
         // Simple email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailRef.current.value)) {
             setEmailError("Invalid email address");
             return;
-        } else {
-            setEmailError(null);
+        }
+
+        // Check if the email already exists
+        try {
+            const checkEmailExists = await axios.get(`http://localhost:3000/users?email=${emailRef.current.value}`);
+            if (checkEmailExists.data.length > 0) {
+                setEmailError("Email already exists");
+                return;
+            }
+        } catch (error) {
+            console.error("Error checking email existence:", error);
+            setEmailError("An error occurred");
+            return;
         }
 
         // Simple password validation
-        if (passwordRef.current.value.length < 6) {
-            setPasswordError("Password must be at least 6 characters");
+        if (passwordRef.current.value.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
             return;
-        } else {
-            setPasswordError(null);
         }
 
         // Confirm password validation
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             setConfirmPasswordError("Passwords do not match");
             return;
-        } else {
-            setConfirmPasswordError(null);
         }
 
-        // Clear any previous errors
-        setEmailError(null);
-        setPasswordError(null);
-        setConfirmPasswordError(null);
+        // If the email is unique, proceed with registration
+        const data = {
+            username: emailRef.current.value.split('@')[0],
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            address: "",
+            isAdmin: false,
+        };
+
+        try {
+            const response = await axios.post("http://localhost:3000/users", data);
+            console.log(response.data);
+            setState(true);
+        } catch (err) {
+            console.error("Error registering user:", err);
+            setEmailError("An error occurred");
+        }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <VStack spacing={5} align="stretch">
                 <MotionFormControl
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -20}}
+                    transition={{duration: 0.3}}
                 >
                     <FormLabel>Email</FormLabel>
                     <MotionInput
@@ -78,10 +104,10 @@ export default function Register() {
                         <MotionText
                             color="red.500"
                             fontSize="sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
                         >
                             {emailError}
                         </MotionText>
@@ -89,10 +115,10 @@ export default function Register() {
                 </MotionFormControl>
 
                 <MotionFormControl
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -20}}
+                    transition={{duration: 0.3, delay: 0.2}}
                 >
                     <FormLabel>Password</FormLabel>
                     <MotionInput
@@ -106,10 +132,10 @@ export default function Register() {
                         <MotionText
                             color="red.500"
                             fontSize="sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
                         >
                             {passwordError}
                         </MotionText>
@@ -117,10 +143,10 @@ export default function Register() {
                 </MotionFormControl>
 
                 <MotionFormControl
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3, delay: 0.4 }}
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -20}}
+                    transition={{duration: 0.3, delay: 0.4}}
                 >
                     <FormLabel>Confirm Password</FormLabel>
                     <MotionInput
@@ -134,10 +160,10 @@ export default function Register() {
                         <MotionText
                             color="red.500"
                             fontSize="sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            transition={{duration: 0.3}}
                         >
                             {confirmPasswordError}
                         </MotionText>
@@ -148,10 +174,10 @@ export default function Register() {
                     type="submit"
                     colorScheme="teal"
                     mt={4}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3, delay: 0.6 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.3, delay: 0.6}}
                     borderRadius="md"
                 >
                     Register
