@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 export default function RootLayout() {
     const {isAdmin} = useSelector((state) => state.auth);
     return (<>
-        <Grid bg="gray.300">
+        <Grid bg="gray.100">
             {!isAdmin && (<GridItem gridColumn={"1 / -1"}>
                 <Header/>
             </GridItem>)}
