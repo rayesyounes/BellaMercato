@@ -5,7 +5,7 @@ import AdminPanel from "../components/panels/AdminPanel.jsx";
 function AdminLayout() {
     return (
         <>
-            <Grid templateColumns='250px 1fr' bg="gray.100" h='100vh'>
+            <Grid templateColumns='auto 1fr' bg="gray.100" h='100vh'>
                 <GridItem>
                     <AdminPanel/>
                 </GridItem>

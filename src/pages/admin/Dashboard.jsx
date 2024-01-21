@@ -4,7 +4,7 @@ export default function Dashboard() {
 
 
     return (
-        <Container p={4} maxW="container.xl">
+        <Container p={4} maxW="container.xxl">
             <SimpleGrid columns={2} spacing={10}>
                 <Box p={5} shadow="md" borderWidth="1px">
                     <Heading fontSize="xl" mb={2}>Total Users</Heading>

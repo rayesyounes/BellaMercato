@@ -50,6 +50,8 @@ export default function Header() {
 
     const linkStyles = {
         textDecoration: "none",
+        fontSize: "xl",
+        fontWeight: "regular",
         _focus: {boxShadow: "none"},
     };
 
