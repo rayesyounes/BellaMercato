@@ -26,13 +26,17 @@ export default function HeaderMenu({children}) {
                 {children}
             </MenuButton>
             <MenuList>
-                <MenuGroup title='Profile'>
-                    <MenuItem>
-                        <Link to="/profile">My Account</Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link to="/payment">Payments </Link>
-                    </MenuItem>
+                <MenuGroup title='Menu'>
+                    {!isAdmin && (
+                        <>
+                            <MenuItem>
+                                <Link to="/profile">My Account</Link>
+                            </MenuItem>
+                            <MenuItem>
+                                <Link to="/payment">Payments </Link>
+                            </MenuItem>
+                        </>
+                    )}
                     {isAdmin && (
                         <MenuItem>
                             <Link to="/admin">Dashboard </Link>
