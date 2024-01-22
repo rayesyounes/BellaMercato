@@ -8,7 +8,6 @@ export default function AdminNav() {
     const { user } = useSelector((state) => state.auth);
 
     const handleSearch = (value) => {
-        // Handle your search logic here
         console.log("Searching for:", value);
     };
 
@@ -45,7 +44,7 @@ export default function AdminNav() {
                         aria-label="Search database"
                         icon={<SearchIcon />} b
                         onClick={() => handleSearch()}
-                        colorScheme="teal" // Change button color scheme if needed
+                        colorScheme="teal"
                     />
                 </InputRightElement>
             </InputGroup>

@@ -1,26 +1,36 @@
-import {Box, Container, Heading, SimpleGrid, Text} from "@chakra-ui/react";
+import { Box, Container, VStack } from "@chakra-ui/react";
+import FiltersPanel from "../../components/panels/FiltersPanel";
+import DataTable from "../../components/tables/DataTable";
 
 function Products() {
     return (
         <Container p={4} maxW="container.xxl">
-            <SimpleGrid columns={2} spacing={10}>
-                <Box p={5} shadow="md" borderWidth="1px">
-                    <Heading fontSize="xl" mb={2}>Total Users</Heading>
-                    <Text fontSize="4xl">100</Text>
+            <VStack spacing={4}>
+                <FiltersPanel />
+
+                <Box
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    boxShadow="md"
+                    bg="white"
+                    w="100%"
+                >
+                    <Box
+                        bg="White"
+                        color="teal"
+                        fontSize={20}
+                        fontWeight={"bold"}
+                        p={4}
+                    >
+                        Products
+                    </Box>
+
+                    {/* <DataTable /> */}
+
+                    <Box color="teal" p={4}></Box>
                 </Box>
-                <Box p={5} shadow="md" borderWidth="1px">
-                    <Heading fontSize="xl" mb={2}>Total Orders</Heading>
-                    <Text fontSize="4xl">100</Text>
-                </Box>
-                <Box p={5} shadow="md" borderWidth="1px">
-                    <Heading fontSize="xl" mb={2}>Total Products</Heading>
-                    <Text fontSize="4xl">100</Text>
-                </Box>
-                <Box p={5} shadow="md" borderWidth="1px">
-                    <Heading fontSize="xl" mb={2}>Total Sales</Heading>
-                    <Text fontSize="4xl">100</Text>
-                </Box>
-            </SimpleGrid>
+            </VStack>
         </Container>
     );
 }
