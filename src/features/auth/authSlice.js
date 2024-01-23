@@ -6,12 +6,12 @@ const initialState = {
         email: 'rayesyounes@gmail.com',
         password: '11111111',
         address: '',
-        isAdmin: true,
-        id: 3
+        isAdmin: false,
+        id: 2
     },
     error: null,
     isLoading: false,
-    isAdmin: true,
+    isAdmin: false,
     isAuthenticated: true
 };
 
