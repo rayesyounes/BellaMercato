@@ -89,7 +89,8 @@
         }
       ],
       "total": 1179.97,
-      "order_date": "2023-01-15T08:30:00Z"
+      "order_date": "2023-01-15T08:30:00Z",
+      "status": "delivered"
     },
     {
       "id": 2,
@@ -101,7 +102,37 @@
         }
       ],
       "total": 499.99,
-      "order_date": "2023-02-01T12:15:00Z"
+      "order_date": "2023-02-01T12:15:00Z",
+      "status": "processing"
     }
+    ,
+    {
+      "id": 2,
+      "user_id": 2,
+      "products": [
+        {
+          "product_id": 2,
+          "quantity": 1
+        }
+      ],
+      "total": 499.99,
+      "order_date": "2023-02-01T12:15:00Z",
+      "status": "cancelled"
+    }
+    ,
+    {
+      "id": 2,
+      "user_id": 2,
+      "products": [
+        {
+          "product_id": 2,
+          "quantity": 1
+        }
+      ],
+      "total": 499.99,
+      "order_date": "2023-02-01T12:15:00Z",
+      "status": "confirmed"
+    }
+
   ]
 }

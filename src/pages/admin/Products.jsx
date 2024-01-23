@@ -16,7 +16,7 @@ function Products() {
                 await dispatch(getProductsAsync());
                 setColumns(Object.keys(products[0]));
             } catch (error) {
-                console.error("Error fetching users:", error);
+                console.error("Error fetching orders:", error);
             }
         };
 
