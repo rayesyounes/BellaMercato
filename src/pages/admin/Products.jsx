@@ -1,12 +1,31 @@
-import { Box, Container, VStack } from "@chakra-ui/react";
+import {Box, Container, Text, VStack} from "@chakra-ui/react";
 import FiltersPanel from "../../components/panels/FiltersPanel";
 import DataTable from "../../components/tables/DataTable";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {getProductsAsync,} from "../../features/products/productsAction.js";
 
 function Products() {
-    return (
-        <Container p={4} maxW="container.xxl">
+    const dispatch = useDispatch();
+    const {products, error, isLoading} = useSelector((state) => state.products);
+    const [columns, setColumns] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await dispatch(getProductsAsync());
+                setColumns(Object.keys(products[0]));
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+
+        fetchData();
+    }, [dispatch, products]);
+
+    return (<Container p={4} maxW="container.xxl">
             <VStack spacing={4}>
-                <FiltersPanel />
+                <FiltersPanel/>
 
                 <Box
                     borderWidth="1px"
@@ -16,23 +35,22 @@ function Products() {
                     bg="white"
                     w="100%"
                 >
-                    <Box
+                    <Text
                         bg="White"
                         color="teal"
                         fontSize={20}
-                        fontWeight={"bold"}
+                        fontWeight="bold"
                         p={4}
                     >
                         Products
-                    </Box>
+                    </Text>
 
-                    {/* <DataTable /> */}
+                    <DataTable data={products} columns={columns}/>
 
                     <Box color="teal" p={4}></Box>
                 </Box>
             </VStack>
-        </Container>
-    );
+        </Container>);
 }
 
 export default Products;
