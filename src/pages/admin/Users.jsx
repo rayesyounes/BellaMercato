@@ -23,7 +23,7 @@ function Users() {
         };
 
         fetchData();
-    }, [dispatch, users]);
+    }, [dispatch]);
 
     return (
         <Container p={4} maxW="container.xxl">

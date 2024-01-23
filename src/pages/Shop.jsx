@@ -17,12 +17,12 @@ export default function Shop() {
             }
         };
         fetchData();
-    }, [dispatch, products]);
+    }, [dispatch]);
 
     return (
         <div>
             <Container maxW="container.xxl" my={4}>
-                <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+                <Grid templateColumns="repeat(3, 1fr)" gap={4}>
                     {products.map((product) => (
                         <CardProduct key={product.id} product={product} />
                     ))}

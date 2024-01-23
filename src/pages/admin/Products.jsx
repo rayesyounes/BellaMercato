@@ -21,7 +21,7 @@ function Products() {
         };
 
         fetchData();
-    }, [dispatch, products]);
+    }, [dispatch]);
 
     return (<Container p={4} maxW="container.xxl">
             <VStack spacing={4}>

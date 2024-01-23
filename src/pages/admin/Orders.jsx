@@ -21,7 +21,7 @@ function Orders() {
         };
 
         fetchData();
-    }, [dispatch, orders]);
+    }, [dispatch]);
 
     return (
         <Container p={4} maxW="container.xxl">

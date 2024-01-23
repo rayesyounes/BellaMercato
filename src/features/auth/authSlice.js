@@ -7,7 +7,7 @@ const initialState = {
         password: '11111111',
         address: '',
         isAdmin: false,
-        id: 3
+        id: 2
     },
     error: null,
     isLoading: false,

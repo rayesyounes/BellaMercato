@@ -15,62 +15,43 @@ import {
     Badge,
     DrawerFooter,
 } from "@chakra-ui/react";
-import {AddIcon, DeleteIcon, MinusIcon} from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 import CartSvg from "../../assets/Cart.svg";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchUserCart } from "../../features/cart/cartAction";
 
 export default function CartDrawer() {
-    const {isOpen, onOpen, onClose} = useDisclosure();
+    const dispatch = useDispatch();
+    const { cart } = useSelector((state) => state.cart);
+    const { user } = useSelector((state) => state.auth);
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
 
-    const cartItems = [
-        {
-            "id": 1,
-            "name": "Laptop",
-            "price": 999.99,
-            "description": "High-performance laptop with the latest specifications.",
-            "stock": 50,
-            "quantity": 2,
-        },
-        {
-            "id": 1,
-            "name": "Laptop",
-            "price": 999.99,
-            "description": "High-performance laptop with the latest specifications.",
-            "stock": 50,
-            "quantity": 2,
-        },
-        {
-            "id": 1,
-            "name": "Laptop",
-            "price": 999.99,
-            "description": "High-performance laptop with the latest specifications.",
-            "stock": 50,
-            "quantity": 2,
-        },
-        {
-            "id": 1,
-            "name": "Laptop",
-            "price": 999.99,
-            "description": "High-performance laptop with the latest specifications.",
-            "stock": 50,
-            "quantity": 2,
-        },
-    ];
+    useEffect(() => {
+        // Fetch user's cart when the component mounts
+        dispatch(fetchUserCart(1));
+    }, [dispatch]);
+
+    const cartItems = [];
 
     const calculateTotalPrice = () => {
-        return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+        return cartItems.reduce(
+            (total, item) => total + item.quantity * item.price,
+            0
+        );
     };
 
     const goToCheckout = () => {
         onClose();
         navigate("/checkout");
-    }
+    };
 
     const goToCart = () => {
         onClose();
         navigate("/cart");
-    }
+    };
 
     return (
         <>
@@ -81,9 +62,8 @@ export default function CartDrawer() {
                 display="inline-block"
                 cursor="pointer"
             >
-                <img src={CartSvg} alt="cart"/>
+                <img src={CartSvg} alt="cart" />
                 {cartItems.length !== 0 && (
-
                     <Badge
                         w={4}
                         h={4}
@@ -98,57 +78,93 @@ export default function CartDrawer() {
                         right={0}
                         transform="translate(50%, -50%)"
                     >
-                        {cartItems.length > 0 && <span>{cartItems.length}</span>}
+                        {cartItems.length > 0 && (
+                            <span>{cartItems.length}</span>
+                        )}
                     </Badge>
                 )}
             </Box>
 
             <Drawer onClose={onClose} isOpen={isOpen} size={"sm"}>
-                <DrawerOverlay/>
+                <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton/>
-                    <DrawerHeader textAlign="center" fontSize="2xl" fontWeight="bold">
+                    <DrawerCloseButton />
+                    <DrawerHeader
+                        textAlign="center"
+                        fontSize="2xl"
+                        fontWeight="bold"
+                    >
                         Your Cart
                     </DrawerHeader>
                     <DrawerBody>
                         {/* Display cart items */}
                         {cartItems.map((item) => (
-                            <Box key={item.id} mb={4} p={4} borderWidth="1px" borderRadius="md">
+                            <Box
+                                key={item.id}
+                                mb={4}
+                                p={4}
+                                borderWidth="1px"
+                                borderRadius="md"
+                            >
                                 <Flex justify="space-between" align="center">
                                     <Text fontWeight="bold">{item.name}</Text>
-                                    <Text>{`$${item.price.toFixed(2)} each`}</Text>
+                                    <Text>{`$${item.price.toFixed(
+                                        2
+                                    )} each`}</Text>
                                 </Flex>
-                                <Flex mt={2} justify="space-between" align="center">
+                                <Flex
+                                    mt={2}
+                                    justify="space-between"
+                                    align="center"
+                                >
                                     <Text>{`Quantity: ${item.quantity}`}</Text>
                                     <Flex align="center">
                                         <IconButton
-                                            icon={<AddIcon/>}
+                                            icon={<AddIcon />}
                                             size="sm"
-                                            onClick={() => console.log("Increment", item.id)}
+                                            onClick={() =>
+                                                console.log(
+                                                    "Increment",
+                                                    item.id
+                                                )
+                                            }
                                             aria-label="Increment"
                                             mr={2}
                                         />
                                         <IconButton
-                                            icon={<MinusIcon/>}
+                                            icon={<MinusIcon />}
                                             size="sm"
-                                            onClick={() => console.log("Decrement", item.id)}
+                                            onClick={() =>
+                                                console.log(
+                                                    "Decrement",
+                                                    item.id
+                                                )
+                                            }
                                             aria-label="Decrement"
                                             mr={2}
                                         />
                                         <IconButton
-                                            icon={<DeleteIcon/>}
+                                            icon={<DeleteIcon />}
                                             size="sm"
-                                            onClick={() => console.log("Remove", item.id)}
+                                            onClick={() =>
+                                                console.log("Remove", item.id)
+                                            }
                                             aria-label="Remove"
                                             colorScheme="red"
                                         />
                                     </Flex>
                                 </Flex>
-                                <Divider mt={2}/>
+                                <Divider mt={2} />
                             </Box>
                         ))}
                     </DrawerBody>
-                    <DrawerFooter py={8} gap={5} display={"grid"} gridTemplateColumns={"auto 1fr"} justifyContent="center">
+                    <DrawerFooter
+                        py={8}
+                        gap={5}
+                        display={"grid"}
+                        gridTemplateColumns={"auto 1fr"}
+                        justifyContent="center"
+                    >
                         <Text fontWeight="bold" fontSize="lg">
                             {`Total: $${calculateTotalPrice().toFixed(2)}`}
                         </Text>
@@ -178,8 +194,6 @@ export default function CartDrawer() {
                             Go to Cart
                         </Button>
                     </DrawerFooter>
-
-
                 </DrawerContent>
             </Drawer>
         </>
