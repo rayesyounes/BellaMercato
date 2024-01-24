@@ -50,11 +50,12 @@
   ],
   "carts": [
     {
+      "id": 1,
       "user_id": 3,
       "items": [
         {
           "product_id": 1,
-          "quantity": 2
+          "quantity": 4
         },
         {
           "product_id": 3,
@@ -64,6 +65,7 @@
       "total": 1179.97
     },
     {
+      "id": 2,
       "user_id": 2,
       "items": [
         {
@@ -104,8 +106,7 @@
       "total": 499.99,
       "order_date": "2023-02-01T12:15:00Z",
       "status": "processing"
-    }
-    ,
+    },
     {
       "id": 2,
       "user_id": 2,
@@ -118,8 +119,7 @@
       "total": 499.99,
       "order_date": "2023-02-01T12:15:00Z",
       "status": "cancelled"
-    }
-    ,
+    },
     {
       "id": 2,
       "user_id": 2,
@@ -133,6 +133,5 @@
       "order_date": "2023-02-01T12:15:00Z",
       "status": "confirmed"
     }
-
   ]
 }

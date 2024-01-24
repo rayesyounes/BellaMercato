@@ -20,7 +20,7 @@ import CartSvg from "../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { decreaseQuantity, fetchUserCart, increaseQuantity } from "../../features/cart/cartAction";
+import { fetchUserCart, decreaseQuantity, increaseQuantity, removeItem } from "../../features/cart/cartAction";
 import { getProductsAsync } from "../../features/products/productsAction";
 
 export default function CartDrawer() {
@@ -41,23 +41,6 @@ export default function CartDrawer() {
     useEffect(() => {
         setCartItems(items);
     }, [items]);
-
-    const calculateTotalPrice = () => {
-        return cartItems.reduce(
-            (total, item) => total + item.quantity * item.price,
-            0
-        );
-    };
-
-    const increaseQuantity = (productId) => {
-        dispatch(increaseQuantity({userId, productId}));
-        console.log("increase quantity");
-    }
-
-    const decreaseQuantity = (productId) => {
-        dispatch(decreaseQuantity({userId, productId}));
-        console.log("decrease quantity");
-    }
 
     const goToCheckout = () => {
         onClose();
@@ -115,9 +98,7 @@ export default function CartDrawer() {
                     <DrawerBody>
                         {/* Display cart items */}
                         {cartItems.map((item) => {
-                            const product = products.find(
-                                (p) => p.id === item.product_id
-                            );
+                            const product = products.find((p) => p.id === item.product_id);
 
                             if (!product) {
                                 return null;
@@ -152,26 +133,21 @@ export default function CartDrawer() {
                                             <IconButton
                                                 icon={<AddIcon />}
                                                 size="sm"
-                                                onClick={() => increaseQuantity(item.product_id)}
+                                                onClick={() => dispatch(increaseQuantity({userId, productId: product.id}))}
                                                 aria-label="Increment"
                                                 mr={2}
                                             />
                                             <IconButton
                                                 icon={<MinusIcon />}
                                                 size="sm"
-                                                onClick={() => decreaseQuantity(item.product_id) }
+                                                onClick={() => dispatch(decreaseQuantity({userId, productId: product.id}))}
                                                 aria-label="Decrement"
                                                 mr={2}
                                             />
                                             <IconButton
                                                 icon={<DeleteIcon />}
                                                 size="sm"
-                                                onClick={() =>
-                                                    console.log(
-                                                        "Remove",
-                                                        item.product_id
-                                                    )
-                                                }
+                                                onClick={() => dispatch(removeItem({userId, productId: product.id}))}
                                                 aria-label="Remove"
                                                 colorScheme="red"
                                             />
