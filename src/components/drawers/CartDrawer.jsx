@@ -20,7 +20,7 @@ import CartSvg from "../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchUserCart } from "../../features/cart/cartAction";
+import { decreaseQuantity, fetchUserCart, increaseQuantity } from "../../features/cart/cartAction";
 import { getProductsAsync } from "../../features/products/productsAction";
 
 export default function CartDrawer() {
@@ -31,11 +31,12 @@ export default function CartDrawer() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
+    const userId = user.id;
 
     useEffect(() => {
         dispatch(getProductsAsync());
-        dispatch(fetchUserCart(user.id));
-    }, [dispatch, user.id]);
+        dispatch(fetchUserCart(userId));
+    }, [dispatch]);
 
     useEffect(() => {
         setCartItems(items);
@@ -47,6 +48,16 @@ export default function CartDrawer() {
             0
         );
     };
+
+    const increaseQuantity = (productId) => {
+        dispatch(increaseQuantity({userId, productId}));
+        console.log("increase quantity");
+    }
+
+    const decreaseQuantity = (productId) => {
+        dispatch(decreaseQuantity({userId, productId}));
+        console.log("decrease quantity");
+    }
 
     const goToCheckout = () => {
         onClose();
@@ -141,24 +152,14 @@ export default function CartDrawer() {
                                             <IconButton
                                                 icon={<AddIcon />}
                                                 size="sm"
-                                                onClick={() =>
-                                                    console.log(
-                                                        "Increment",
-                                                        item.product_id
-                                                    )
-                                                }
+                                                onClick={() => increaseQuantity(item.product_id)}
                                                 aria-label="Increment"
                                                 mr={2}
                                             />
                                             <IconButton
                                                 icon={<MinusIcon />}
                                                 size="sm"
-                                                onClick={() =>
-                                                    console.log(
-                                                        "Decrement",
-                                                        item.product_id
-                                                    )
-                                                }
+                                                onClick={() => decreaseQuantity(item.product_id) }
                                                 aria-label="Decrement"
                                                 mr={2}
                                             />
