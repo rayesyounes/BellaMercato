@@ -110,63 +110,79 @@ export default function CartDrawer() {
                     </DrawerHeader>
                     <DrawerBody>
                         {/* Display cart items */}
-                        {cartItems.map((item) => (
-                            <Box
-                                key={item.product_id}
-                                mb={4}
-                                p={4}
-                                borderWidth="1px"
-                                borderRadius="md"
-                            >
-                                <Flex justify="space-between" align="center">
-                                    <Text fontWeight="bold">product name</Text>
-                                    <Text>{`$ price each`}</Text>
-                                </Flex>
-                                <Flex
-                                    mt={2}
-                                    justify="space-between"
-                                    align="center"
+                        {cartItems.map((item) => {
+                            const product = products.find(
+                                (p) => p.id === item.product_id
+                            );
+
+                            return (
+                                <Box
+                                    key={item.product_id}
+                                    mb={4}
+                                    p={4}
+                                    borderWidth="1px"
+                                    borderRadius="md"
                                 >
-                                    <Text>{`Quantity: ${item.quantity}`}</Text>
-                                    <Flex align="center">
-                                        <IconButton
-                                            icon={<AddIcon />}
-                                            size="sm"
-                                            onClick={() =>
-                                                console.log(
-                                                    "Increment",
-                                                    item.product_id
-                                                )
-                                            }
-                                            aria-label="Increment"
-                                            mr={2}
-                                        />
-                                        <IconButton
-                                            icon={<MinusIcon />}
-                                            size="sm"
-                                            onClick={() =>
-                                                console.log(
-                                                    "Decrement",
-                                                    item.product_id
-                                                )
-                                            }
-                                            aria-label="Decrement"
-                                            mr={2}
-                                        />
-                                        <IconButton
-                                            icon={<DeleteIcon />}
-                                            size="sm"
-                                            onClick={() =>
-                                                console.log("Remove", item.product_id)
-                                            }
-                                            aria-label="Remove"
-                                            colorScheme="red"
-                                        />
+                                    <Flex
+                                        justify="space-between"
+                                        align="center"
+                                    >
+                                        <Text fontWeight="bold">
+                                            {product.name}
+                                        </Text>
+                                        <Text>{`$${product.price.toFixed(
+                                            2
+                                        )} each`}</Text>
                                     </Flex>
-                                </Flex>
-                                <Divider mt={2} />
-                            </Box>
-                        ))}
+                                    <Flex
+                                        mt={2}
+                                        justify="space-between"
+                                        align="center"
+                                    >
+                                        <Text>{`Quantity: ${item.quantity}`}</Text>
+                                        <Flex align="center">
+                                            <IconButton
+                                                icon={<AddIcon />}
+                                                size="sm"
+                                                onClick={() =>
+                                                    console.log(
+                                                        "Increment",
+                                                        item.product_id
+                                                    )
+                                                }
+                                                aria-label="Increment"
+                                                mr={2}
+                                            />
+                                            <IconButton
+                                                icon={<MinusIcon />}
+                                                size="sm"
+                                                onClick={() =>
+                                                    console.log(
+                                                        "Decrement",
+                                                        item.product_id
+                                                    )
+                                                }
+                                                aria-label="Decrement"
+                                                mr={2}
+                                            />
+                                            <IconButton
+                                                icon={<DeleteIcon />}
+                                                size="sm"
+                                                onClick={() =>
+                                                    console.log(
+                                                        "Remove",
+                                                        item.product_id
+                                                    )
+                                                }
+                                                aria-label="Remove"
+                                                colorScheme="red"
+                                            />
+                                        </Flex>
+                                    </Flex>
+                                    <Divider mt={2} />
+                                </Box>
+                            );
+                        })}
                     </DrawerBody>
                     <DrawerFooter
                         py={8}
