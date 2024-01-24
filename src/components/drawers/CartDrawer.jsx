@@ -19,8 +19,9 @@ import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 import CartSvg from "../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchUserCart } from "../../features/cart/cartAction";
+import { getProductsAsync } from "../../features/products/productsAction";
 
 export default function CartDrawer() {
     const dispatch = useDispatch();
@@ -28,19 +29,11 @@ export default function CartDrawer() {
     const { products } = useSelector((state) => state.products);
     const { user } = useSelector((state) => state.auth);
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [cartItems, setCartItems] = useState([
-        {
-            product_id: 1,
-            quantity: 2,
-        },
-        {
-            product_id: 3,
-            quantity: 1,
-        },
-    ]);
+    const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
+        dispatch(getProductsAsync());
         dispatch(fetchUserCart(user.id));
     }, [dispatch, user.id]);
 
@@ -114,6 +107,10 @@ export default function CartDrawer() {
                             const product = products.find(
                                 (p) => p.id === item.product_id
                             );
+
+                            if (!product) {
+                                return null;
+                            }
 
                             return (
                                 <Box
