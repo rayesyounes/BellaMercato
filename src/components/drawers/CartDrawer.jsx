@@ -20,7 +20,7 @@ import CartSvg from "../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchUserCart, decreaseQuantity, increaseQuantity, removeItem } from "../../features/cart/cartAction";
+import { fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, updateTotal } from "../../features/cart/cartAction";
 import { getProductsAsync } from "../../features/products/productsAction";
 
 export default function CartDrawer() {
@@ -133,21 +133,30 @@ export default function CartDrawer() {
                                             <IconButton
                                                 icon={<AddIcon />}
                                                 size="sm"
-                                                onClick={() => dispatch(increaseQuantity({userId, productId: product.id}))}
+                                                onClick={() => {
+                                                    dispatch(increaseQuantity({userId, productId: product.id}))
+                                                    dispatch(updateTotal({userId, productPrice: product.price, quantity: item.quantity}))
+                                                }}
                                                 aria-label="Increment"
                                                 mr={2}
                                             />
                                             <IconButton
                                                 icon={<MinusIcon />}
                                                 size="sm"
-                                                onClick={() => dispatch(decreaseQuantity({userId, productId: product.id}))}
+                                                onClick={() => {
+                                                    dispatch(decreaseQuantity({userId, productId: product.id}))
+                                                    dispatch(updateTotal({userId, productPrice: product.price, quantity: item.quantity}))
+                                                }}
                                                 aria-label="Decrement"
                                                 mr={2}
                                             />
                                             <IconButton
                                                 icon={<DeleteIcon />}
                                                 size="sm"
-                                                onClick={() => dispatch(removeItem({userId, productId: product.id}))}
+                                                onClick={() => {
+                                                    dispatch(removeItem({userId, productId: product.id}))
+                                                    dispatch(updateTotal({userId, productPrice: product.price, quantity: item.quantity}))
+                                                }}
                                                 aria-label="Remove"
                                                 colorScheme="red"
                                             />

@@ -1,7 +1,7 @@
-// cartAction.js
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {setCart, setError, setLoading} from "./cartSlice";
+
 
 const API_BASE_URL = "http://localhost:3000";
 
@@ -25,34 +25,29 @@ const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, {dis
     }
 });
 
-const increaseQuantity = createAsyncThunk(
-    "cart/increaseQuantity",
-    async ({ userId, productId }, { dispatch }) => {
-        try {
-            dispatch(setLoading(true));
-            const response = await axios.get(`${API_BASE_URL}/carts`);
-            const userCart = response.data.find((cart) => cart.user_id === userId);
+const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userId, productId}, {dispatch}) => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
 
-            const itemToUpdate = userCart.items.find(
-                (item) => item.product_id === productId
-            );
+        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
-            if (itemToUpdate) {
+        if (itemToUpdate) {
 
-                itemToUpdate.quantity += 1;
-                const updatedCart = { ...userCart };
-                await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
-                dispatch(setCart(updatedCart));
-            }
-
-            dispatch(setLoading(false));
-        } catch (error) {
-            dispatch(setLoading(false));
-            dispatch(setError(error.message));
-            throw error;
+            itemToUpdate.quantity += 1;
+            const updatedCart = {...userCart};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
+            dispatch(setCart(updatedCart));
         }
+
+        dispatch(setLoading(false));
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
     }
-);
+});
 
 const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userId, productId}, {dispatch}) => {
     try {
@@ -60,14 +55,12 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userI
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
 
-        const itemToUpdate = userCart.items.find(
-            (item) => item.product_id === productId
-        );
+        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
         if (itemToUpdate) {
 
             itemToUpdate.quantity -= 1;
-            const updatedCart = { ...userCart };
+            const updatedCart = {...userCart};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
             dispatch(setCart(updatedCart));
         }
@@ -81,36 +74,46 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userI
 });
 
 const removeItem = createAsyncThunk("cart/removeItem", async ({userId, productId}, {dispatch}) => {
-        try {
-            dispatch(setLoading(true));
+    try {
+        dispatch(setLoading(true));
 
-            const response = await axios.get(`${API_BASE_URL}/carts`);
-            const userCart = response.data.find((cart) => cart.user_id === userId);
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
 
-            const itemToUpdate = userCart.items.find(
-                (item) => item.product_id === productId
-            );
+        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
-            if (itemToUpdate) {
-                const updatedCart = {
-                    ...userCart,
-                    items: userCart.items.filter(
-                        (item) => item.product_id !== productId
-                    ),
-                };
+        if (itemToUpdate) {
+            const updatedCart = {
+                ...userCart, items: userCart.items.filter((item) => item.product_id !== productId),
+            };
 
-                await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
-                dispatch(setCart(updatedCart));
-            }
-
-        } catch (error) {
-            dispatch(setLoading(false));
-            dispatch(setError(error.message));
-            throw error;
-
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
+            dispatch(setCart(updatedCart));
         }
+
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+
     }
-);
+});
+
+const updateTotal = createAsyncThunk("cart/updateTotal", async ({userId, productPrice, quantity}, {dispatch}) => {
+    try {
+        await dispatch(setLoading(true));
+
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
+        const updatedCart = {...userCart, total: userCart.total + productPrice * quantity};
+        dispatch(setCart(updatedCart));
+
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+    }
+});
 
 
-export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem};
+export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, updateTotal};
