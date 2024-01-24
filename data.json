@@ -50,7 +50,7 @@
   ],
   "carts": [
     {
-      "user_id": 1,
+      "user_id": 3,
       "items": [
         {
           "product_id": 1,

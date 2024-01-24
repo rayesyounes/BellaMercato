@@ -2,17 +2,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialCartsState = {
-    cart: null,
+    user_id: null,
+    items: [],
+    total: null,
     error: null,
     isLoading: false,
 };
 
 const cartSlice = createSlice({
-    name: "cart",
+    name: "userCart",
     initialState: initialCartsState,
     reducers: {
         setCart: (state, action) => {
-            state.cart = action.payload;
+            state.user_id = action.payload.user_id;
+            state.items = action.payload.items;
+            state.total = action.payload.total;
         },
         setError: (state, action) => {
             state.error = { message: action.payload };

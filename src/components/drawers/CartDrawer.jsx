@@ -19,22 +19,34 @@ import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 import CartSvg from "../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { fetchUserCart } from "../../features/cart/cartAction";
 
 export default function CartDrawer() {
     const dispatch = useDispatch();
-    const { cart } = useSelector((state) => state.cart);
+    const { items, total } = useSelector((state) => state.userCart);
+    const { products } = useSelector((state) => state.products);
     const { user } = useSelector((state) => state.auth);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [cartItems, setCartItems] = useState([
+        {
+            product_id: 1,
+            quantity: 2,
+        },
+        {
+            product_id: 3,
+            quantity: 1,
+        },
+    ]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch user's cart when the component mounts
-        dispatch(fetchUserCart(1));
-    }, [dispatch]);
+        dispatch(fetchUserCart(user.id));
+    }, [dispatch, user.id]);
 
-    const cartItems = [];
+    useEffect(() => {
+        setCartItems(items);
+    }, [items]);
 
     const calculateTotalPrice = () => {
         return cartItems.reduce(
@@ -100,17 +112,15 @@ export default function CartDrawer() {
                         {/* Display cart items */}
                         {cartItems.map((item) => (
                             <Box
-                                key={item.id}
+                                key={item.product_id}
                                 mb={4}
                                 p={4}
                                 borderWidth="1px"
                                 borderRadius="md"
                             >
                                 <Flex justify="space-between" align="center">
-                                    <Text fontWeight="bold">{item.name}</Text>
-                                    <Text>{`$${item.price.toFixed(
-                                        2
-                                    )} each`}</Text>
+                                    <Text fontWeight="bold">product name</Text>
+                                    <Text>{`$ price each`}</Text>
                                 </Flex>
                                 <Flex
                                     mt={2}
@@ -125,7 +135,7 @@ export default function CartDrawer() {
                                             onClick={() =>
                                                 console.log(
                                                     "Increment",
-                                                    item.id
+                                                    item.product_id
                                                 )
                                             }
                                             aria-label="Increment"
@@ -137,7 +147,7 @@ export default function CartDrawer() {
                                             onClick={() =>
                                                 console.log(
                                                     "Decrement",
-                                                    item.id
+                                                    item.product_id
                                                 )
                                             }
                                             aria-label="Decrement"
@@ -147,7 +157,7 @@ export default function CartDrawer() {
                                             icon={<DeleteIcon />}
                                             size="sm"
                                             onClick={() =>
-                                                console.log("Remove", item.id)
+                                                console.log("Remove", item.product_id)
                                             }
                                             aria-label="Remove"
                                             colorScheme="red"
@@ -166,7 +176,7 @@ export default function CartDrawer() {
                         justifyContent="center"
                     >
                         <Text fontWeight="bold" fontSize="lg">
-                            {`Total: $${calculateTotalPrice().toFixed(2)}`}
+                            {`Total: $${total}`}
                         </Text>
                         <Button
                             colorScheme="teal"

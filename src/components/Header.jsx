@@ -66,7 +66,7 @@ export default function Header() {
         >
             {/* Logo */}
             {isAdmin ? <Heading as='h3' size='lg'>ADMIN</Heading>
-                : <Logo>RAYSTORE</Logo> }
+                : <Logo>DEMO</Logo> }
 
             <Spacer/>
 
