@@ -21,7 +21,7 @@ import Dashboard from "./pages/admin/Dashboard.jsx";
 import Product from "./pages/Product.jsx";
 
 function App() {
-    const {isAuthenticated, isAdmin} = useSelector((state) => state.auth);
+    const {isAuthenticated, isAdmin} = useSelector(state => state.auth);
 
     const router = createBrowserRouter(
         createRoutesFromElements(

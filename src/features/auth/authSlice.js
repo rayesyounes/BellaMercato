@@ -11,7 +11,7 @@ const initialState = {
     },
     error: null,
     isLoading: false,
-    isAdmin: false,
+    isAdmin: true,
     isAuthenticated: true
 };
 

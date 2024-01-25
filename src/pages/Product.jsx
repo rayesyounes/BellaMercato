@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
 import {
     Box,
     Text,
@@ -11,19 +11,23 @@ import {
     GridItem,
     Button,
 } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import { addToCart } from '../features/cart/cartAction.js';
+import {useDispatch, useSelector} from 'react-redux';
+import {motion} from 'framer-motion';
+import {addToCart} from '../features/cart/cartAction.js';
 
 const MotionBox = motion(Box);
 
 const Product = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const dispatch = useDispatch();
-    const { products } = useSelector((state) => state.products);
-    const { user } = useSelector((state) => state.auth);
+    const {products} = useSelector((state) => state.products);
+    const {user, isAuthenticated} = useSelector((state) => state.auth);
     const product = products.find((product) => product.id === parseInt(id));
-    const userId = user.id;
+    let userId = null;
+
+    if (user) {
+        userId = user.id;
+    }
 
     const productImages = [
         'https://via.placeholder.com/800x800',
@@ -41,14 +45,14 @@ const Product = () => {
 
     return (
         <Container maxW="container.xxl" height="100vh">
-            <MotionBox p={8} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <MotionBox p={8} initial={{opacity: 0, y: -20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}}>
                 <Flex borderRadius="lg" boxShadow="xl" bgColor="white"
-                    flexDirection={{ base: 'column', md: 'row' }}
-                    alignItems={{ base: 'center', md: 'stretch' }}
-                      p={{ base: 4, md: 8 }}
+                      flexDirection={{base: 'column', md: 'row'}}
+                      alignItems={{base: 'center', md: 'stretch'}}
+                      p={{base: 4, md: 8}}
 
                 >
-                    <Box flex={2} p={8}  textAlign="left">
+                    <Box flex={2} p={8} textAlign="left">
                         <Text fontSize="5xl" fontWeight="bold" mb={2} fontFamily="'Playfair Display', serif">
                             {product.name}
                         </Text>
@@ -65,7 +69,10 @@ const Product = () => {
                             colorScheme="teal"
                             size="lg"
                             mt={8}
-                            onClick={() => dispatch(addToCart({ userId, productId: product.id }))}
+                            onClick={() => (
+                                isAuthenticated ? dispatch(addToCart({userId, productId: product.id}))
+                                    : alert('Please login to add to cart')
+                            )}
                         >
                             Add to Cart
                         </Button>
@@ -92,7 +99,7 @@ const Product = () => {
                                         onClick={() => setMainImage(thumbnail)}
                                         borderRadius="lg"
                                         border="2px solid transparent"
-                                        _hover={{ border: '2px solid teal.500' }}
+                                        _hover={{border: '2px solid teal.500'}}
                                         maxW="100%"
                                         maxH="100px"
                                     />

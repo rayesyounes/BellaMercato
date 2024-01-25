@@ -54,15 +54,11 @@
       "user_id": 3,
       "items": [
         {
-          "product_id": 3,
-          "quantity": 1
-        },
-        {
           "product_id": 2,
-          "quantity": 1
+          "quantity": 2
         }
       ],
-      "total": 579.98
+      "total": 999.98
     },
     {
       "id": 2,
