@@ -50,19 +50,19 @@
   ],
   "carts": [
     {
-      "id": 1,
+      "id": 3,
       "user_id": 3,
       "items": [
         {
           "product_id": 1,
-          "quantity": 2
+          "quantity": 1
         },
         {
-          "product_id": 3,
-          "quantity": 6
+          "product_id": 2,
+          "quantity": 2
         }
       ],
-      "total": 1179.97
+      "total": 1999.97
     },
     {
       "id": 2,

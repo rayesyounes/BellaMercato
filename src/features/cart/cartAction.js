@@ -1,7 +1,7 @@
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {setCart, setError, setLoading} from "./cartSlice";
-
+import {useSelector} from "react-redux";
 
 const API_BASE_URL = "http://localhost:3000";
 
@@ -25,21 +25,38 @@ const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, {dis
     }
 });
 
-const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userId, productId}, {dispatch}) => {
+const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userId, productId}, {
+    dispatch, getState
+}) => {
     try {
         dispatch(setLoading(true));
+
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
-
         const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
         if (itemToUpdate) {
-
             itemToUpdate.quantity += 1;
+
             const updatedCart = {...userCart};
-            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
-            dispatch(setCart(updatedCart));
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            });
         }
+
+        let total = 0;
+        userCart.items.forEach((item) => {
+            const product = products.find((product) => product.id === item.product_id);
+            if (product) {
+                total += product.price * item.quantity;
+            }
+        });
+
+        const updatedCart = {...userCart, total};
+        await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+            dispatch(setCart(updatedCart));
+        });
 
         dispatch(setLoading(false));
     } catch (error) {
@@ -49,21 +66,39 @@ const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userI
     }
 });
 
-const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userId, productId}, {dispatch}) => {
+
+const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userId, productId}, {
+    dispatch, getState
+}) => {
     try {
         dispatch(setLoading(true));
+
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
-
         const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
         if (itemToUpdate) {
 
             itemToUpdate.quantity -= 1;
             const updatedCart = {...userCart};
-            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
-            dispatch(setCart(updatedCart));
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            })
         }
+
+        let total = 0;
+        userCart.items.forEach((item) => {
+            const product = products.find((product) => product.id === item.product_id);
+            if (product) {
+                total += product.price * item.quantity;
+            }
+        });
+
+        const updatedCart = {...userCart, total};
+        await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+            dispatch(setCart(updatedCart));
+        });
 
         dispatch(setLoading(false));
     } catch (error) {
@@ -73,41 +108,33 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userI
     }
 });
 
-const removeItem = createAsyncThunk("cart/removeItem", async ({userId, productId}, {dispatch}) => {
+const removeItem = createAsyncThunk("cart/removeItem", async ({userId, productId}, {dispatch, getState}) => {
     try {
         dispatch(setLoading(true));
 
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
+        const itemToRemove = userCart.items.find((item) => item.product_id === productId);
 
-        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
+        if (itemToRemove) {
+            const updatedItems = userCart.items.filter((item) => item.product_id !== productId);
+            let total = 0;
 
-        if (itemToUpdate) {
-            const updatedCart = {
-                ...userCart, items: userCart.items.filter((item) => item.product_id !== productId),
-            };
+            updatedItems.forEach((item) => {
+                const product = products.find((product) => product.id === item.product_id);
+                if (product) {
+                    total += product.price * item.quantity;
+                }
+            });
 
-            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart);
-            dispatch(setCart(updatedCart));
+            const updatedCart = {...userCart, items: updatedItems, total};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            });
         }
 
-    } catch (error) {
         dispatch(setLoading(false));
-        dispatch(setError(error.message));
-        throw error;
-
-    }
-});
-
-const updateTotal = createAsyncThunk("cart/updateTotal", async ({userId, productPrice, quantity}, {dispatch}) => {
-    try {
-        await dispatch(setLoading(true));
-
-        const response = await axios.get(`${API_BASE_URL}/carts`);
-        const userCart = response.data.find((cart) => cart.user_id === userId);
-        const updatedCart = {...userCart, total: userCart.total + productPrice * quantity};
-        dispatch(setCart(updatedCart));
-
     } catch (error) {
         dispatch(setLoading(false));
         dispatch(setError(error.message));
@@ -116,4 +143,4 @@ const updateTotal = createAsyncThunk("cart/updateTotal", async ({userId, product
 });
 
 
-export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, updateTotal};
+export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem};
