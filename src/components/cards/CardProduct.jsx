@@ -1,17 +1,9 @@
 import {
-    CardFooter,
-    CardBody,
-    Divider,
-    Image,
-    Stack,
-    Heading,
-    Text,
-    ButtonGroup,
-    Button,
-    Card,
+    CardFooter, CardBody, Divider, Image, Stack, Heading, Text, ButtonGroup, Button, Card,
 } from "@chakra-ui/react";
 import {addToCart} from "../../features/cart/cartAction.js";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 function CardProduct({product}) {
     const {name, description, price} = product;
@@ -19,9 +11,7 @@ function CardProduct({product}) {
     const {user} = useSelector((state) => state.auth);
     const userId = user.id;
 
-
-    return (
-        <Card>
+    return (<Card>
             <CardBody>
                 <Image
                     src={"https://via.placeholder.com/600"}
@@ -45,13 +35,17 @@ function CardProduct({product}) {
                     >
                         Add to cart
                     </Button>
-                    <Button variant="ghost" colorScheme="teal">
-                        View details
+                    <Button
+                        as={Link}
+                        to={`/product/${product.id}`}
+                        variant="ghost"
+                        colorScheme="teal"
+                    >
+                        View Details
                     </Button>
                 </ButtonGroup>
             </CardFooter>
-        </Card>
-    );
+        </Card>);
 }
 
 export default CardProduct;

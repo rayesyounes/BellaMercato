@@ -18,6 +18,7 @@ import Users from "./pages/admin/Users.jsx";
 import Orders from "./pages/admin/Orders.jsx";
 import Products from "./pages/admin/Products.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
+import Product from "./pages/Product.jsx";
 
 function App() {
     const {isAuthenticated, isAdmin} = useSelector((state) => state.auth);
@@ -29,6 +30,7 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path="shop" element={<Shop/>}/>
                 <Route path="sales" element={<Sales/>}/>
+                <Route path={"product/:id"} element={<Product />}/>
 
                 {/* protectedRoute */}
                 {isAuthenticated && <Route path="cart" element={<Cart/>}/>}
