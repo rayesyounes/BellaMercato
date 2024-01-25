@@ -9,7 +9,7 @@ import cartReducer from '../features/cart/cartSlice';
 const store = configureStore({
     reducer: {
         auth: authReducer,
-        cart: cartReducer,
+        userCart: cartReducer,
         // checkout: checkoutReducer,
         products: productsReducer,
         users: usersReducer,

@@ -1,11 +1,11 @@
-// cartAction.js
 import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setCart, setError, setLoading } from "./cartSlice";
+import {createAsyncThunk} from "@reduxjs/toolkit";
+import {setCart, setError, setLoading} from "./cartSlice";
+import {useSelector} from "react-redux";
 
 const API_BASE_URL = "http://localhost:3000";
 
-const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { dispatch }) => {
+const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, {dispatch}) => {
     try {
         dispatch(setLoading(true));
 
@@ -25,4 +25,162 @@ const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { di
     }
 });
 
-export { fetchUserCart };
+const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userId, productId}, {
+    dispatch, getState
+}) => {
+    try {
+        dispatch(setLoading(true));
+
+        const {products} = getState().products;
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
+        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
+
+        if (itemToUpdate) {
+            itemToUpdate.quantity += 1;
+
+            const updatedCart = {...userCart};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            });
+        }
+
+        let total = 0;
+        userCart.items.forEach((item) => {
+            const product = products.find((product) => product.id === item.product_id);
+            if (product) {
+                total += product.price * item.quantity;
+            }
+        });
+
+        const updatedCart = {...userCart, total};
+        await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+            dispatch(setCart(updatedCart));
+        });
+
+        dispatch(setLoading(false));
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+    }
+});
+
+
+const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userId, productId}, {
+    dispatch, getState
+}) => {
+    try {
+        dispatch(setLoading(true));
+
+        const {products} = getState().products;
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
+        const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
+
+        if (itemToUpdate) {
+
+            itemToUpdate.quantity -= 1;
+            const updatedCart = {...userCart};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            })
+        }
+
+        let total = 0;
+        userCart.items.forEach((item) => {
+            const product = products.find((product) => product.id === item.product_id);
+            if (product) {
+                total += product.price * item.quantity;
+            }
+        });
+
+        const updatedCart = {...userCart, total};
+        await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+            dispatch(setCart(updatedCart));
+        });
+
+        dispatch(setLoading(false));
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+    }
+});
+
+const removeItem = createAsyncThunk("cart/removeItem", async ({userId, productId}, {dispatch, getState}) => {
+    try {
+        dispatch(setLoading(true));
+
+        const {products} = getState().products;
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
+        const itemToRemove = userCart.items.find((item) => item.product_id === productId);
+
+        if (itemToRemove) {
+            const updatedItems = userCart.items.filter((item) => item.product_id !== productId);
+            let total = 0;
+
+            updatedItems.forEach((item) => {
+                const product = products.find((product) => product.id === item.product_id);
+                if (product) {
+                    total += product.price * item.quantity;
+                }
+            });
+
+            const updatedCart = {...userCart, items: updatedItems, total};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            });
+        }
+
+        dispatch(setLoading(false));
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+    }
+});
+
+const addToCart = createAsyncThunk("cart/addToCart", async ({userId, productId}, {dispatch, getState}) => {
+    try {
+        dispatch(setLoading(true));
+
+        const {products} = getState().products;
+        const response = await axios.get(`${API_BASE_URL}/carts`);
+        const userCart = response.data.find((cart) => cart.user_id === userId);
+        const productToAdd = products.find((product) => product.id === productId);
+
+        if (userCart && productToAdd) {
+            const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
+
+            if (itemToUpdate) {
+                itemToUpdate.quantity += 1;
+            } else {
+                userCart.items.push({product_id: productId, quantity: 1});
+            }
+
+            let total = 0;
+            userCart.items.forEach((item) => {
+                const product = products.find((product) => product.id === item.product_id);
+                if (product) {
+                    total += product.price * item.quantity;
+                }
+            });
+
+            const updatedCart = {...userCart, total};
+            await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
+                dispatch(setCart(updatedCart));
+            });
+        }
+
+        dispatch(setLoading(false));
+    } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error.message));
+        throw error;
+    }
+});
+
+
+export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, addToCart};

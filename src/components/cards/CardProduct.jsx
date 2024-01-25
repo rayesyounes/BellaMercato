@@ -10,9 +10,15 @@ import {
     Button,
     Card,
 } from "@chakra-ui/react";
+import {addToCart} from "../../features/cart/cartAction.js";
+import {useDispatch, useSelector} from "react-redux";
 
-function CardProduct({ product }) {
-    const { name, description, price } = product;
+function CardProduct({product}) {
+    const {name, description, price} = product;
+    const dispatch = useDispatch();
+    const {user} = useSelector((state) => state.auth);
+    const userId = user.id;
+
 
     return (
         <Card>
@@ -31,10 +37,12 @@ function CardProduct({ product }) {
                     </Text>
                 </Stack>
             </CardBody>
-            <Divider />
+            <Divider/>
             <CardFooter>
                 <ButtonGroup spacing="2">
-                    <Button variant="solid" colorScheme="teal">
+                    <Button variant="solid" colorScheme="teal"
+                            onClick={() => dispatch(addToCart({userId, productId: product.id}))}
+                    >
                         Add to cart
                     </Button>
                     <Button variant="ghost" colorScheme="teal">
