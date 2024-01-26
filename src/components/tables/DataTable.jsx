@@ -1,10 +1,77 @@
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUserAsync } from "../../features/users/usersAction";
+import EditModal from "../modals/EditModal";
+
+const renderHeadData = (col, tag, fontSize, fontWeight, textTransform) => {
+    switch (col) {
+        case "products":
+            return (
+                <>
+                    <Th fontSize={fontSize} fontWeight={fontWeight}>
+                        Product ID
+                    </Th>
+                    <Th fontSize={fontSize} fontWeight={fontWeight}>
+                        Quantity
+                    </Th>
+                </>
+            );
+        case "isAdmin":
+            return (
+                <Th fontSize={fontSize} fontWeight={fontWeight}>
+                    Role
+                </Th>
+            );
+        case "id":
+            return null;
+        default:
+            return (
+                <Th
+                    fontSize={fontSize}
+                    fontWeight={fontWeight}
+                    textTransform={textTransform}
+                >
+                    {col}
+                </Th>
+            );
+    }
+};
+
+const renderBodyData = (col, item, tag, fontSize, fontWeight) => {
+    switch (col) {
+        case "products":
+            return (
+                <>
+                    <Td fontSize={"sm"} key={`${col}_id`}>
+                        {item[col][0].product_id}
+                    </Td>
+                    <Td fontSize={"sm"} key={`${col}_quantity`}>
+                        {item[col][0].quantity}
+                    </Td>
+                </>
+            );
+        case "isAdmin":
+            return (
+                <Td fontSize={"sm"} key={col}>
+                    {renderCellContent(col, item)}
+                </Td>
+            );
+        case "id":
+            return null;
+        default:
+            return (
+                <Td fontSize={fontSize} fontWeight={fontWeight}>
+                    {item[col]}
+                </Td>
+            );
+    }
+};
 
 const renderCellContent = (col, item) => {
     switch (col) {
         case "products":
-
+            return null;
         case "isAdmin":
             return item[col] ? "Admin" : "Customer";
         case "id":
@@ -15,22 +82,30 @@ const renderCellContent = (col, item) => {
 };
 
 function DataTable({ columns, data }) {
+    const { currentPage } = useSelector((state) => state.page);
+    const dispatch = useDispatch();
+
+    const handelDelete = (id) => {
+        switch (currentPage) {
+            case "users":
+                dispatch(deleteUserAsync(id));
+                break;
+            case "products":
+                break;
+            case "orders":
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <Table variant="simple">
             <Thead>
                 <Tr>
-                    {columns.map((col) => (
-                        col === "products" ? (
-                            <>
-                                <Th fontSize={"sm"} fontWeight={"bold"} key={`${col}_id`}>Product ID</Th>
-                                <Th fontSize={"sm"} fontWeight={"bold"} key={`${col}_quantity`}>Quantity</Th>
-                            </>
-                        ) : col === "id" ? null : (
-                            <Th fontSize={"sm"} fontWeight={"bold"} key={col}>
-                                {col}
-                            </Th>
-                        )
-                    ))}
+                    {columns.map((col) =>
+                        renderHeadData(col, "th", "sm", "bold", "uppercase")
+                    )}
                     <Th fontSize={"sm"} fontWeight={"bold"}>
                         Actions
                     </Th>
@@ -39,27 +114,14 @@ function DataTable({ columns, data }) {
             <Tbody>
                 {data.map((item) => (
                     <Tr key={item.id}>
-                        {columns.map((col) => (
-                            col === "products" ? (
-                                <>
-                                    <Td fontSize={"sm"} key={`${col}_id`}>{item[col][0].product_id}</Td>
-                                    <Td fontSize={"sm"} key={`${col}_quantity`}>{item[col][0].quantity}</Td>
-                                </>
-                            ) : col === "id" ? null : (
-                                <Td fontSize={"sm"} key={col}>
-                                    {renderCellContent(col, item)}
-                                </Td>
-                            )
-                        ))}
+                        {columns.map((col) =>
+                            renderBodyData(col, item, "td", "sm", "normal")
+                        )}
                         <Td display={"flex"} justifyContent={"space-evenly"}>
+                            <EditModal item={item}/>
                             <IconButton
-                                aria-label="Edit user"
-                                icon={<EditIcon />}
-                                colorScheme="gray"
-                                size={"sm"}
-                            />
-                            <IconButton
-                                aria-label="Delete user"
+                                aria-label="Delete"
+                                onClick={() => handelDelete(item.id)}
                                 icon={<DeleteIcon />}
                                 colorScheme="red"
                                 size={"sm"}

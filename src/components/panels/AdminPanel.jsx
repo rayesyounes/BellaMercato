@@ -1,6 +1,7 @@
-import {useState} from "react";
-import {Flex, List, ListItem, Icon, Button, Tooltip, Image, Text, Divider} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import { Flex, List, ListItem, Icon, Button, Tooltip, Image, Text, Divider } from "@chakra-ui/react";
 import StoreSvg from "../../assets/Shopping.svg"
+import { useSelector } from "react-redux";
 import {NavLink} from "react-router-dom";
 import {
     RiDashboardLine,
@@ -56,8 +57,13 @@ const SidebarLink = ({to, icon, children, isSelected, onClick, minimized}) => {
 };
 
 export default function AdminPanel() {
+    const { currentPage } = useSelector((state) => state.page);
     const [selectedItem, setSelectedItem] = useState();
     const [minimized, setMinimized] = useState(false);
+
+    useEffect(() => {
+        setSelectedItem(currentPage);
+    }, [currentPage]);
 
     const handleItemClick = (item) => {
         setSelectedItem(item);

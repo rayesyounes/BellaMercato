@@ -44,7 +44,7 @@
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
       "address": "",
-      "isAdmin": false,
+      "isAdmin": true,
       "id": 3
     }
   ],

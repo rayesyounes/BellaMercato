@@ -1,16 +1,12 @@
 import {
-    Flex,
-    Input,
-    Select,
-    Button,
-    InputGroup,
-    InputLeftElement,
+    Flex, Input, Select, InputGroup, InputLeftElement,
 } from "@chakra-ui/react";
-import { SearchIcon, AddIcon } from "@chakra-ui/icons";
+import {SearchIcon} from "@chakra-ui/icons";
+import AddModal from "../modals/AddModal.jsx";
+
 
 function FiltersPanel() {
-    return (
-        <Flex
+    return (<Flex
             borderWidth="1px"
             borderRadius="md"
             boxShadow="md"
@@ -22,7 +18,7 @@ function FiltersPanel() {
         >
             <InputGroup flex="1">
                 <InputLeftElement pointerEvents="none" color="gray.400">
-                    <SearchIcon />
+                    <SearchIcon/>
                 </InputLeftElement>
                 <Input
                     placeholder="Search..."
@@ -41,16 +37,8 @@ function FiltersPanel() {
                 <option value="username">Username</option>
                 <option value="email">Email</option>
             </Select>
-            <Button
-                colorScheme="teal"
-                size={"sm"}
-                _hover={{ bg: "teal.500" }}
-            >
-                <AddIcon mr={2} />
-                Add
-            </Button>
-        </Flex>
-    );
+            <AddModal />
+        </Flex>);
 }
 
 export default FiltersPanel;

@@ -3,7 +3,8 @@ import FiltersPanel from "../../components/panels/FiltersPanel";
 import DataTable from "../../components/tables/DataTable";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getProductsAsync,} from "../../features/products/productsAction.js";
+import { getProductsAsync, } from "../../features/products/productsAction.js";
+import { setCurrentPage } from "../../features/page/PageAction.js";
 
 function Products() {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function Products() {
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
+        dispatch(setCurrentPage("products"));
         const fetchData = async () => {
             try {
                 await dispatch(getProductsAsync());
