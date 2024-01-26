@@ -2,6 +2,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUserAsync } from "../../features/users/usersAction";
+import { deleteProductAsync } from "../../features/products/productsAction";
 import EditModal from "../modals/EditModal";
 
 const renderHeadData = (col, tag, fontSize, fontWeight, textTransform) => {
@@ -91,6 +92,7 @@ function DataTable({ columns, data }) {
                 dispatch(deleteUserAsync(id));
                 break;
             case "products":
+                dispatch(deleteProductAsync(id));
                 break;
             case "orders":
                 break;

@@ -19,7 +19,7 @@
       "name": "Headphones",
       "price": 79.99,
       "description": "Wireless over-ear headphones with noise cancellation.",
-      "stock": 30
+      "stock": "30"
     }
   ],
   "users": [
@@ -43,7 +43,7 @@
       "username": "rayesyounes",
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
-      "address": "",
+      "address": "so ",
       "isAdmin": true,
       "id": 3
     }
