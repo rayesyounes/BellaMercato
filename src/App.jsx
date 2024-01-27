@@ -11,7 +11,6 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Shop from "./pages/Shop.jsx";
 import Sales from "./pages/Sales.jsx";
-import Cart from "./pages/Cart.jsx";
 import CheckOut from "./pages/CheckOut.jsx";
 import Profile from "./pages/Profile.jsx";
 import Users from "./pages/admin/Users.jsx";
@@ -33,7 +32,6 @@ function App() {
                 <Route path={"product/:id"} element={<Product />}/>
 
                 {/* protectedRoute */}
-                {isAuthenticated && <Route path="cart" element={<Cart/>}/>}
                 {isAuthenticated && <Route path="checkout" element={<CheckOut />}/>}
                 {isAuthenticated && <Route path="profile" element={<Profile/>}/>}
 

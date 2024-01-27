@@ -3,12 +3,15 @@ import CardProduct from "../components/cards/CardProduct.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../features/products/productsAction.js";
+import { setCurrentPage } from "../features/page/PageAction.js";
 
 export default function Shop() {
     const dispatch = useDispatch();
     const { products, error, isLoading } = useSelector((state) => state.products);
+    const { currentPage } = useSelector((state) => state.page);
 
     useEffect(() => {
+        dispatch(setCurrentPage("shop"));
         const fetchData = async () => {
             try {
                 await dispatch(getProductsAsync());

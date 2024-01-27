@@ -1,6 +1,16 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../features/page/PageAction.js";
+import { useEffect } from "react";
 
 export default function CheckOut() {
+    const dispatch = useDispatch();
+    const { currentPage } = useSelector((state) => state.page);
+
+    useEffect(() => {
+        dispatch(setCurrentPage("checkout"));
+    }, [dispatch]);
+
     return (
         <Flex
             direction="column"

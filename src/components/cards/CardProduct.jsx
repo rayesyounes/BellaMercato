@@ -11,8 +11,6 @@ function CardProduct({product}) {
     const {user, isAuthenticated} = useSelector((state) => state.auth);
     let userId = null;
 
-    console.log(product);
-
     if (user) {
         userId = user.id;
     }

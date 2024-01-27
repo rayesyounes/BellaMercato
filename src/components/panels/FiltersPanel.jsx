@@ -7,8 +7,11 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import AddModal from "../modals/AddModal.jsx";
+import { useSelector } from "react-redux";
 
 function FiltersPanel() {
+    const { currentPage } = useSelector((state) => state.page);
+
     return (
         <Flex
             borderWidth="1px"
@@ -43,7 +46,7 @@ function FiltersPanel() {
                 <option value="username">Username</option>
                 <option value="email">Email</option>
             </Select>
-            <AddModal />
+            {currentPage !== "orders" && <AddModal />}
         </Flex>
     );
 }
