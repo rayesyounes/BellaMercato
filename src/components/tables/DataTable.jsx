@@ -9,17 +9,20 @@ import {
     IconButton,
     Flex,
 } from "@chakra-ui/react";
-import {DeleteIcon} from "@chakra-ui/icons";
-import {useSelector, useDispatch} from "react-redux";
-import {deleteUserAsync} from "../../features/users/usersAction";
-import {deleteProductAsync} from "../../features/products/productsAction";
-import EditModal from "../modals/EditModal";
-import StatusTag from "../tags/StatusTag";
 
-function DataTable({columns, data}) {
-    const {users} = useSelector((state) => state.users);
-    const {products} = useSelector((state) => state.products);
-    const {currentPage} = useSelector((state) => state.page);
+import { DeleteIcon } from "@chakra-ui/icons";
+
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUserAsync } from "../../features/users/usersAction";
+import { deleteProductAsync } from "../../features/products/productsAction";
+
+import EditModal from "../modals/EditModal";
+import ActionsMenu from "../menus/ActionsMenu";
+
+function DataTable({ columns, data }) {
+    const { users } = useSelector((state) => state.users);
+    const { products } = useSelector((state) => state.products);
+    const { currentPage } = useSelector((state) => state.page);
     const dispatch = useDispatch();
 
     const renderHeadData = (col, tag, fontSize, fontWeight, textTransform) => {
@@ -49,7 +52,11 @@ function DataTable({columns, data}) {
                 );
             case "order_date":
                 return (
-                    <Th fontSize={fontSize} fontWeight={fontWeight} textAlign={"center"}>
+                    <Th
+                        fontSize={fontSize}
+                        fontWeight={fontWeight}
+                        textAlign={"center"}
+                    >
                         Order Date
                     </Th>
                 );
@@ -114,6 +121,12 @@ function DataTable({columns, data}) {
                         </Td>
                     </>
                 );
+            case "total":
+                return (
+                    <Td fontSize={"sm"} key={col} textAlign={"center"}>
+                        {parseFloat(item[col]).toFixed(2)} $
+                    </Td>
+                );
             case "user_id":
                 return (
                     <Td fontSize={"sm"} key={col}>
@@ -135,14 +148,18 @@ function DataTable({columns, data}) {
             case "status":
                 return (
                     <Td fontSize={"sm"} key={col} textAlign={"center"}>
-                        <StatusTag status={item[col]} />
+                        <ActionsMenu item={item} />
                     </Td>
                 );
             case "id":
                 return null;
             default:
                 return (
-                    <Td fontSize={fontSize} fontWeight={fontWeight} textAlign={"center"}>
+                    <Td
+                        fontSize={fontSize}
+                        fontWeight={fontWeight}
+                        textAlign={"center"}
+                    >
                         {item[col]}
                     </Td>
                 );
@@ -175,7 +192,7 @@ function DataTable({columns, data}) {
     const getProductPrice = (id) => {
         const product = products.find((product) => product.id === id);
         return product.price;
-    }
+    };
 
     const handelDelete = (id) => {
         switch (currentPage) {
@@ -199,32 +216,38 @@ function DataTable({columns, data}) {
                     {columns.map((col) =>
                         renderHeadData(col, "th", "sm", "bold", "uppercase")
                     )}
-                    <Th fontSize={"sm"} textAlign={"center"} fontWeight={"bold"}>
-                        Actions
-                    </Th>
+                    {currentPage !== "orders" && (
+                        <Th
+                            fontSize={"sm"}
+                            textAlign={"center"}
+                            fontWeight={"bold"}
+                        >
+                            Actions
+                        </Th>
+                    )}
                 </Tr>
             </Thead>
             <Tbody>
                 {data.map((item) => (
-                    <Tr
-                        key={item.id}
-                    >
+                    <Tr key={item.id}>
                         {columns.map((col) =>
                             renderBodyData(col, item, "td", "sm", "normal")
                         )}
-                        <Td border={"none"}>
 
-                            <Flex justifyContent={"center"} gap={2}>
-                                <EditModal item={item}/>
-                                <IconButton
-                                    aria-label="Delete"
-                                    onClick={() => handelDelete(item.id)}
-                                    icon={<DeleteIcon/>}
-                                    colorScheme="red"
-                                    size={"sm"}
-                                />
-                            </Flex>
-                        </Td>
+                        {currentPage !== "orders" && (
+                            <Td border={"none"}>
+                                <Flex justifyContent={"center"} gap={2}>
+                                    <EditModal item={item} />
+                                    <IconButton
+                                        aria-label="Delete"
+                                        onClick={() => handelDelete(item.id)}
+                                        icon={<DeleteIcon />}
+                                        colorScheme="red"
+                                        size={"sm"}
+                                    />
+                                </Flex>
+                            </Td>
+                        )}
                     </Tr>
                 ))}
             </Tbody>
