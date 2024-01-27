@@ -36,6 +36,23 @@ const ordersSlice = createSlice({
         addOrderFailure: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
+        },    
+        updateOrderStart: (state) => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        updateOrderSuccess: (state, action) => {
+            state.isLoading = false;
+            const {id, updatedOrder} = action.payload;
+            const index = state.orders.findIndex((order) => order.id === id);
+            if (index !== -1) {
+                state.orders[index] = { ...state.orders[index], ...updatedOrder };
+            }
+            state.error = null;
+        },
+        updateOrderFailure: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
         },
         deleteOrderStart: (state) => {
             state.isLoading = true;
@@ -50,7 +67,7 @@ const ordersSlice = createSlice({
         deleteOrderFailure: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
-        },
+        }
     },
 });
 
@@ -61,6 +78,9 @@ export const {
     addOrderStart,
     addOrderSuccess,
     addOrderFailure,
+    updateOrderStart,
+    updateOrderSuccess,
+    updateOrderFailure,
     deleteOrderStart,
     deleteOrderSuccess,
     deleteOrderFailure,

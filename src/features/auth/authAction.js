@@ -1,5 +1,6 @@
-import { loginStart, loginSuccess, loginFailure, logout, clearAuthError } from "./authSlice";
+import {loginStart, loginSuccess, loginFailure, logout, clearAuthError} from "./authSlice";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const API_BASE_URL = "http://localhost:3000";
 
@@ -17,12 +18,12 @@ export const loginAuth = (authCredential) => async (dispatch) => {
         const authenticatedUser = response.data[0];
 
         if (authenticatedUser) {
-            dispatch(loginSuccess({ user: authenticatedUser, isAdmin: authenticatedUser.isAdmin }));
+            dispatch(loginSuccess({user: authenticatedUser, isAdmin: authenticatedUser.isAdmin}));
         } else {
-            dispatch(loginFailure({ error: "Invalid credentials" }));
+            dispatch(loginFailure({error: "Invalid credentials"}));
         }
     } catch (error) {
-        dispatch(loginFailure({ error: "An error occurred during login" }));
+        dispatch(loginFailure({error: "An error occurred during login"}));
     }
 };
 

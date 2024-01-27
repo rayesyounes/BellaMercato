@@ -3,7 +3,8 @@ import FiltersPanel from "../../components/panels/FiltersPanel";
 import DataTable from "../../components/tables/DataTable";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getOrdersAsync} from "../../features/orders/ordersAction.js";
+import { getOrdersAsync } from "../../features/orders/ordersAction.js";
+import { setCurrentPage } from "../../features/page/PageAction.js";
 
 function Orders() {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function Orders() {
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
+        dispatch(setCurrentPage("orders"));
         const fetchData = async () => {
             try {
                 await dispatch(getOrdersAsync());

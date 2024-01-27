@@ -25,6 +25,7 @@ export default function AdminNav() {
 
             <InputGroup w="70%">
                 <Input
+                    disabled
                     type="text"
                     placeholder="Search for..."
                     bg="gray.100"

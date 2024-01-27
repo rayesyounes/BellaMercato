@@ -33,7 +33,11 @@ export default function CartDrawer() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
-    const userId = user.id;
+    let userId = null;
+
+    if (user) {
+        userId = user.id;
+    }
 
     useEffect(() => {
         dispatch(getProductsAsync());

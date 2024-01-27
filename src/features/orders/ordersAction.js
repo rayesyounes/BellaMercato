@@ -5,6 +5,9 @@ import {
     addOrderStart,
     addOrderSuccess,
     addOrderFailure,
+    updateOrderStart,
+    updateOrderSuccess,
+    updateOrderFailure,
     deleteOrderStart,
     deleteOrderSuccess,
     deleteOrderFailure,
@@ -21,6 +24,17 @@ export const getOrdersAsync = () => async (dispatch) => {
     } catch (error) {
         dispatch(getOrdersFailure(error.message));
         console.error("Error fetching orders:", error);
+    }
+};
+
+export const updateOrderAsync = (orderId, updatedOrder) => async (dispatch) => {
+    try {
+        dispatch(updateOrderStart());
+        await axios.put(`${API_BASE_URL}/orders/${orderId}`, updatedOrder);
+        dispatch(updateOrderSuccess({ id: orderId, updatedOrder }));
+    } catch (error) {
+        dispatch(updateOrderFailure(error.message));
+        console.error("Error updating order:", error);
     }
 };
 

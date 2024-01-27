@@ -1,7 +1,6 @@
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {setCart, setError, setLoading} from "./cartSlice";
-import {useSelector} from "react-redux";
 
 const API_BASE_URL = "http://localhost:3000";
 

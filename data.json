@@ -19,7 +19,7 @@
       "name": "Headphones",
       "price": 79.99,
       "description": "Wireless over-ear headphones with noise cancellation.",
-      "stock": 30
+      "stock": "30"
     }
   ],
   "users": [
@@ -43,8 +43,8 @@
       "username": "rayesyounes",
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
-      "address": "",
-      "isAdmin": false,
+      "address": "so ",
+      "isAdmin": true,
       "id": 3
     }
   ],
@@ -54,15 +54,11 @@
       "user_id": 3,
       "items": [
         {
-          "product_id": 1,
-          "quantity": 1
-        },
-        {
           "product_id": 2,
-          "quantity": 1
+          "quantity": 2
         }
       ],
-      "total": 1499.98
+      "total": 999.98
     },
     {
       "id": 2,
@@ -108,7 +104,7 @@
       "status": "processing"
     },
     {
-      "id": 2,
+      "id": 3,
       "user_id": 2,
       "products": [
         {
@@ -121,7 +117,7 @@
       "status": "cancelled"
     },
     {
-      "id": 2,
+      "id": 4,
       "user_id": 2,
       "products": [
         {

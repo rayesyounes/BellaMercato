@@ -5,6 +5,7 @@ import DataTable from "../../components/tables/DataTable";
 import FiltersPanel from "../../components/panels/FiltersPanel";
 
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../features/page/PageAction";
 import { getUsersAsync } from "../../features/users/usersAction";
 
 function Users() {
@@ -13,12 +14,13 @@ function Users() {
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
+        dispatch(setCurrentPage("users"));
         const fetchData = async () => {
             try {
                 await dispatch(getUsersAsync());
                 setColumns(Object.keys(users[0]));
-            } catch (error) {
-                console.error("Error fetching users:", error);
+            } catch (err) {
+                console.error("Error fetching users:", error, err);
             }
         };
 
@@ -47,9 +49,7 @@ function Users() {
                     >
                         Customers
                     </Text>
-
                     <DataTable data={users} columns={columns} />
-
                     <Box color="teal" p={4}></Box>
                 </Box>
             </VStack>

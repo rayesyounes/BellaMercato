@@ -14,7 +14,7 @@ import {
     Text,
     VStack,
 } from "@chakra-ui/react";
-import {clearAuthError} from "../../features/auth/authSlice.js";
+import {resetErors} from "../../features/auth/authAction.js";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
@@ -39,7 +39,7 @@ export default function AnimatedLoginForm({onClose}) {
         if (isAuthenticated) {
             if (isAdmin) {
                 onClose();
-                navigate('/admin');
+                navigate('/admin/dashboard');
             } else {
                 onClose();
                 navigate('/');
@@ -47,8 +47,7 @@ export default function AnimatedLoginForm({onClose}) {
         } else if (error) {
             setPasswordError(null);
             setPasswordError(error);
-
-            dispatch(clearAuthError());
+            dispatch(resetErors());
         }
     }, [isAuthenticated, isAdmin, isLoading, error, onClose, navigate, dispatch]);
 

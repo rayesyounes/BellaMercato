@@ -2,11 +2,11 @@ import {
     Flex,
     Input,
     Select,
-    Button,
     InputGroup,
     InputLeftElement,
 } from "@chakra-ui/react";
-import { SearchIcon, AddIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
+import AddModal from "../modals/AddModal.jsx";
 
 function FiltersPanel() {
     return (
@@ -25,6 +25,7 @@ function FiltersPanel() {
                     <SearchIcon />
                 </InputLeftElement>
                 <Input
+                    disabled
                     placeholder="Search..."
                     bg="white"
                     border="none"
@@ -32,6 +33,7 @@ function FiltersPanel() {
                 />
             </InputGroup>
             <Select
+                disabled
                 placeholder="Filter by..."
                 bg="white"
                 border="none"
@@ -41,14 +43,7 @@ function FiltersPanel() {
                 <option value="username">Username</option>
                 <option value="email">Email</option>
             </Select>
-            <Button
-                colorScheme="teal"
-                size={"sm"}
-                _hover={{ bg: "teal.500" }}
-            >
-                <AddIcon mr={2} />
-                Add
-            </Button>
+            <AddModal />
         </Flex>
     );
 }
