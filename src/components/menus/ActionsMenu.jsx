@@ -53,6 +53,8 @@ function ActionsMenu({ item }) {
             <MenuButton
                 as={Button}
                 size={"xs"}
+                border={"2px solid"}
+                fontWeight={"bold"}
                 colorScheme={renderTagColor(item.status)}
                 rightIcon={renderTagIcon(item.status)}
                 variant={"outline"}
