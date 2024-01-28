@@ -24,7 +24,7 @@ export default function Shop() {
 
     return (
         <div>
-            <Container maxW="container.xxl" my={4}>
+            <Container maxW="container.xxl" px={"5%"} my={4}>
                 <Grid templateColumns="repeat(3, 1fr)" gap={6}>
                     {products.map((product) => (
                         <CardProduct key={product.id} product={product} />

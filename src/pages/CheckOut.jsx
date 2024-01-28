@@ -1,28 +1,30 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../features/page/PageAction.js";
-import { useEffect } from "react";
+import {Container, Flex} from "@chakra-ui/react";
+import {useDispatch} from "react-redux";
+import {setCurrentPage} from "../features/page/PageAction.js";
+import {useEffect, useState} from "react";
+import CheckoutStepper from "../components/steppers/CheckoutStepper.jsx";
+import CheckoutLayout from "../layouts/CheckoutLayout.jsx";
 
 export default function CheckOut() {
     const dispatch = useDispatch();
-    const { currentPage } = useSelector((state) => state.page);
+    const [step, setStep] = useState(0);
 
     useEffect(() => {
         dispatch(setCurrentPage("checkout"));
     }, [dispatch]);
 
     return (
-        <Flex
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            p="10px"
-            mt="100px"
-        >
-            <Heading as="h1" size="lg" mb="20px">
-                Checkout
-            </Heading>
-            <Text>Checkout page is under construction.</Text>
-        </Flex>
+        <Container maxW="container.xxl" minHeight={"lg"} my={4} >
+            <Flex
+                direction="column"
+                alignItems="strech"
+                justifyContent="center"
+                gap={5}
+                p="10px"
+            >
+                <CheckoutStepper step={step}/>
+                <CheckoutLayout step={step} setStep={setStep}/>
+            </Flex>
+        </Container>
     );
 }

@@ -16,12 +16,12 @@ import {
     Badge,
     DrawerFooter,
 } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
+import {AddIcon, DeleteIcon, MinusIcon} from "@chakra-ui/icons";
 import EmptyCartSvg from "../../assets/EmptyCart.svg";
 import CartSvg from "../../assets/Cart.svg";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
 import {
     fetchUserCart,
     decreaseQuantity,
@@ -29,14 +29,14 @@ import {
     removeItem,
     clearCart,
 } from "../../features/cart/cartAction";
-import { getProductsAsync } from "../../features/products/productsAction";
+import {getProductsAsync} from "../../features/products/productsAction";
 
 export default function CartDrawer() {
     const dispatch = useDispatch();
-    const { items } = useSelector((state) => state.userCart);
-    const { products } = useSelector((state) => state.products);
-    const { user } = useSelector((state) => state.auth);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {items} = useSelector((state) => state.userCart);
+    const {products} = useSelector((state) => state.products);
+    const {user} = useSelector((state) => state.auth);
+    const {isOpen, onOpen, onClose} = useDisclosure();
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
     let userId = null;
@@ -59,16 +59,16 @@ export default function CartDrawer() {
         navigate("/checkout");
     };
 
-    const increaseProductQuantity = ({ userId, productId, total }) => {
-        dispatch(increaseQuantity({ userId, productId, total }));
+    const increaseProductQuantity = ({userId, productId, total}) => {
+        dispatch(increaseQuantity({userId, productId, total}));
     };
 
-    const decreaseProductQuantity = ({ userId, productId, total }) => {
-        dispatch(decreaseQuantity({ userId, productId, total }));
+    const decreaseProductQuantity = ({userId, productId, total}) => {
+        dispatch(decreaseQuantity({userId, productId, total}));
     };
 
-    const removeFromCart = async ({ userId, productId, total }) => {
-        dispatch(removeItem({ userId, productId, total }));
+    const removeFromCart = async ({userId, productId, total}) => {
+        dispatch(removeItem({userId, productId, total}));
     };
 
     const calculateTotal = (cartItems) => {
@@ -95,7 +95,7 @@ export default function CartDrawer() {
                 display="inline-block"
                 cursor="pointer"
             >
-                <img src={CartSvg} alt="cart" />
+                <img src={CartSvg} alt="cart"/>
                 {cartItems.length !== 0 && (
                     <Badge
                         w={4}
@@ -119,9 +119,9 @@ export default function CartDrawer() {
             </Box>
 
             <Drawer onClose={onClose} isOpen={isOpen} size={"sm"}>
-                <DrawerOverlay />
+                <DrawerOverlay/>
                 <DrawerContent>
-                    <DrawerCloseButton />
+                    <DrawerCloseButton/>
                     <DrawerHeader
                         textAlign="center"
                         fontSize="2xl"
@@ -131,13 +131,13 @@ export default function CartDrawer() {
                     </DrawerHeader>
                     <DrawerBody>
                         {cartItems.length === 0 && (
-                            <Box textAlign="center" mt={10}>
-                                <Box maxW="500px" mx="auto">
+                            <Box textAlign="center" mt={130}>
+                                <Box maxW="300px" mx="auto">
                                     <img
                                         src={EmptyCartSvg}
                                         alt="Empty Cart"
                                         width="100%"
-                                        style={{ borderRadius: "8px" }} // Add border-radius for a nicer look
+                                        style={{borderRadius: "8px"}} // Add border-radius for a nicer look
                                     />
                                 </Box>
                             </Box>
@@ -179,7 +179,7 @@ export default function CartDrawer() {
                                         <Text>{`Quantity: ${item.quantity}`}</Text>
                                         <Flex align="center">
                                             <IconButton
-                                                icon={<AddIcon />}
+                                                icon={<AddIcon/>}
                                                 size="sm"
                                                 isDisabled={
                                                     item.quantity >=
@@ -195,7 +195,7 @@ export default function CartDrawer() {
                                                 mr={2}
                                             />
                                             <IconButton
-                                                icon={<MinusIcon />}
+                                                icon={<MinusIcon/>}
                                                 size="sm"
                                                 isDisabled={item.quantity <= 1}
                                                 onClick={() =>
@@ -208,7 +208,7 @@ export default function CartDrawer() {
                                                 mr={2}
                                             />
                                             <IconButton
-                                                icon={<DeleteIcon />}
+                                                icon={<DeleteIcon/>}
                                                 size="sm"
                                                 onClick={() =>
                                                     removeFromCart({
@@ -221,7 +221,7 @@ export default function CartDrawer() {
                                             />
                                         </Flex>
                                     </Flex>
-                                    <Divider mt={2} />
+                                    <Divider mt={2}/>
                                 </Box>
                             );
                         })}
@@ -248,7 +248,7 @@ export default function CartDrawer() {
                                 onClick={() => goToCheckout()}
                                 fontSize="sm"
                             >
-                                P R O C E E D &nbsp; T O &nbsp; C H E C K O U T
+                                Proceed To Checkout
                             </Button>
                             {cartItems.length !== 0 && (
                                 <Button
@@ -270,13 +270,14 @@ export default function CartDrawer() {
                             justifyContent="center"
                         >
                             <Button
+                                gridColumn={"1/-1"}
                                 colorScheme="teal"
                                 onClick={() => {
                                     onClose();
                                     navigate("/shop");
                                 }}
                                 fontSize="sm"
-                                >
+                            >
                                 L E T ' S &nbsp; G O &nbsp; S H O P P I N G
                             </Button>
                         </DrawerFooter>

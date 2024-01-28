@@ -49,7 +49,7 @@ const Product = () => {
     }
 
     return (
-        <Container maxW="container.xxl" height="100vh">
+        <Container maxW="container.xxl">
             <MotionBox
                 p={8}
                 initial={{ opacity: 0, y: -20 }}
