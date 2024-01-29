@@ -32,8 +32,8 @@ export default function HeaderMenu({children}) {
                             <MenuItem>
                                 <Link to="/profile">My Account</Link>
                             </MenuItem>
-                            <MenuItem>
-                                <Link to="/payment">Payments </Link>
+                            <MenuItem isDisabled>
+                                <Link>Payments </Link>
                             </MenuItem>
                         </>
                     )}

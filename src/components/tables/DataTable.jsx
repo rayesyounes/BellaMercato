@@ -210,7 +210,10 @@ function DataTable({ columns, data }) {
     };
 
     return (
-        <Table variant="simple">
+        <Table
+            variant="simple"
+            
+        >
             <Thead>
                 <Tr>
                     {columns.map((col) =>

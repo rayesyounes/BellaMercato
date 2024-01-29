@@ -65,50 +65,63 @@ export default function Header() {
             borderColor="gray.200"
         >
             {/* Logo */}
-            {isAdmin ? <Heading as='h3' size='lg'>ADMIN</Heading>
-                : <Logo>DEMO</Logo> }
+            {isAdmin ? (
+                <Heading as="h3" size="lg">
+                    ADMIN
+                </Heading>
+            ) : (
+                <Logo>DEMO</Logo>
+            )}
 
-            <Spacer/>
+            <Spacer />
 
             {/* Desktop Menu */}
-            <HStack spacing="20px" display={{base: "none", md: "flex"}}>
-                {!admin && (<>
-                    <NavLink as={ChakraLink} className="navlink" to="/shop">
-                        <Box as="span" {...linkStyles}>
-                            Shop
-                        </Box>
-                    </NavLink>
-                    <NavLink as={ChakraLink} className="navlink" to="/sales">
-                        <Box as="span" {...linkStyles}>
-                            Sales
-                        </Box>
-                    </NavLink>
-                    <NavLink as={ChakraLink} className="navlink" to="#">
-                        <Box as="span" {...linkStyles}>
-                            Mission
-                        </Box>
-                    </NavLink>
-                    <NavLink as={ChakraLink} className="navlink" to="#">
-                        <Box as="span" {...linkStyles}>
-                            About Us
-                        </Box>
-                    </NavLink>
-                    <NavLink as={ChakraLink} className="navlink" to="#contact">
-                        <Box as="span" {...linkStyles}>
-                            Contact
-                        </Box>
-                    </NavLink>
-                    <Spacer/>
-                    <Spacer/>
-                    <Spacer/>
-                </>)}
+            <HStack spacing="20px" display={{ base: "none", md: "flex" }}>
+                {!admin && (
+                    <>
+                        <NavLink as={ChakraLink} className="navlink" to="/shop">
+                            <Box as="span" {...linkStyles}>
+                                Shop
+                            </Box>
+                        </NavLink>
+                        <NavLink
+                            as={ChakraLink}
+                            className="navlink"
+                            to="/sales"
+                        >
+                            <Box as="span" {...linkStyles}>
+                                Sales
+                            </Box>
+                        </NavLink>
+                        <NavLink as={ChakraLink} className="navlink" to="#">
+                            <Box as="span" {...linkStyles}>
+                                Mission
+                            </Box>
+                        </NavLink>
+                        <NavLink as={ChakraLink} className="navlink" to="#">
+                            <Box as="span" {...linkStyles}>
+                                About Us
+                            </Box>
+                        </NavLink>
+                        <NavLink
+                            as={ChakraLink}
+                            className="navlink"
+                            to="#contact"
+                        >
+                            <Box as="span" {...linkStyles}>
+                                Contact
+                            </Box>
+                        </NavLink>
+                        <Spacer />
+                        <Spacer />
+                        <Spacer />
+                    </>
+                )}
                 {isAuthenticated && (
                     <>
-                        {!isAdmin && (
-                            <CartDrawer/>
-                        )}
+                        {!isAdmin && <CartDrawer />}
                         <HeaderMenu>
-                            <HeaderTag user={user}/>
+                            <HeaderTag user={user} />
                         </HeaderMenu>
                     </>
                 )}
@@ -116,15 +129,15 @@ export default function Header() {
 
             {hidden && (
                 <>
-                    <Spacer/>
-                    <HStack display={{base: "none", md: "flex"}}>
-                        <AuthModal/>
+                    <Spacer />
+                    <HStack display={{ base: "none", md: "flex" }}>
+                        <AuthModal />
                     </HStack>
-                </>)
-            }
+                </>
+            )}
 
             {/* Mobile Menu */}
-            <MobileMenu/>
+            <MobileMenu />
         </Flex>
     );
 }

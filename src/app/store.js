@@ -6,17 +6,17 @@ import productsReducer from '../features/products/productsSlice';
 import ordersReducer from '../features/orders/ordersSlice';
 import cartReducer from '../features/cart/cartSlice';
 import pageReducer from '../features/page/pageSlice';
+// import colorModeReducer from '../features/colorMode/colorModeSlice';
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
         userCart: cartReducer,
-        // checkout: checkoutReducer,
         products: productsReducer,
         users: usersReducer,
         orders: ordersReducer,
         page: pageReducer,
-        // ui: uiReducer,
+        // colorMode : colorModeReducer,
 
     },
 });
