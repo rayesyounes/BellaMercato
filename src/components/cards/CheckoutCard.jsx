@@ -23,9 +23,11 @@ import {useSelector} from "react-redux";
 
 const MotionBox = motion(Box);
 
-export default function CheckoutCard({step, handelConfirm, setStep, data}) {
+export default function CheckoutCard({step, handelConfirm, setStep, data, confirmed}) {
     const {items, user_id, total} = useSelector((state) => state.userCart);
     const {products} = useSelector((state) => state.products);
+
+    console.log(data)
 
 
     return (<Flex
@@ -60,7 +62,7 @@ export default function CheckoutCard({step, handelConfirm, setStep, data}) {
 
                         </FormControl>
                         <FormControl mb="4">
-                            <FormLabel color={"teal.500"}>Address</FormLabel>
+                            <FormLabel color={"teal.500"}>Email</FormLabel>
                             <Input type={"text"} isReadOnly variant={"flushed"} value={data.emailAddress}/>
 
                         </FormControl>
