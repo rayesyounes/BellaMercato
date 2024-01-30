@@ -1,14 +1,17 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Button, Flex, IconButton, Text, VStack} from "@chakra-ui/react";
+import {Box, Button, Flex, IconButton, Text, VStack} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {getProductsAsync} from "../../features/products/productsAction.js";
 import {
     decreaseQuantity, fetchUserCart, increaseQuantity, removeItem
 } from "../../features/cart/cartAction.js";
 import {AddIcon, DeleteIcon, MinusIcon} from "@chakra-ui/icons";
+import {motion} from "framer-motion";
+
 
 export default function CheckoutCartCard({step, setStep}) {
     const dispatch = useDispatch();
+    const MotionBox = motion(Box);
     const {items} = useSelector((state) => state.userCart);
     const {products} = useSelector((state) => state.products);
     const {user} = useSelector((state) => state.auth);
@@ -40,64 +43,76 @@ export default function CheckoutCartCard({step, setStep}) {
         dispatch(removeItem({userId, productId, total}));
     };
 
-    return (<Flex flexDirection={"column"} overflow={"scroll"}>
-        {cartItems.map((item) => {
-            const product = products.find((p) => p.id === item.product_id);
+    return (<Flex flexDirection={"column"} overflow={"scroll"} initial={{opacity: 0, y: -50}}
+                  animate={{opacity: 1, y: 0}}
+                  transition={{duration: 0.5}}
+    >
+        <MotionBox
+            width="100%"
+            py="4"
+            borderRadius="lg"
+            initial={{opacity: 0, scale: 0.8}}
+            animate={{opacity: 1, scale: 1}}
+            transition={{duration: 0.5}}
+        >
+            {cartItems.map((item) => {
+                const product = products.find((p) => p.id === item.product_id);
 
-            if (!product) {
-                return null;
-            }
+                if (!product) {
+                    return null;
+                }
 
-            return (<Flex
-                key={item.product_id}
-                flexWrap={"wrap"}
-                justifyContent={"space-between"}
-                w={"100%"}
-                mb={4}
-                p={4}
-                borderWidth="1px"
-                borderRadius="md"
-            >
+                return (<Flex
+                    key={item.product_id}
+                    flexWrap={"wrap"}
+                    justifyContent={"space-between"}
+                    w={"100%"}
+                    mb={4}
+                    p={2}
+                    borderWidth="1px"
+                    borderRadius="md"
+                >
 
-                <Text fontWeight="bold" w={260}>{product.name}</Text>
-                <Text>{`$${product.price.toFixed(2)} / Unit`}</Text>
-                <Text>{`Quantity: ${item.quantity}`}</Text>
-                <Text>{`Sub Total: ${parseFloat(item.quantity * product.price).toFixed(2)}`}</Text>
+                    <Text fontWeight="bold" w={260}>{product.name}</Text>
+                    <Text>{`$${product.price.toFixed(2)} / Unit`}</Text>
+                    <Text>{`Quantity: ${item.quantity}`}</Text>
+                    <Text>{`Sub Total: ${parseFloat(item.quantity * product.price).toFixed(2)}`}</Text>
 
 
-                <Flex align="center">
-                    <IconButton
-                        icon={<AddIcon/>}
-                        size="sm"
-                        isDisabled={item.quantity >= product.stock}
-                        onClick={() => increaseProductQuantity({
-                            userId, productId: product.id,
-                        })}
-                        aria-label="Increment"
-                        mr={2}
-                    />
-                    <IconButton
-                        icon={<MinusIcon/>}
-                        size="sm"
-                        isDisabled={item.quantity <= 1}
-                        onClick={() => decreaseProductQuantity({
-                            userId, productId: product.id,
-                        })}
-                        aria-label="Decrement"
-                        mr={2}
-                    />
-                    <IconButton
-                        icon={<DeleteIcon/>}
-                        size="sm"
-                        onClick={() => removeFromCart({
-                            userId, productId: product.id,
-                        })}
-                        aria-label="Remove"
-                        colorScheme="red"
-                    />
-                </Flex>
-            </Flex>);
-        })}
+                    <Flex align="center">
+                        <IconButton
+                            icon={<AddIcon/>}
+                            size="sm"
+                            isDisabled={item.quantity >= product.stock}
+                            onClick={() => increaseProductQuantity({
+                                userId, productId: product.id,
+                            })}
+                            aria-label="Increment"
+                            mr={2}
+                        />
+                        <IconButton
+                            icon={<MinusIcon/>}
+                            size="sm"
+                            isDisabled={item.quantity <= 1}
+                            onClick={() => decreaseProductQuantity({
+                                userId, productId: product.id,
+                            })}
+                            aria-label="Decrement"
+                            mr={2}
+                        />
+                        <IconButton
+                            icon={<DeleteIcon/>}
+                            size="sm"
+                            onClick={() => removeFromCart({
+                                userId, productId: product.id,
+                            })}
+                            aria-label="Remove"
+                            colorScheme="red"
+                        />
+                    </Flex>
+                </Flex>);
+            })}
+        </MotionBox>
         <VStack align="stretch">
             <Flex
                 direction={"row"}
@@ -114,5 +129,7 @@ export default function CheckoutCartCard({step, setStep}) {
 
             </Flex>
         </VStack>
+
+
     </Flex>)
 }

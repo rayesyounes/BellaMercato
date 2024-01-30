@@ -59,3 +59,16 @@ export const deleteProductAsync = (productId) => async (dispatch) => {
         console.error("Error deleting product:", error);
     }
 };
+
+export const decreaseProductStockAsync = (productId, quantity) => async (dispatch) => {
+    try {
+        dispatch(updateProductStart());
+        const response = await axios.get(`${API_BASE_URL}/products/${productId}`);
+        const updatedProduct = { ...response.data, stock: response.data.stock - quantity };
+        await axios.put(`${API_BASE_URL}/products/${productId}`, updatedProduct);
+        dispatch(updateProductSuccess({ id: productId, updatedProduct }));
+    } catch (error) {
+        dispatch(updateProductFailure(error.message));
+        console.error("Error updating product:", error);
+    }
+}
