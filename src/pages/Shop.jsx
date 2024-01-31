@@ -1,14 +1,15 @@
-import { Container, Grid } from "@chakra-ui/react";
+import {Box, Container, Grid} from "@chakra-ui/react";
 import CardProduct from "../components/cards/CardProduct.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../features/products/productsAction.js";
 import { setCurrentPage } from "../features/page/PageAction.js";
+import {motion} from "framer-motion";
 
 export default function Shop() {
     const dispatch = useDispatch();
     const { products, error, isLoading } = useSelector((state) => state.products);
-    const { currentPage } = useSelector((state) => state.page);
+    const MotionBox = motion(Box);
 
     useEffect(() => {
         dispatch(setCurrentPage("shop"));
@@ -25,11 +26,17 @@ export default function Shop() {
     return (
         <div>
             <Container maxW="container.xxl" px={"5%"} my={4}>
-                <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+                <MotionBox
+                    initial={{opacity: 0, y: -20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.9}}
+                >
+                <Grid templateColumns="repeat(3, 2fr)" gap={6}>
                     {products.map((product) => (
                         <CardProduct key={product.id} product={product} />
                     ))}
                 </Grid>
+                </MotionBox>
             </Container>
         </div>
     );

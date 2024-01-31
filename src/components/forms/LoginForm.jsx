@@ -5,15 +5,9 @@ import {useEffect, useRef, useState} from "react";
 import {loginAuth} from "../../features/auth/authAction.js";
 import {useNavigate} from "react-router-dom";
 import {
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    InputRightElement,
-    Button,
-    Text,
-    VStack,
+    FormControl, FormLabel, Input, InputGroup, InputRightElement, Button, Text, VStack, IconButton, Icon,
 } from "@chakra-ui/react";
+import {ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
 import {resetErors} from "../../features/auth/authAction.js";
 
 const MotionFormControl = motion(FormControl);
@@ -74,92 +68,91 @@ export default function AnimatedLoginForm({onClose}) {
         }
 
         const authCredential = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
+            email: emailRef.current.value, password: passwordRef.current.value
         };
 
         dispatch(loginAuth(authCredential));
 
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <VStack spacing={5} align="stretch">
-                <MotionFormControl
-                    initial={{opacity: 0, y: -20}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -20}}
-                    transition={{duration: 0.3}}
-                >
-                    <FormLabel>Email</FormLabel>
-                    <MotionInput
-                        ref={emailRef}
-                        type="email"
-                        placeholder="Enter your email"
-                        isInvalid={!!emailError}
-                        variant="flushed"
-                    />
-                    {emailError && (
-                        <MotionText
-                            color="red.500"
-                            fontSize="sm"
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            exit={{opacity: 0}}
-                            transition={{duration: 0.3}}
-                        >
-                            {emailError}
-                        </MotionText>
-                    )}
-                </MotionFormControl>
-
-                <MotionFormControl
-                    initial={{opacity: 0, y: -20}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -20}}
-                    transition={{duration: 0.3, delay: 0.2}}
-                >
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup size='md'>
-                        <MotionInput
-                            ref={passwordRef}
-                            type={show ? 'text' : 'password'}
-                            placeholder="Enter your password"
-                            isInvalid={!!passwordError}
-                            variant="flushed"
-                        />
-                        <InputRightElement width='4.5rem'>
-                            <Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>
-                                {show ? 'Hide' : 'Show'}
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
-                    {passwordError && (
-                        <MotionText
-                            color="red.500"
-                            fontSize="sm"
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            exit={{opacity: 0}}
-                            transition={{duration: 0.3}}
-                        >
-                            {passwordError}
-                        </MotionText>
-                    )}
-                </MotionFormControl>
-
-                <MotionButton
-                    type="submit"
-                    colorScheme="teal"
-                    mt={4}
+    return (<form onSubmit={handleSubmit}>
+        <VStack spacing={5} align="stretch">
+            <MotionFormControl
+                initial={{opacity: 0, y: -20}}
+                animate={{opacity: 1, y: 0}}
+                exit={{opacity: 0, y: -20}}
+                transition={{duration: 0.3}}
+            >
+                <FormLabel>Email</FormLabel>
+                <MotionInput
+                    ref={emailRef}
+                    type="email"
+                    placeholder="Enter your email"
+                    isInvalid={!!emailError}
+                    variant="flushed"
+                />
+                {emailError && (<MotionText
+                    color="red.500"
+                    fontSize="sm"
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
-                    transition={{duration: 0.3, delay: 0.4}}
+                    transition={{duration: 0.3}}
                 >
-                    Login
-                </MotionButton>
-            </VStack>
-        </ form>
-    );
+                    {emailError}
+                </MotionText>)}
+            </MotionFormControl>
+
+            <MotionFormControl
+                initial={{opacity: 0, y: -20}}
+                animate={{opacity: 1, y: 0}}
+                exit={{opacity: 0, y: -20}}
+                transition={{duration: 0.3, delay: 0.2}}
+            >
+                <FormLabel>Password</FormLabel>
+                <InputGroup size='md'>
+                    <MotionInput
+                        ref={passwordRef}
+                        type={show ? 'text' : 'password'}
+                        placeholder="Enter your password"
+                        isInvalid={!!passwordError}
+                        variant="flushed"
+                    />
+                    <InputRightElement width='4.5rem'>
+                        {/*<Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>*/}
+                        {/*    {show ? 'Hide' : 'Show'}*/}
+                        {/*</Button>*/}
+                        <Icon
+                            as={show ? ViewOffIcon : ViewIcon}
+                            color='teal.600'
+                            onClick={handleClick}
+                            cursor='pointer'
+                        />
+                    </InputRightElement>
+                </InputGroup>
+                {passwordError && (<MotionText
+                    color="red.500"
+                    fontSize="sm"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.3}}
+                >
+                    {passwordError}
+                </MotionText>)}
+            </MotionFormControl>
+
+            <MotionButton
+                type="submit"
+                colorScheme="teal"
+                mt={4}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 0.3, delay: 0.4}}
+            >
+                Login
+            </MotionButton>
+        </VStack>
+    </ form>);
 }
