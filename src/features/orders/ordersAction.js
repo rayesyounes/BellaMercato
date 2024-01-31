@@ -38,6 +38,17 @@ export const getOrdersAsync = (userId) => async (dispatch) => {
     }
 };
 
+export const getOrderAsync = (orderId) => async (dispatch) => {
+    try {
+        dispatch(getOrdersStart());
+        const response = await axios.get(`${API_BASE_URL}/orders/${orderId}`);
+        dispatch(getOrdersSuccess(response.data));
+    } catch (error) {
+        dispatch(getOrdersFailure(error.message));
+        console.error("Error fetching orders:", error);
+    }
+}
+
 export const updateOrderAsync = (orderId, updatedOrder) => async (dispatch) => {
     try {
         dispatch(updateOrderStart());
