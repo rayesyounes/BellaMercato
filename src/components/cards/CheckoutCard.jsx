@@ -27,8 +27,6 @@ export default function CheckoutCard({step, handelConfirm, setStep, data, confir
     const {items, user_id, total} = useSelector((state) => state.userCart);
     const {products} = useSelector((state) => state.products);
 
-    console.log(data)
-
 
     return (<Flex
         direction="column"
@@ -133,7 +131,7 @@ export default function CheckoutCard({step, handelConfirm, setStep, data, confir
                                     return (
                                         <Tr key={item.product_id}>
                                             <Td fontSize="md" paddingBottom={isLast ? "3" : null}>{`${product.name}  X  ${item.quantity}`}</Td>
-                                            <Td fontSize="md" Bottom={5} textAlign="end" >{`${(product.price * item.quantity).toFixed(2)} $`}</Td>
+                                            <Td fontSize="md" bottom={5} textAlign="end" >{`${(product.price * item.quantity).toFixed(2)} $`}</Td>
                                         </Tr>
                                     );
                                 })}

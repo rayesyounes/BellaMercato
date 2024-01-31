@@ -73,6 +73,7 @@ export default function CheckoutForm({step, setStep, data, setData, countries}) 
     const handleChange = (e) => {
         const {name, value} = e.target;
         let formattedValue = value;
+        console.log(data)
 
         if (name === 'phone') {
             formattedValue = value.replace(/[^0-9]/g, '');
@@ -90,7 +91,6 @@ export default function CheckoutForm({step, setStep, data, setData, countries}) 
         e.preventDefault();
         const errors = validateForm();
         if (Object.keys(errors).length === 0) {
-            console.log(data);
             setData(data);
             setStep(prevState => prevState + 1);
         } else {

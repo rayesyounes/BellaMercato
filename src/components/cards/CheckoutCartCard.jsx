@@ -51,9 +51,9 @@ export default function CheckoutCartCard({step, setStep}) {
             width="100%"
             py="4"
             borderRadius="lg"
-            initial={{opacity: 0, scale: 0.8}}
-            animate={{opacity: 1, scale: 1}}
-            transition={{duration: 0.5}}
+            // initial={{opacity: 0, scale: 0.8}}
+            // animate={{opacity: 1, scale: 1}}
+            // transition={{duration: 0.5}}
         >
             {cartItems.map((item) => {
                 const product = products.find((p) => p.id === item.product_id);

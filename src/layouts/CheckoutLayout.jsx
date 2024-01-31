@@ -36,9 +36,11 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
         expectedDelivery: getDeliveryDate(),
     });
 
+
     useEffect(() => {
+    console.log(data)
         setCountries(CountriesData)
-    }, []);
+    }, [data]);
 
     function getDeliveryDate() {
         const currentDate = new Date();
