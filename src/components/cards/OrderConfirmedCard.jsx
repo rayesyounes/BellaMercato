@@ -1,12 +1,22 @@
 import {Badge, Box, Divider, Flex, Heading, Spacer, Text} from "@chakra-ui/react";
 import {motion} from 'framer-motion';
 import {useSelector} from "react-redux";
-import OrderSubmitedAlert from "../alerts/OrderSubmitedAlert.jsx";
+import OrderSubmitAlert from "../alerts/OrderSubmitedAlert.jsx";
+import {useEffect, useState} from "react";
 
 const MotionBox = motion(Box);
 
 export default function OrderConfirmed({data, order}) {
     const {products} = useSelector((state) => state.products);
+    const [submit, setSubmit] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSubmit(true);
+        }
+        , 1300);
+    }, []);
+
     return (<Flex
         direction="column"
         initial={{opacity: 0, y: -50}}
@@ -90,7 +100,9 @@ export default function OrderConfirmed({data, order}) {
                         </Box>
                     </Box>
                 </Flex>
-                <OrderSubmitedAlert status={"success"}/>
+                <OrderSubmitAlert status={
+                    submit ? "success" : "loading"
+                }/>
             </Box>
         </MotionBox>
     </Flex>);

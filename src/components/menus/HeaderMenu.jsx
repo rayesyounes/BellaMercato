@@ -29,18 +29,13 @@ export default function HeaderMenu({children}) {
                 <MenuGroup title='Menu'>
                     {!isAdmin && (
                         <>
-                            <MenuItem>
-                                <Link to="/profile">My Account</Link>
-                            </MenuItem>
-                            <MenuItem isDisabled>
-                                <Link>Payments </Link>
-                            </MenuItem>
+                            <MenuItem as={Link} to="/profile">Account</MenuItem>
+                            <MenuItem as={Link} to="/history">Orders</MenuItem>
+                            <MenuItem as={Link} to="/payments" isDisabled>Payments</MenuItem>
                         </>
                     )}
                     {isAdmin && (
-                        <MenuItem>
-                            <Link to="/admin">Dashboard </Link>
-                        </MenuItem>
+                        <MenuItem as={Link} to="/admin">Dashboard</MenuItem>
                     )}
                     <MenuItem onClick={() => SignOut()}>Sign Out</MenuItem>
                 </MenuGroup>

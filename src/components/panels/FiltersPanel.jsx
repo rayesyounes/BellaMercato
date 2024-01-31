@@ -46,7 +46,7 @@ function FiltersPanel() {
                 <option value="username">Username</option>
                 <option value="email">Email</option>
             </Select>
-            {currentPage !== "orders" && <AddModal />}
+            {currentPage !== "orders" || "history" && <AddModal />}
         </Flex>
     );
 }

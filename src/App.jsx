@@ -1,4 +1,3 @@
-// App.js
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -18,6 +17,8 @@ import Orders from "./pages/admin/Orders.jsx";
 import Products from "./pages/admin/Products.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
 import Product from "./pages/Product.jsx";
+import History from "./pages/History.jsx";
+import Order from "./pages/Order.jsx";
 
 function App() {
     const {isAuthenticated, isAdmin} = useSelector(state => state.auth);
@@ -29,11 +30,14 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path="shop" element={<Shop/>}/>
                 <Route path="sales" element={<Sales/>}/>
-                <Route path={"product/:id"} element={<Product />}/>
+                <Route path={"product/:id"} element={<Product/>}/>
 
                 {/* protectedRoute */}
-                {isAuthenticated && <Route path="checkout" element={<CheckOut />}/>}
+                {isAuthenticated && <Route path="checkout" element={<CheckOut/>}/>}
                 {isAuthenticated && <Route path="profile" element={<Profile/>}/>}
+                {isAuthenticated && <Route path="history" element={<History />}/>}
+                {isAuthenticated && <Route path="order/:id" element={<Order />}/>}
+
 
                 {/* adminRoute */}
                 {isAdmin && (

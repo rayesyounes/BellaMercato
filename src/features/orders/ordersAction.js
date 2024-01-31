@@ -16,14 +16,25 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3000";
 
-export const getOrdersAsync = () => async (dispatch) => {
-    try {
-        dispatch(getOrdersStart());
-        const response = await axios.get(`${API_BASE_URL}/orders`);
-        dispatch(getOrdersSuccess(response.data));
-    } catch (error) {
-        dispatch(getOrdersFailure(error.message));
-        console.error("Error fetching orders:", error);
+export const getOrdersAsync = (userId) => async (dispatch) => {
+    if (userId) {
+        try {
+            dispatch(getOrdersStart());
+            const response = await axios.get(`${API_BASE_URL}/orders?user_id=${userId}`);
+            dispatch(getOrdersSuccess(response.data));
+        } catch (error) {
+            dispatch(getOrdersFailure(error.message));
+            console.error("Error fetching orders:", error);
+        }
+    }else {
+        try {
+            dispatch(getOrdersStart());
+            const response = await axios.get(`${API_BASE_URL}/orders`);
+            dispatch(getOrdersSuccess(response.data));
+        } catch (error) {
+            dispatch(getOrdersFailure(error.message));
+            console.error("Error fetching orders:", error);
+        }
     }
 };
 

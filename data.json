@@ -70,7 +70,7 @@
   "orders": [
     {
       "id": 1,
-      "user_id": 1,
+      "user_id": 3,
       "products": [
         {
           "product_id": 1,
@@ -86,36 +86,7 @@
       "status": "delivered"
     },
     {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 1,
-          "quantity": 1
-        },
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 1499.98,
-      "order_date": "2024-01-30T17:44:45Z",
-      "status": "processing",
-      "id": 2
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 79.99,
-      "order_date": "2024-01-30T17:45:14Z",
-      "status": "processing",
-      "id": 3
-    },
-    {
+      "id": 2,
       "user_id": 3,
       "products": [
         {
@@ -124,140 +95,11 @@
         }
       ],
       "total": 499.99,
-      "order_date": "2024-01-30T17:46:33Z",
-      "status": "processing",
-      "id": 4
+      "order_date": "2023-01-15T08:30:00Z",
+      "status": "confirmed"
     },
     {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 499.99,
-      "order_date": "2024-01-30T17:49:12Z",
-      "status": "processing",
-      "id": 5
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 2
-        }
-      ],
-      "total": 159.98,
-      "order_date": "2024-01-30T17:51:28Z",
-      "status": "processing",
-      "id": 6
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 2,
-          "quantity": 1
-        },
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 579.98,
-      "order_date": "2024-01-30T17:52:02Z",
-      "status": "processing",
-      "id": 7
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 499.99,
-      "order_date": "2024-01-30T21:58:08Z",
-      "status": "processing",
-      "id": 8
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 79.99,
-      "order_date": "2024-01-30T22:07:57Z",
-      "status": "processing",
-      "id": 9
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 79.99,
-      "order_date": "2024-01-30T22:07:57Z",
-      "status": "processing",
-      "id": 10
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 79.99,
-      "order_date": "2024-01-30T22:07:57Z",
-      "status": "processing",
-      "id": 11
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        },
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 579.98,
-      "order_date": "2024-01-30T22:11:34Z",
-      "status": "processing",
-      "id": 12
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        },
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 579.98,
-      "order_date": "2024-01-30T22:11:34Z",
-      "status": "processing",
-      "id": 13
-    },
-    {
+      "id": 3,
       "user_id": 3,
       "products": [
         {
@@ -266,52 +108,8 @@
         }
       ],
       "total": 999.99,
-      "order_date": "2024-01-30T22:13:32Z",
-      "status": "processing",
-      "id": 14
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 1,
-          "quantity": 1
-        }
-      ],
-      "total": 999.99,
-      "order_date": "2024-01-30T22:13:32Z",
-      "status": "processing",
-      "id": 15
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 1,
-          "quantity": 1
-        },
-        {
-          "product_id": 2,
-          "quantity": 1
-        }
-      ],
-      "total": 1499.98,
-      "order_date": "2024-01-30T22:30:14Z",
-      "status": "processing",
-      "id": 16
-    },
-    {
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 3,
-          "quantity": 1
-        }
-      ],
-      "total": 79.99,
-      "order_date": "2024-01-30T22:31:26Z",
-      "status": "processing",
-      "id": 17
+      "order_date": "2023-01-15T08:30:00Z",
+      "status": "processing"
     }
   ]
 }
