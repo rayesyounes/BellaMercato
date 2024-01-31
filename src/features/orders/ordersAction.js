@@ -26,7 +26,7 @@ export const getOrdersAsync = (userId) => async (dispatch) => {
             dispatch(getOrdersFailure(error.message));
             console.error("Error fetching orders:", error);
         }
-    }else {
+    } else {
         try {
             dispatch(getOrdersStart());
             const response = await axios.get(`${API_BASE_URL}/orders`);
@@ -53,7 +53,7 @@ export const updateOrderAsync = (orderId, updatedOrder) => async (dispatch) => {
     try {
         dispatch(updateOrderStart());
         await axios.put(`${API_BASE_URL}/orders/${orderId}`, updatedOrder);
-        dispatch(updateOrderSuccess({ id: orderId, updatedOrder }));
+        dispatch(updateOrderSuccess({id: orderId, updatedOrder}));
     } catch (error) {
         dispatch(updateOrderFailure(error.message));
         console.error("Error updating order:", error);
@@ -81,3 +81,13 @@ export const deleteOrderAsync = (orderId) => async (dispatch) => {
         console.error("Error deleting order:", error);
     }
 };
+
+export const filterOrdersByStatus = (orders, status) => async (dispatch) => {
+    try {
+        dispatch(getOrdersStart());
+        dispatch(getOrdersSuccess(orders.filter(order => order.status === status)));
+    } catch (error) {
+        dispatch(getOrdersFailure(error.message));
+        console.error("Error fetching orders:", error);
+    }
+}
