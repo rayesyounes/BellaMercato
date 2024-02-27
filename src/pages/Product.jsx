@@ -1,29 +1,24 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useParams} from "react-router-dom";
 import {
-    Box,
-    Text,
-    Image,
-    Flex,
-    Container,
-    Grid,
-    GridItem,
-    Button,
+    Box, Text, Image, Flex, Container, Grid, GridItem, Button,
 } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion";
-import { addToCart } from "../features/cart/cartAction.js";
-import { setCurrentPage } from "../features/page/PageAction.js";
+import {useDispatch, useSelector} from "react-redux";
+import {motion} from "framer-motion";
+import {addToCart} from "../features/cart/cartAction.js";
+import {setCurrentPage} from "../features/page/PageAction.js";
+import Number_input from '../components/inputs/Number_Input'
 
 const MotionBox = motion(Box);
 
 const Product = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const dispatch = useDispatch();
-    const { currentPage } = useSelector((state) => state.page);
-    const { products } = useSelector((state) => state.products);
-    const { user, isAuthenticated } = useSelector((state) => state.auth);
-    const product = products.find((product) => product.id === parseInt(id));
+    const {products} = useSelector((state) => state.products);
+    const {user, isAuthenticated} = useSelector((state) => state.auth);
+    const product = products.find((product) => product.id === id);
+    const [quantity, setQuantity] = useState(10);
+
     let userId = null;
 
     if (user) {
@@ -32,15 +27,10 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(setCurrentPage("product"));
-    }, [dispatch]);
+        console.log(quantity)
+    }, [dispatch, quantity]);
 
-    const productImages = [
-        "https://via.placeholder.com/800x800",
-        "https://via.placeholder.com/800x800",
-        "https://via.placeholder.com/800x800",
-        "https://via.placeholder.com/800x800",
-        "https://via.placeholder.com/800x800",
-    ];
+    const productImages = product.images;
 
     const [mainImage, setMainImage] = useState(productImages[0]);
 
@@ -48,21 +38,20 @@ const Product = () => {
         return <Text>Product not found</Text>;
     }
 
-    return (
-        <Container maxW="container.xxl">
+    return (<Container maxW="container.xxl">
             <MotionBox
                 p={8}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{opacity: 0, y: -20}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.5}}
             >
                 <Flex
                     borderRadius="lg"
                     boxShadow="xl"
                     bgColor="white"
-                    flexDirection={{ base: "column", md: "row" }}
-                    alignItems={{ base: "center", md: "stretch" }}
-                    p={{ base: 4, md: 8 }}
+                    flexDirection={{base: "column", md: "row-reverse"}}
+                    alignItems={{base: "center", md: "stretch"}}
+                    p={{base: 4, md: 8}}
                 >
                     <Box flex={2} p={8} textAlign="left">
                         <Text
@@ -80,31 +69,41 @@ const Product = () => {
                             {product.description}
                         </Text>
                         <Text fontSize="lg" color="gray.500">
-                            <strong>Stock:</strong> {product.stock} units
+                            <strong>Avaliable Stock :</strong> {product.stock} units
                         </Text>
-                        <Button
-                            colorScheme="teal"
-                            size="lg"
-                            mt={8}
-                            onClick={() =>
-                                isAuthenticated
-                                    ? dispatch(
-                                          addToCart({
-                                              userId,
-                                              productId: product.id,
-                                          })
-                                      )
-                                    : alert("Please login to add to cart")
-                            }
-                        >
-                            Add to Cart
-                        </Button>
+
+                        <Number_input
+                            handelChange={(value) => setQuantity(value)}
+                            value={quantity}
+                        />
+
+                        <Flex gap={2}>
+                            <Button
+                                colorScheme="teal"
+                                size="lg"
+                                mt={4}>
+                                Buy Now
+                            </Button>
+                            <Button
+                                colorScheme="teal"
+                                variant={"outline"}
+                                size="lg"
+                                mt={4}
+                                onClick={() => isAuthenticated ?
+                                    dispatch(addToCart({userId, productId: product.id,}))
+                                    : alert("Please login to add to cart")}
+                            >
+                                Add to Cart
+                            </Button>
+                        </Flex>
                     </Box>
 
-                    <Box flex={1} textAlign="center">
+                    <Box display={"flex"} flexDirection={"row-reverse"} gap={6} textAlign="center">
                         <Image
                             src={mainImage}
                             alt={`Product ${id}`}
+                            bg={"gray.100"}
+                            border={"1px solid gray.200"}
                             mb={4}
                             borderRadius="lg"
                             boxShadow="lg"
@@ -112,30 +111,37 @@ const Product = () => {
                             maxH="500px"
                         />
 
-                        <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-                            {productImages.map((thumbnail, index) => (
-                                <GridItem key={index}>
+                        <Grid templateRows="repeat(5, 1fr)" gap={3}>
+                            {productImages.map((thumbnail, index) => (<GridItem
+                                    key={index}
+                                    display="flex"
+                                    justifyItems="center"
+                                    cursor="pointer"
+                                    onClick={() => setMainImage(thumbnail)}
+                                    borderRadius="md"
+                                    border="1px solid gray.200"
+                                    bg={mainImage === thumbnail ? "teal.300" : "gray.100"}
+                                    _hover={{
+                                        border: "2px solid teal", bg: "teal.100", boxShadow: "md",
+                                    }}
+                                    maxW="70px"
+                                    maxH="70px"
+                                    p={"1.5"}
+                                >
                                     <Image
                                         src={thumbnail}
                                         alt={`Thumbnail ${index + 1}`}
-                                        cursor="pointer"
-                                        onClick={() => setMainImage(thumbnail)}
-                                        borderRadius="lg"
-                                        border="2px solid transparent"
-                                        _hover={{
-                                            border: "2px solid teal.500",
-                                        }}
-                                        maxW="100%"
-                                        maxH="100px"
+                                        objectFit="cover"
+                                        w="100%"
+                                        h="100%"
                                     />
-                                </GridItem>
-                            ))}
+                                </GridItem>))}
                         </Grid>
+
                     </Box>
                 </Flex>
             </MotionBox>
-        </Container>
-    );
+        </Container>);
 };
 
 export default Product;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setCart, setError, setLoading } from "./cartSlice";
 
-const API_BASE_URL = "https://ray-store-data.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { dispatch }) => {
     try {

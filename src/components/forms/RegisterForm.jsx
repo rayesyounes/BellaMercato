@@ -41,7 +41,7 @@ export default function Register({setState}) {
 
         // Check if the email already exists
         try {
-            const checkEmailExists = await axios.get(`https://ray-store-data.vercel.app/users?email=${emailRef.current.value}`);
+            const checkEmailExists = await axios.get(`http://localhost:3000/users?email=${emailRef.current.value}`);
             if (checkEmailExists.data.length > 0) {
                 setEmailError("Email already exists");
                 return;
@@ -74,7 +74,7 @@ export default function Register({setState}) {
         };
 
         try {
-            const response = await axios.post("https://ray-store-data.vercel.app/users", data);
+            const response = await axios.post("http://localhost:3000/users", data);
             console.log(response.data);
             setState(true);
         } catch (err) {

@@ -18,7 +18,7 @@ function CardProduct({product}) {
     return (<Card>
         <CardBody>
             <Image
-                src={"https://via.placeholder.com/600"}
+                src={product.images[0]}
                 fallbackSrc={"https://via.placeholder.com/600"}
                 alt={`${name} - Product image`}
                 borderRadius="lg"
