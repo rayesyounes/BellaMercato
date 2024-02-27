@@ -90,7 +90,7 @@ const Product = () => {
                                 size="lg"
                                 mt={4}
                                 onClick={() => isAuthenticated ?
-                                    dispatch(addToCart({userId, productId: product.id,}))
+                                    dispatch(addToCart({userId, productId: product.id, quantity}))
                                     : alert("Please login to add to cart")}
                             >
                                 Add to Cart

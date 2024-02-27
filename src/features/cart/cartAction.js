@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setCart, setError, setLoading } from "./cartSlice";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://ray-store-data.vercel.app";
 
 const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { dispatch }) => {
     try {
@@ -141,7 +141,7 @@ const removeItem = createAsyncThunk("cart/removeItem", async ({ userId, productI
     }
 });
 
-const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId }, { dispatch, getState }) => {
+const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId, quantity }, { dispatch, getState }) => {
     try {
         dispatch(setLoading(true));
 
@@ -154,9 +154,9 @@ const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId 
             const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
 
             if (itemToUpdate) {
-                itemToUpdate.quantity += 1;
+                itemToUpdate.quantity += quantity;
             } else {
-                userCart.items.push({ product_id: productId, quantity: 1 });
+                userCart.items.push({ product_id: productId, quantity: quantity });
             }
 
             let total = 0;

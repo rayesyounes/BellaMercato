@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 function CardProduct({product}) {
     const {name, description, price} = product;
     const dispatch = useDispatch();
+    const quantity = 1;
     const {user, isAuthenticated} = useSelector((state) => state.auth);
     let userId = null;
 
@@ -36,7 +37,7 @@ function CardProduct({product}) {
             <ButtonGroup spacing="2">
                 <Button variant="solid" colorScheme="teal"
                         onClick={() => (
-                            isAuthenticated ? dispatch(addToCart({userId, productId: product.id}))
+                            isAuthenticated ? dispatch(addToCart({userId, productId: product.id, quantity}))
                                 : alert('Please login to add to cart')
                         )}
                 >
