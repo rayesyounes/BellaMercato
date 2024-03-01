@@ -1,20 +1,5 @@
 import {
-    Box,
-    Container,
-    VStack,
-    Badge,
-    Text,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    Tfoot,
-    Table,
-    Flex,
-    CardHeader,
-    CardBody,
-    Card
+    Box, Container, Badge, Text, Thead, Tr, Th, Tbody, Td, Tfoot, Table, Flex, CardHeader, CardBody, Card
 } from "@chakra-ui/react";
 import {useSelector, useDispatch} from "react-redux";
 import {getOrdersAsync} from "../features/orders/ordersAction.js";
@@ -22,22 +7,36 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import setCurrentPage from "../features/page/PageAction.js";
 import {motion} from "framer-motion";
-
-
 export default function CheckoutConfirmAlert() {
     const MotionBox = motion(Box);
     const dispatch = useDispatch();
     const {id} = useParams();
     const {orders} = useSelector((state) => state.orders);
     const {products} = useSelector((state) => state.products);
+
     const [order, setOrder] = useState({
-        id: null, status: null, order_date: null, total: 0, products: []
+        id: null,
+        notes: null,
+        status: null,
+        order_date: null,
+        total: 0,
+        products: [],
+        shipping_address: null,
+        billing_address: null,
+        shipping_method: null,
+        payment_method: null,
+        payment_status: null,
+        shipping_date: null,
+        shipping_cost: 0,
+        discount: 0,
+        tax: 0,
+
     });
 
     useEffect(() => {
         dispatch(setCurrentPage("order"));
         dispatch(getOrdersAsync());
-        setOrder(orders.find((order) => order.id === parseInt(id)));
+        setOrder(orders.find((order) => order.id === id));
     }, [dispatch, id]);
 
     console.log(order);
@@ -57,22 +56,12 @@ export default function CheckoutConfirmAlert() {
                 alignItems={{base: "center", md: "stretch"}}
                 p={{base: 4, md: 8}}
             >
-                <Box flex={2} p={{ base: 0, md: 4 }} textAlign="left">
+                <Box flex={2} p={{base: 0, md: 4}} textAlign="left">
                     <Flex direction="column" gap={6} w="100%">
                         <Text>
                             <strong>Order Status:</strong>{" "}
                             <Badge
-                                colorScheme={
-                                    order.status === "processing"
-                                        ? "orange"
-                                        : order.status === "confirmed"
-                                            ? "blue"
-                                            : order.status === "cancelled"
-                                                ? "red"
-                                                : order.status === "delivered"
-                                                    ? "green"
-                                                    : "gray"
-                                }
+                                colorScheme={order.status === "processing" ? "orange" : order.status === "confirmed" ? "blue" : order.status === "cancelled" ? "red" : order.status === "delivered" ? "green" : "gray"}
                             >
                                 {order.status}
                             </Badge>
@@ -122,7 +111,6 @@ export default function CheckoutConfirmAlert() {
                     </Flex>
                 </Box>
 
-
                 <Box flex={1} textAlign="center">
                     <Card maxW="500px" bg="gray.100" border="2px solid teal"
                           borderRadius="lg" overflow="hidden">
@@ -143,8 +131,10 @@ export default function CheckoutConfirmAlert() {
                                 </Thead>
                                 <Tbody>
                                     {order.products.map((item, index) => {
-                                        const product = products.find((p) => p.id === item.product_id);
+                                        const product = products.find((p) => parseInt(p.id) === item.product_id);
                                         const isLast = index === order.products.length - 1;
+
+                                        console.log(item);
 
                                         if (!product) {
                                             return null;

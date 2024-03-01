@@ -16,8 +16,11 @@ const Product = () => {
     const dispatch = useDispatch();
     const {products} = useSelector((state) => state.products);
     const {user, isAuthenticated} = useSelector((state) => state.auth);
-    const product = products.find((product) => product.id === parseInt(id));
+    const product = products.find((product) => product.id === id);
+
+    const productImages = product.images;
     const [quantity, setQuantity] = useState(10);
+    const [mainImage, setMainImage] = useState(productImages[0]);
 
     let userId = null;
 
@@ -27,12 +30,8 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(setCurrentPage("product"));
-        console.log(quantity)
+        console.log(product.images);
     }, [dispatch, quantity]);
-
-    const productImages = product.images;
-
-    const [mainImage, setMainImage] = useState(productImages[0]);
 
     if (!product) {
         return <Text>Product not found</Text>;

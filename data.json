@@ -58,7 +58,7 @@
       "username": "rayesyounes",
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
-      "address": "so ",
+      "address": "123 Oak St, Townsville",
       "image": "https://via.placeholder.com/150",
       "country": "USA",
       "state": "CA",
@@ -85,7 +85,7 @@
           "quantity": 2
         }
       ],
-      "total": 499.99
+      "total": 1999.98
     }
   ],
   "orders": [
