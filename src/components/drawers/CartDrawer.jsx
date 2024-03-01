@@ -159,7 +159,20 @@ export default function CartDrawer() {
                                     p={4}
                                     borderWidth="1px"
                                     borderRadius="md"
+                                    display={"flex"}
+                                    flexDirection={"row"}
                                 >
+
+                                        <img
+                                            src={product.images[0]}
+                                            alt={product.name}
+                                            width={100}
+                                            style={{borderRadius: "8px",}}
+
+
+                                        />
+
+                                    <Box w={"100%"}>
                                     <Flex
                                         justify="space-between"
                                         align="center"
@@ -221,7 +234,8 @@ export default function CartDrawer() {
                                             />
                                         </Flex>
                                     </Flex>
-                                    <Divider mt={2}/>
+                                    </Box>
+                                    {/*<Divider mt={2}/>*/}
                                 </Box>
                             );
                         })}

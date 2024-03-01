@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Laptop",
       "price": 999.99,
       "description": "High-performance laptop with the latest specifications.",
@@ -24,7 +24,7 @@
   ],
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "john_doe",
       "email": "john.doe@example.com",
       "password": "hashed_password",
@@ -39,7 +39,7 @@
       "isAdmin": true
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "jane_smith",
       "email": "jane.smith@example.com",
       "password": "hashed_password",
@@ -54,7 +54,7 @@
       "isAdmin": false
     },
     {
-      "id": "3",
+      "id": 3,
       "username": "rayesyounes",
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
@@ -71,18 +71,18 @@
   ],
   "carts": [
     {
-      "id": "3",
+      "id": 3,
       "user_id": 3,
       "items": [],
       "total": 0
     },
     {
-      "id": "2",
+      "id": 2,
       "user_id": 2,
       "items": [
         {
-          "product_id": 2,
-          "quantity": 1
+          "product_id": 1,
+          "quantity": 2
         }
       ],
       "total": 499.99
@@ -90,16 +90,12 @@
   ],
   "orders": [
     {
-      "id": "1",
+      "id": 1,
       "user_id": 3,
       "products": [
         {
           "product_id": 1,
           "quantity": 2
-        },
-        {
-          "product_id": 3,
-          "quantity": 1
         }
       ],
       "total": 1179.97,

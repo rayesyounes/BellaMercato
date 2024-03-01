@@ -16,7 +16,7 @@ const Product = () => {
     const dispatch = useDispatch();
     const {products} = useSelector((state) => state.products);
     const {user, isAuthenticated} = useSelector((state) => state.auth);
-    const product = products.find((product) => product.id === id);
+    const product = products.find((product) => product.id === parseInt(id));
     const [quantity, setQuantity] = useState(10);
 
     let userId = null;

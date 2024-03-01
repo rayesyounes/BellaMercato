@@ -12,10 +12,6 @@ import {
     Tfoot,
     Table,
     Flex,
-    Button,
-    Image,
-    Grid,
-    GridItem,
     CardHeader,
     CardBody,
     Card
@@ -44,6 +40,8 @@ export default function CheckoutConfirmAlert() {
         setOrder(orders.find((order) => order.id === parseInt(id)));
     }, [dispatch, id]);
 
+    console.log(order);
+
     return (<Container maxW="container.xxl" minHeight={"lg"} my={4}>
         <MotionBox
             p={8}
@@ -59,32 +57,71 @@ export default function CheckoutConfirmAlert() {
                 alignItems={{base: "center", md: "stretch"}}
                 p={{base: 4, md: 8}}
             >
-                <Box flex={2} p={{base: 0, md: 4}} textAlign="left">
-                    <Flex
-                        direction="column"
-                        gap={6}
-                        w="100%"
-                    >
-                        <Text>
-                            <strong>Order Number:</strong> {order.id}
-                        </Text>
+                <Box flex={2} p={{ base: 0, md: 4 }} textAlign="left">
+                    <Flex direction="column" gap={6} w="100%">
                         <Text>
                             <strong>Order Status:</strong>{" "}
                             <Badge
-                                colorScheme={order.status === "processing" ? "orange" : order.status === "confirmed" ? "blue" : order.status === "cancelled" ? "red" : order.status === "delivered" ? "green" : "gray"}
+                                colorScheme={
+                                    order.status === "processing"
+                                        ? "orange"
+                                        : order.status === "confirmed"
+                                            ? "blue"
+                                            : order.status === "cancelled"
+                                                ? "red"
+                                                : order.status === "delivered"
+                                                    ? "green"
+                                                    : "gray"
+                                }
                             >
                                 {order.status}
                             </Badge>
+                        </Text>
+                        <Text>
+                            <strong>Tracking Number:</strong> {order.tracking_number}
                         </Text>
                         <Text>
                             <strong>Order Date:</strong>{" "}
                             {new Date(order.order_date).toLocaleString()}
                         </Text>
                         <Text>
-                            <strong>Order Total:</strong> ${order.total.toFixed(2)}
+                            <strong>Delivery Date:</strong>{" "}
+                            {new Date(order.delivery_date).toLocaleString()}
+                        </Text>
+                        <Text>
+                            <strong>Shipping Address:</strong> {order.shipping_address}
+                        </Text>
+                        <Text>
+                            <strong>Billing Address:</strong> {order.billing_address}
+                        </Text>
+                        <Text>
+                            <strong>Payment Method:</strong> {order.payment_method}
+                        </Text>
+                        <Text>
+                            <strong>Payment Status:</strong> {order.payment_status}
+                        </Text>
+                        <Text>
+                            <strong>Shipping Date:</strong>{" "}
+                            {new Date(order.shipping_date).toLocaleString()}
+                        </Text>
+                        <Text>
+                            <strong>Shipping Cost:</strong> ${order.shipping_cost.toFixed(2)}
+                        </Text>
+                        <Text>
+                            <strong>Tax:</strong> ${order.tax.toFixed(2)}
+                        </Text>
+                        <Text>
+                            <strong>Discount:</strong> ${order.discount.toFixed(2)}
+                        </Text>
+                        <Text>
+                            <strong>Shipping Method:</strong> {order.shipping_method}
+                        </Text>
+                        <Text>
+                            <strong>Notes:</strong> {order.notes}
                         </Text>
                     </Flex>
                 </Box>
+
 
                 <Box flex={1} textAlign="center">
                     <Card maxW="500px" bg="gray.100" border="2px solid teal"
@@ -118,6 +155,8 @@ export default function CheckoutConfirmAlert() {
                                                 paddingBottom={isLast ? "3" : null}>{`${product.name}  X  ${item.quantity}`}</Td>
                                             <Td fontSize="md" bottom={5}
                                                 textAlign="end">{`${(product.price * item.quantity).toFixed(2)} $`}</Td>
+
+
                                         </Tr>);
                                     })}
                                 </Tbody>
