@@ -1,9 +1,11 @@
+import { Analytics } from "@vercel/analytics/react"
 import {
     createBrowserRouter,
     createRoutesFromElements,
     RouterProvider,
     Route,
 } from "react-router-dom";
+
 import {useSelector} from "react-redux";
 import RootLayout from "./layouts/RootLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
@@ -56,6 +58,7 @@ function App() {
     return (
         <div>
             <RouterProvider router={router}/>
+            <Analytics />
         </div>
     );
 }

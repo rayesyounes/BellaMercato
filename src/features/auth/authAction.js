@@ -2,7 +2,7 @@ import {loginStart, loginSuccess, loginFailure, logout, clearAuthError} from "./
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const API_BASE_URL = "https://ray-store-data.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 export const loginAuth = (authCredential) => async (dispatch) => {
     try {

@@ -10,6 +10,7 @@ function Products() {
     const dispatch = useDispatch();
     const {products, error, isLoading} = useSelector((state) => state.products);
     const [columns, setColumns] = useState([]);
+    const [filteredData, setFilteredData] = useState(products);
 
     useEffect(() => {
         dispatch(setCurrentPage("products"));
@@ -27,7 +28,7 @@ function Products() {
 
     return (<Container p={4} maxW="container.xxl">
             <VStack spacing={4}>
-                <FiltersPanel/>
+                <FiltersPanel setFilteredData={setFilteredData}/>
 
                 <Box
                     borderWidth="1px"

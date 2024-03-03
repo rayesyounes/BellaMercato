@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 function CardProduct({product}) {
     const {name, description, price} = product;
     const dispatch = useDispatch();
+    const quantity = 1;
     const {user, isAuthenticated} = useSelector((state) => state.auth);
     let userId = null;
 
@@ -15,13 +16,21 @@ function CardProduct({product}) {
         userId = user.id;
     }
 
-    return (<Card>
-        <CardBody>
+    return (
+        <Card>
+        <CardBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-between"
+        >
             <Image
-                src={"https://via.placeholder.com/600"}
+                src={product.images[0]}
                 fallbackSrc={"https://via.placeholder.com/600"}
                 alt={`${name} - Product image`}
                 borderRadius="lg"
+                boxSize="250px"
+
             />
             <Stack mt="6" spacing="3">
                 <Heading size="md">{name}</Heading>
@@ -31,12 +40,15 @@ function CardProduct({product}) {
                 </Text>
             </Stack>
         </CardBody>
-        <Divider/>
-        <CardFooter>
+        <CardFooter
+            display="flex"
+            justifyContent="end"
+            alignItems="center"
+        >
             <ButtonGroup spacing="2">
                 <Button variant="solid" colorScheme="teal"
                         onClick={() => (
-                            isAuthenticated ? dispatch(addToCart({userId, productId: product.id}))
+                            isAuthenticated ? dispatch(addToCart({userId, productId: product.id, quantity}))
                                 : alert('Please login to add to cart')
                         )}
                 >

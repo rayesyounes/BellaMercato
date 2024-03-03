@@ -14,7 +14,7 @@ import {
 } from "./productsSlice";
 import axios from "axios";
 
-const API_BASE_URL = "https://ray-store-data.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 export const getProductsAsync = () => async (dispatch) => {
     try {

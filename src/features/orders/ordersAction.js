@@ -8,13 +8,13 @@ import {
     updateOrderStart,
     updateOrderSuccess,
     updateOrderFailure,
-    deleteOrderStart,
-    deleteOrderSuccess,
-    deleteOrderFailure,
+    // deleteOrderStart,
+    // deleteOrderSuccess,
+    // deleteOrderFailure,
 } from "./ordersSlice";
 import axios from "axios";
 
-const API_BASE_URL = "https://ray-store-data.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 export const getOrdersAsync = (userId) => async (dispatch) => {
     if (userId) {
@@ -38,16 +38,16 @@ export const getOrdersAsync = (userId) => async (dispatch) => {
     }
 };
 
-export const getOrderAsync = (orderId) => async (dispatch) => {
-    try {
-        dispatch(getOrdersStart());
-        const response = await axios.get(`${API_BASE_URL}/orders/${orderId}`);
-        dispatch(getOrdersSuccess(response.data));
-    } catch (error) {
-        dispatch(getOrdersFailure(error.message));
-        console.error("Error fetching orders:", error);
-    }
-}
+// export const getOrderAsync = (orderId) => async (dispatch) => {
+//     try {
+//         dispatch(getOrdersStart());
+//         const response = await axios.get(`${API_BASE_URL}/orders/${orderId}`);
+//         dispatch(getOrdersSuccess(response.data));
+//     } catch (error) {
+//         dispatch(getOrdersFailure(error.message));
+//         console.error("Error fetching orders:", error);
+//     }
+// }
 
 export const updateOrderAsync = (orderId, updatedOrder) => async (dispatch) => {
     try {
@@ -71,23 +71,23 @@ export const addOrderAsync = (newOrder) => async (dispatch) => {
     }
 };
 
-export const deleteOrderAsync = (orderId) => async (dispatch) => {
-    try {
-        dispatch(deleteOrderStart());
-        await axios.delete(`${API_BASE_URL}/orders/${orderId}`);
-        dispatch(deleteOrderSuccess(orderId));
-    } catch (error) {
-        dispatch(deleteOrderFailure(error.message));
-        console.error("Error deleting order:", error);
-    }
-};
+// export const deleteOrderAsync = (orderId) => async (dispatch) => {
+//     try {
+//         dispatch(deleteOrderStart());
+//         await axios.delete(`${API_BASE_URL}/orders/${orderId}`);
+//         dispatch(deleteOrderSuccess(orderId));
+//     } catch (error) {
+//         dispatch(deleteOrderFailure(error.message));
+//         console.error("Error deleting order:", error);
+//     }
+// };
 
-export const filterOrdersByStatus = (orders, status) => async (dispatch) => {
-    try {
-        dispatch(getOrdersStart());
-        dispatch(getOrdersSuccess(orders.filter(order => order.status === status)));
-    } catch (error) {
-        dispatch(getOrdersFailure(error.message));
-        console.error("Error fetching orders:", error);
-    }
-}
+// export const filterOrdersByStatus = (orders, status) => async (dispatch) => {
+//     try {
+//         dispatch(getOrdersStart());
+//         dispatch(getOrdersSuccess(orders.filter(order => order.status === status)));
+//     } catch (error) {
+//         dispatch(getOrdersFailure(error.message));
+//         console.error("Error fetching orders:", error);
+//     }
+// }
