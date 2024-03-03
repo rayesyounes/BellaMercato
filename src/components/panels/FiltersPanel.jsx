@@ -46,7 +46,7 @@ function renderColor(status) {
     }
 }
 
-function FiltersPanel({setFilteredOrders}) {
+function FiltersPanel({setFilteredData}) {
     const {currentPage} = useSelector((state) => state.page);
     const {orders} = useSelector((state) => state.orders);
     const statusOptions = ["All", "processing", "delivered", "cancelled", "confirmed", "shipped"];
@@ -54,12 +54,12 @@ function FiltersPanel({setFilteredOrders}) {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        if (currentPage === "orders" || currentPage === "history") {
+        if ( currentPage === "history" || currentPage === "orders") {
             let filtered = orders.filter((order) => order.status === status || status === "All");
             if (searchTerm) {
                 filtered = filtered.filter((order) => order.tracking_number.toLowerCase().includes(searchTerm.toLowerCase()));
             }
-            setFilteredOrders(filtered);
+            setFilteredData(filtered);
         }
     }, [status, searchTerm, orders]);
 
@@ -81,7 +81,7 @@ function FiltersPanel({setFilteredOrders}) {
         alignItems="center"
         justifyContent="space-between"
     >
-        {currentPage === "history" || currentPage === "orders" && (<>
+        {(currentPage === "history" || currentPage === "orders") && (<>
             <InputGroup>
                 <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300"/>}/>
                 <Input

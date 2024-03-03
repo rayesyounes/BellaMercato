@@ -11,7 +11,7 @@ export default function History() {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth);
     const {orders} = useSelector((state) => state.orders);
-    const [filteredOrders, setFilteredOrders] = useState(orders);
+    const [filteredData, setFilteredData] = useState(orders);
     const MotionBox = motion(Box);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function History() {
 
     return (<Container maxW="container.xxl" minHeight={"lg"} my={4}>
         <VStack spacing={4}>
-            <FiltersPanel setFilteredOrders={setFilteredOrders}/>
+            <FiltersPanel setFilteredData={setFilteredData}/>
 
             <Box
                 borderWidth="1px"
@@ -47,7 +47,7 @@ export default function History() {
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.9}}
                 >
-                    {filteredOrders.length === 0
+                    {filteredData.length === 0
                         ? <Box p={4} textAlign="center" color="gray.500">No orders found </Box>
                         : <Box px={2}>
                             <Box
@@ -68,7 +68,7 @@ export default function History() {
                                 <Text fontWeight="bold">Status</Text>
                             </Box>
                             <Box>
-                                {filteredOrders.map((order, index) => (<Box
+                                {filteredData.map((order, index) => (<Box
                                     as={Link}
                                     to={`/order/${order.id}`}
                                     key={index}

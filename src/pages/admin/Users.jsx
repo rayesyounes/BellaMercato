@@ -12,6 +12,7 @@ function Users() {
     const dispatch = useDispatch();
     const { users, error, isLoading } = useSelector((state) => state.users);
     const [columns, setColumns] = useState([]);
+    const [filteredData, setFilteredData] = useState(users);
 
     useEffect(() => {
         dispatch(setCurrentPage("users"));
@@ -30,7 +31,7 @@ function Users() {
     return (
         <Container p={4} maxW="container.xxl">
             <VStack spacing={4}>
-                <FiltersPanel />
+                <FiltersPanel setFilteredData={setFilteredData}/>
 
                 <Box
                     borderWidth="1px"

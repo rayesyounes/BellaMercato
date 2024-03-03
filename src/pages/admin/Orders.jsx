@@ -9,7 +9,7 @@ import { setCurrentPage } from "../../features/page/PageAction.js";
 function Orders() {
     const dispatch = useDispatch();
     const { orders, error, isLoading } = useSelector((state) => state.orders);
-    const [filteredOrders, setFilteredOrders] = useState(orders);
+    const [filteredData, setFilteredData] = useState(orders);
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function Orders() {
     return (
         <Container p={4} maxW="container.xxl">
             <VStack spacing={4}>
-                <FiltersPanel setFilteredOrders={setFilteredOrders} />
+                <FiltersPanel setFilteredData={setFilteredData} />
 
                 <Box
                     borderWidth="1px"
@@ -49,7 +49,7 @@ function Orders() {
                         Orders
                     </Text>
 
-                    <DataTable data={filteredOrders} columns={columns} />
+                    <DataTable data={filteredData} columns={columns} />
 
                     <Box color="teal" p={4}></Box>
                 </Box>
