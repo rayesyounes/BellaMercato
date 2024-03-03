@@ -22,23 +22,37 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
         address: '',
         phone: '',
         emailAddress: '',
+
         country: '',
         postcode: '',
         state: '',
         city: '',
-        notes: '',
+
+        notes: '' || 'None',
+
         cardName: '' || user.username,
         cardNumber: '',
         cardExpiry: '',
         cardCvc: '',
+
         orderStatus: '' || 'Processing',
+
         orderNumber: getOrderNumber(),
         expectedDelivery: getDeliveryDate(),
+
+        payment_method: "",
+        payment_status: "",
+        shipping_date: "",
+        delivery_date: getDeliveryDate(),
+        shipping_cost: 0,
+        tax: 0,
+        discount: 0,
+        shipping_method: "" || "standard",
     });
 
 
     useEffect(() => {
-    console.log(data)
+        console.log(data)
         setCountries(CountriesData)
     }, [data]);
 
@@ -70,9 +84,42 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
         return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
     }
 
+    function trackingNumber() {
+        const currentDate = new Date();
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const year = String(currentDate.getFullYear()).slice(-2);
+        const hours = String(currentDate.getHours()).padStart(2, '0');
+        const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+        const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+        return `${day}${month}${year}${hours}${minutes}${seconds}`;
+    }
+
     const [order, setOrder] = useState({
-        user_id: user.id, products: items, total: total, order_date: getCurrentDateTime(), status: "processing"
+        user_id: user.id, products: items, total: total, order_date: getCurrentDateTime(), status: "processing",
     });
+
+    useEffect(() => {
+        console.log(items)
+        setOrder((prev) => (
+
+            {
+                ...prev,
+                id: trackingNumber(),
+                shipping_address: data.address,
+                tracking_number: trackingNumber(),
+                billing_address: data.address,
+                payment_method: data.payment_method,
+                payment_status: data.payment_status,
+                shipping_date: data.shipping_date,
+                delivery_date: data.delivery_date,
+                shipping_cost: data.shipping_cost,
+                tax: data.tax,
+                discount: data.discount,
+                shipping_method: data.shipping_method,
+                notes: data.notes,
+            }))
+    }, [data]);
 
 
     const handelConfirm = () => {
@@ -90,7 +137,8 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
                     <CheckoutForm step={step} setStep={setStep} data={data} setData={setData}
                                   countries={countries}/> : step === 2 ?
                         <CheckoutCard step={step} setStep={setStep} data={data} confirmed={confirmed}
-                                      handelConfirm={handelConfirm}/> : "confirm order"}</Box>)}
+                                      handelConfirm={handelConfirm}/> : "confirm order"}
+                </Box>)}
         </VStack>
     </Box>)
 }

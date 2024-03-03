@@ -26,7 +26,7 @@
       "name": "Smartphone",
       "price": 179.99,
       "description": "High-performance smartphone with the latest specifications.",
-      "stock": 78,
+      "stock": 75,
       "images": [
         "../public/products/2/1.webp",
         "../public/products/2/2.webp",
@@ -47,7 +47,7 @@
       "name": "Tablet",
       "price": 199.99,
       "description": "High-performance tablet with the latest specifications.",
-      "stock": 28,
+      "stock": 21,
       "images": [
         "../public/products/5/1.webp",
         "../public/products/5/2.webp",
@@ -108,13 +108,20 @@
       "zip": "90001",
       "phone": "123-456-7890",
       "billingAddress": "456 Oak St, Townsville",
-      "isAdmin": true
+      "isAdmin": false
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "id": "8310",
+      "user_id": 3,
+      "items": [],
+      "total": 0
+    }
+  ],
   "orders": [
     {
-      "id": "1",
+      "id": "1234567890",
       "user_id": 3,
       "products": [
         {
@@ -139,8 +146,8 @@
       "notes": "Please handle with care."
     },
     {
-      "id": "2",
-      "user_id": 2,
+      "id": "4444367",
+      "user_id": 3,
       "products": [
         {
           "product_id": 1,
@@ -164,7 +171,7 @@
       "notes": "Please handle with care."
     },
     {
-      "id": "3",
+      "id": "124535",
       "user_id": 3,
       "products": [
         {
@@ -187,6 +194,31 @@
       "discount": 100,
       "shipping_method": "standard",
       "notes": "Please handle with care."
+    },
+    {
+      "id": "030324152033",
+      "user_id": 3,
+      "products": [
+        {
+          "product_id": 5,
+          "quantity": 1
+        }
+      ],
+      "total": 199.99,
+      "order_date": "2024-03-03T15:20:19Z",
+      "status": "shipped",
+      "shipping_address": "Av othman ben affan",
+      "tracking_number": "030324152033",
+      "billing_address": "Av othman ben affan",
+      "payment_method": "",
+      "payment_status": "",
+      "shipping_date": "",
+      "delivery_date": "2024-04-10",
+      "shipping_cost": 0,
+      "tax": 0,
+      "discount": 0,
+      "shipping_method": "standard",
+      "notes": ""
     }
   ]
 }

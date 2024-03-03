@@ -1,4 +1,4 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {
     MdCheckCircle,
     MdCancel,
@@ -6,10 +6,11 @@ import {
     MdLocalShipping,
 } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
-import { updateOrderAsync } from "../../features/orders/ordersAction";
+import {useDispatch} from "react-redux";
+import {updateOrderAsync} from "../../features/orders/ordersAction";
+import {FaPlane} from "react-icons/fa";
 
-function ActionsMenu({ item }) {
+function ActionsMenu({item}) {
     const dispatch = useDispatch();
     console.log(item);
 
@@ -19,6 +20,8 @@ function ActionsMenu({ item }) {
                 return "blue";
             case "processing":
                 return "orange";
+            case "shipped":
+                return "purple";
             case "delivered":
                 return "green";
             case "cancelled":
@@ -31,20 +34,22 @@ function ActionsMenu({ item }) {
     const renderTagIcon = (status) => {
         switch (status) {
             case "confirmed":
-                return <MdCheckCircle />;
+                return <MdCheckCircle/>;
             case "processing":
-                return <MdHourglassEmpty />;
+                return <MdHourglassEmpty/>;
             case "delivered":
-                return <MdLocalShipping />;
+                return <MdLocalShipping/>;
             case "cancelled":
-                return <MdCancel />;
+                return <MdCancel/>;
+            case "shipped":
+                return <FaPlane/>;
             default:
                 return null;
         }
     };
 
     const handelClick = (status) => {
-        const order = { ...item, status: status };
+        const order = {...item, status: status};
         dispatch(updateOrderAsync(item.id, order));
     }
 
@@ -73,6 +78,9 @@ function ActionsMenu({ item }) {
                 </MenuItem>
                 <MenuItem onClick={() => handelClick("processing")}>
                     Processing
+                </MenuItem>
+                <MenuItem onClick={() => handelClick("shipped")}>
+                    Shipped
                 </MenuItem>
             </MenuList>
         </Menu>

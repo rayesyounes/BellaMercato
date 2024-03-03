@@ -1,10 +1,10 @@
 import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setCart, setError, setLoading } from "./cartSlice";
+import {createAsyncThunk} from "@reduxjs/toolkit";
+import {setCart, setError, setLoading} from "./cartSlice";
 
-const API_BASE_URL = "https://ray-store-data.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
-const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { dispatch }) => {
+const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, {dispatch}) => {
     try {
         dispatch(setLoading(true));
 
@@ -24,13 +24,13 @@ const fetchUserCart = createAsyncThunk("cart/fetchUserCart", async (userId, { di
     }
 });
 
-const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({ userId, productId }, {
+const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({userId, productId}, {
     dispatch, getState
 }) => {
     try {
         dispatch(setLoading(true));
 
-        const { products } = getState().products;
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
         const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
@@ -38,7 +38,7 @@ const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({ user
         if (itemToUpdate) {
             itemToUpdate.quantity += 1;
 
-            const updatedCart = { ...userCart };
+            const updatedCart = {...userCart};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
                 dispatch(setCart(updatedCart));
             });
@@ -52,7 +52,7 @@ const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({ user
             }
         });
 
-        const updatedCart = { ...userCart, total };
+        const updatedCart = {...userCart, total};
         await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
             dispatch(setCart(updatedCart));
         });
@@ -66,13 +66,13 @@ const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async ({ user
 });
 
 
-const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({ userId, productId }, {
+const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({userId, productId}, {
     dispatch, getState
 }) => {
     try {
         dispatch(setLoading(true));
 
-        const { products } = getState().products;
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
         const itemToUpdate = userCart.items.find((item) => item.product_id === productId);
@@ -80,7 +80,7 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({ user
         if (itemToUpdate) {
 
             itemToUpdate.quantity -= 1;
-            const updatedCart = { ...userCart };
+            const updatedCart = {...userCart};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
                 dispatch(setCart(updatedCart));
             })
@@ -94,7 +94,7 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({ user
             }
         });
 
-        const updatedCart = { ...userCart, total };
+        const updatedCart = {...userCart, total};
         await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
             dispatch(setCart(updatedCart));
         });
@@ -107,11 +107,11 @@ const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async ({ user
     }
 });
 
-const removeItem = createAsyncThunk("cart/removeItem", async ({ userId, productId }, { dispatch, getState }) => {
+const removeItem = createAsyncThunk("cart/removeItem", async ({userId, productId}, {dispatch, getState}) => {
     try {
         dispatch(setLoading(true));
 
-        const { products } = getState().products;
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
         const itemToRemove = userCart.items.find((item) => item.product_id === productId);
@@ -127,7 +127,7 @@ const removeItem = createAsyncThunk("cart/removeItem", async ({ userId, productI
                 }
             });
 
-            const updatedCart = { ...userCart, items: updatedItems, total };
+            const updatedCart = {...userCart, items: updatedItems, total};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
                 dispatch(setCart(updatedCart));
             });
@@ -141,11 +141,11 @@ const removeItem = createAsyncThunk("cart/removeItem", async ({ userId, productI
     }
 });
 
-const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId, quantity }, { dispatch, getState }) => {
+const addToCart = createAsyncThunk("cart/addToCart", async ({userId, productId, quantity}, {dispatch, getState}) => {
     try {
         dispatch(setLoading(true));
 
-        const { products } = getState().products;
+        const {products} = getState().products;
         const response = await axios.get(`${API_BASE_URL}/carts`);
         const userCart = response.data.find((cart) => cart.user_id === userId);
         const productToAdd = products.find((product) => product.id === productId);
@@ -156,7 +156,7 @@ const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId,
             if (itemToUpdate) {
                 itemToUpdate.quantity += quantity;
             } else {
-                userCart.items.push({ product_id: productId, quantity: quantity });
+                userCart.items.push({product_id: productId, quantity: quantity});
             }
 
             let total = 0;
@@ -167,9 +167,19 @@ const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId,
                 }
             });
 
-            const updatedCart = { ...userCart, total };
+            const updatedCart = {...userCart, total};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
                 dispatch(setCart(updatedCart));
+            });
+        } else if (!userCart && productToAdd) {
+            const newCart = {
+                user_id: userId,
+                items: [{product_id: productId, quantity}],
+                total: productToAdd.price * quantity
+            };
+
+            await axios.post(`${API_BASE_URL}/carts`, newCart).then(() => {
+                dispatch(setCart(newCart));
             });
         }
 
@@ -181,7 +191,7 @@ const addToCart = createAsyncThunk("cart/addToCart", async ({ userId, productId,
     }
 });
 
-const clearCart = createAsyncThunk("cart/clearCart", async ( userId , { dispatch }) => {
+const clearCart = createAsyncThunk("cart/clearCart", async (userId, {dispatch}) => {
     try {
         dispatch(setLoading(true));
 
@@ -189,7 +199,7 @@ const clearCart = createAsyncThunk("cart/clearCart", async ( userId , { dispatch
         const userCart = response.data.find((cart) => cart.user_id === userId);
 
         if (userCart) {
-            const updatedCart = { ...userCart, items: [], total: 0 };
+            const updatedCart = {...userCart, items: [], total: 0};
             await axios.put(`${API_BASE_URL}/carts/${userCart.id}`, updatedCart).then(() => {
                 dispatch(setCart(updatedCart));
             });
@@ -204,6 +214,4 @@ const clearCart = createAsyncThunk("cart/clearCart", async ( userId , { dispatch
 });
 
 
-
-
-export { fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, addToCart, clearCart };
+export {fetchUserCart, decreaseQuantity, increaseQuantity, removeItem, addToCart, clearCart};
