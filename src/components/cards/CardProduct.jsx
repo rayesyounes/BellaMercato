@@ -16,13 +16,21 @@ function CardProduct({product}) {
         userId = user.id;
     }
 
-    return (<Card>
-        <CardBody>
+    return (
+        <Card>
+        <CardBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-between"
+        >
             <Image
                 src={product.images[0]}
                 fallbackSrc={"https://via.placeholder.com/600"}
                 alt={`${name} - Product image`}
                 borderRadius="lg"
+                boxSize="250px"
+
             />
             <Stack mt="6" spacing="3">
                 <Heading size="md">{name}</Heading>
@@ -32,8 +40,11 @@ function CardProduct({product}) {
                 </Text>
             </Stack>
         </CardBody>
-        <Divider/>
-        <CardFooter>
+        <CardFooter
+            display="flex"
+            justifyContent="end"
+            alignItems="center"
+        >
             <ButtonGroup spacing="2">
                 <Button variant="solid" colorScheme="teal"
                         onClick={() => (

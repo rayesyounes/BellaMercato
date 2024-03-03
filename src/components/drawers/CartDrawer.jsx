@@ -48,7 +48,7 @@ export default function CartDrawer() {
     useEffect(() => {
         dispatch(getProductsAsync());
         dispatch(fetchUserCart(userId));
-    }, []);
+    }, [dispatch, userId,]);
 
     useEffect(() => {
         setCartItems(items);

@@ -180,17 +180,17 @@ function DataTable({ columns, data }) {
     };
 
     const getUsername = (id) => {
-        const user = users.find((user) => user.id === id);
+        const user = users.find((user) => parseInt(user.id) === parseInt(id));
         return user.username;
     };
 
     const getProductName = (id) => {
-        const product = products.find((product) => product.id === id);
+        const product = products.find((product) => parseInt(product.id) === parseInt(id));
         return product.name;
     };
 
     const getProductPrice = (id) => {
-        const product = products.find((product) => product.id === id);
+        const product = products.find((product) => parseInt(product.id) === parseInt(id));
         return product.price;
     };
 

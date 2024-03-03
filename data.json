@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Laptop",
       "price": 999.99,
       "description": "High-performance laptop with the latest specifications.",
@@ -20,11 +20,53 @@
       "brand": "Apple",
       "rating": 4.5,
       "numReviews": 12
+    },
+    {
+      "id": "2",
+      "name": "Smartphone",
+      "price": 179.99,
+      "description": "High-performance smartphone with the latest specifications.",
+      "stock": 78,
+      "images": [
+        "../public/products/2/1.webp",
+        "../public/products/2/2.webp",
+        "../public/products/2/3.webp",
+        "../public/products/2/4.webp",
+        "../public/products/2/5.webp"
+      ],
+      "category": [
+        "electronics",
+        "smartphones"
+      ],
+      "brand": "Samsung",
+      "rating": 4,
+      "numReviews": 8
+    },
+    {
+      "id": "5",
+      "name": "Tablet",
+      "price": 199.99,
+      "description": "High-performance tablet with the latest specifications.",
+      "stock": 28,
+      "images": [
+        "../public/products/5/1.webp",
+        "../public/products/5/2.webp",
+        "../public/products/5/3.webp",
+        "../public/products/5/4.webp",
+        "../public/products/5/5.webp"
+      ],
+      "category": [
+        "electronics",
+        "tablets"
+      ],
+      "brand": "Samsung",
+      "rating": 4.2,
+      "numReviews": 9
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "john_doe",
       "email": "john.doe@example.com",
       "password": "hashed_password",
@@ -39,7 +81,7 @@
       "isAdmin": true
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "jane_smith",
       "email": "jane.smith@example.com",
       "password": "hashed_password",
@@ -54,7 +96,7 @@
       "isAdmin": false
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "rayesyounes",
       "email": "rayesyounes@gmail.com",
       "password": "11111111",
@@ -69,28 +111,10 @@
       "isAdmin": true
     }
   ],
-  "carts": [
-    {
-      "id": 3,
-      "user_id": 3,
-      "items": [],
-      "total": 0
-    },
-    {
-      "id": 2,
-      "user_id": 2,
-      "items": [
-        {
-          "product_id": 1,
-          "quantity": 2
-        }
-      ],
-      "total": 1999.98
-    }
-  ],
+  "carts": [],
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 3,
       "products": [
         {
@@ -103,6 +127,56 @@
       "status": "delivered",
       "shipping_address": "123 Main St, Cityville",
       "tracking_number": "1234567890",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "2",
+      "user_id": 2,
+      "products": [
+        {
+          "product_id": 1,
+          "quantity": 2
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2023-01-15T08:30:00Z",
+      "status": "cancelled",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "4444367",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "3",
+      "user_id": 3,
+      "products": [
+        {
+          "product_id": 1,
+          "quantity": 2
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2023-01-15T08:30:00Z",
+      "status": "processing",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "124535",
       "billing_address": "456 Oak St, Townsville",
       "payment_method": "credit_card",
       "payment_status": "paid",

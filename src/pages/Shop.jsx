@@ -25,13 +25,15 @@ export default function Shop() {
 
     return (
         <div>
-            <Container maxW="container.xxl" px={"5%"} my={4}>
+            <Container maxW="container.xxl"
+                       // px={"5%"}
+                       my={4}>
                 <MotionBox
                     initial={{opacity: 0, y: -20}}
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.9}}
                 >
-                <Grid templateColumns="repeat(3, 2fr)" gap={6}>
+                <Grid templateColumns="repeat(4, 2fr)" gap={6}>
                     {products.map((product) => (
                         <CardProduct key={product.id} product={product} />
                     ))}
