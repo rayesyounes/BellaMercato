@@ -43,7 +43,7 @@ export default function ShippingStepper({order}) {
         borderRadius={10}
         bg={"white"}
         size="md"
-        height={"80vh"}
+        height={"75vh"}
         p={8}
     >
         {steps.map((step, index) => (<Step key={index}>

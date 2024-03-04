@@ -18,8 +18,7 @@
         "computers"
       ],
       "brand": "Apple",
-      "rating": 4.5,
-      "numReviews": 12
+      "rating": 4.5
     },
     {
       "id": "2",
@@ -39,15 +38,14 @@
         "smartphones"
       ],
       "brand": "Samsung",
-      "rating": 4,
-      "numReviews": 8
+      "rating": 4
     },
     {
       "id": "5",
       "name": "Tablet",
       "price": 199.99,
       "description": "High-performance tablet with the latest specifications.",
-      "stock": 21,
+      "stock": 19,
       "images": [
         "../public/products/5/1.webp",
         "../public/products/5/2.webp",
@@ -60,61 +58,56 @@
         "tablets"
       ],
       "brand": "Samsung",
+      "rating": 4.2
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "product_id": 1,
+      "user_id": 3,
+      "rating": 4.5,
+      "comment": "Great laptop, I'm very satisfied with my purchase."
+    },
+    {
+      "id": "2",
+      "product_id": 2,
+      "user_id": 3,
+      "rating": 4,
+      "comment": "Great smartphone, I'm very satisfied with my purchase."
+    },
+    {
+      "id": "3",
+      "product_id": 5,
+      "user_id": 3,
       "rating": 4.2,
-      "numReviews": 9
+      "comment": "Great tablet, I'm very satisfied with my purchase."
     }
   ],
   "users": [
     {
-      "id": "1",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
-      "password": "hashed_password",
-      "address": "123 Main St, Cityville",
-      "image": "https://via.placeholder.com/150",
-      "country": "USA",
-      "state": "CA",
-      "city": "Los Angeles",
-      "zip": "90001",
-      "phone": "123-456-7890",
-      "billingAddress": "456 Oak St, Townsville",
-      "isAdmin": true
-    },
-    {
-      "id": "2",
-      "username": "jane_smith",
-      "email": "jane.smith@example.com",
-      "password": "hashed_password",
-      "address": "456 Oak St, Townsville",
-      "image": "https://via.placeholder.com/150",
-      "country": "USA",
-      "state": "CA",
-      "city": "Los Angeles",
-      "zip": "90001",
-      "phone": "123-456-7890",
-      "billingAddress": "456 Oak St, Townsville",
-      "isAdmin": false
-    },
-    {
       "id": "3",
       "username": "rayesyounes",
+      "first_name": "younes",
+      "last_name": "rayes",
+      "gender": "m",
       "email": "rayesyounes@gmail.com",
+      "phone": 1234567890,
       "password": "11111111",
+      "billingAddress": "456 Oak St, Townsville",
       "address": "123 Oak St, Townsville",
-      "image": "https://via.placeholder.com/150",
+      "avatar": "",
       "country": "USA",
       "state": "CA",
       "city": "Los Angeles",
       "zip": "90001",
-      "phone": "123-456-7890",
-      "billingAddress": "456 Oak St, Townsville",
       "isAdmin": false
     }
   ],
   "carts": [
     {
-      "id": "8310",
-      "user_id": 3,
+      "id": "d752",
+      "user_id": "3",
       "items": [],
       "total": 0
     }
@@ -143,82 +136,9 @@
       "tax": 80,
       "discount": 100,
       "shipping_method": "standard",
+      "email": "ggggggggggggggg",
+      "phone": "123456789",
       "notes": "Please handle with care."
-    },
-    {
-      "id": "4444367",
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 1,
-          "quantity": 2
-        }
-      ],
-      "total": 1179.97,
-      "order_date": "2023-01-15T08:30:00Z",
-      "status": "cancelled",
-      "shipping_address": "123 Main St, Cityville",
-      "tracking_number": "4444367",
-      "billing_address": "456 Oak St, Townsville",
-      "payment_method": "credit_card",
-      "payment_status": "paid",
-      "shipping_date": "2023-01-16T08:30:00Z",
-      "delivery_date": "2023-01-20T08:30:00Z",
-      "shipping_cost": 19.99,
-      "tax": 80,
-      "discount": 100,
-      "shipping_method": "standard",
-      "notes": "Please handle with care."
-    },
-    {
-      "id": "124535",
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 1,
-          "quantity": 2
-        }
-      ],
-      "total": 1179.97,
-      "order_date": "2023-01-15T08:30:00Z",
-      "status": "processing",
-      "shipping_address": "123 Main St, Cityville",
-      "tracking_number": "124535",
-      "billing_address": "456 Oak St, Townsville",
-      "payment_method": "credit_card",
-      "payment_status": "paid",
-      "shipping_date": "2023-01-16T08:30:00Z",
-      "delivery_date": "2023-01-20T08:30:00Z",
-      "shipping_cost": 19.99,
-      "tax": 80,
-      "discount": 100,
-      "shipping_method": "standard",
-      "notes": "Please handle with care."
-    },
-    {
-      "id": "030324152033",
-      "user_id": 3,
-      "products": [
-        {
-          "product_id": 5,
-          "quantity": 1
-        }
-      ],
-      "total": 199.99,
-      "order_date": "2024-03-03T15:20:19Z",
-      "status": "shipped",
-      "shipping_address": "Av othman ben affan",
-      "tracking_number": "030324152033",
-      "billing_address": "Av othman ben affan",
-      "payment_method": "",
-      "payment_status": "",
-      "shipping_date": "",
-      "delivery_date": "2024-04-10",
-      "shipping_cost": 0,
-      "tax": 0,
-      "discount": 0,
-      "shipping_method": "standard",
-      "notes": ""
     }
   ]
 }
