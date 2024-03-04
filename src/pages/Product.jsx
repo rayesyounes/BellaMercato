@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from "react";
 import {useParams} from "react-router-dom";
 import {
-    Box, Text, Image, Flex, Container, Grid, GridItem, Button, Badge,
+    Box, Text, Image, Flex, Container, Grid, GridItem, Button, Badge, Icon, VStack,
 } from "@chakra-ui/react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,6 +11,8 @@ import {setCurrentPage} from "../features/page/PageAction.js";
 import Number_input from '../components/inputs/Number_Input'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import {StarIcon} from "@chakra-ui/icons";
+import InfoPanel from "../components/panels/InfoPanel.jsx";
 
 const MotionBox = motion(Box);
 
@@ -70,7 +72,10 @@ const Product = () => {
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
         >
+            <VStack spacing={4}>
+                <InfoPanel product={product} />
             <Flex
+                w="100%"
                 borderRadius="lg"
                 flexDirection={{base: "column", md: "row-reverse"}}
                 gap={4}
@@ -84,57 +89,59 @@ const Product = () => {
                     >
                         {product.name}
                     </Text>
-                    <Text color="teal.500" fontSize="3xl" mb={4}>
-                        ${product.price.toFixed(2)}
-                    </Text>
+                    <Flex alignItems="center" mb={4}>
+                        <Box>
+                            {/* Display rating with star icon */}
+                            <Icon as={StarIcon} color="teal.500" boxSize={6} mr={2} />
+                            <Text fontSize="3xl" color="teal.500" fontWeight="bold">
+                                {product.rating.toFixed(1)}
+                            </Text>
+                        </Box>
+                        <Text fontSize="3xl" color="teal.500" fontWeight="bold" ml={4}>
+                            ${product.price.toFixed(2)}
+                        </Text>
+                    </Flex>
                     <Text fontSize="xl" mb={4} color="gray.700">
                         {product.description}
                     </Text>
                     <Text fontSize="lg" color="gray.500">
                         <strong>Available Stock :</strong> {product.stock} units
                     </Text>
-                    <Text fontSize="lg" color="gray.500">
-                        <strong>Category :</strong> {product.category.map((cat) => (
-                        <Badge ml='1' p={2} key={cat} borderRadius={"lg"} variant={"solid"} fontSize='0.8em'
-                               colorScheme='teal'>
-                            {cat}
-                        </Badge>))}
-                    </Text>
-                    <Text fontSize="lg" color="gray.500">
-                        <strong>Brand :</strong> <Badge ml='1' borderRadius={"lg"} fontSize='0.8em' colorScheme='teal'>
-                        {product.brand}
-                    </Badge>
-                    </Text>
-                    <Text fontSize="lg" color="gray.500">
-                        <strong>Rating :</strong> {product.rating}
-                    </Text>
 
-                    <Number_input
-                        handelChange={(value) => setQuantity(value)}
-                        value={quantity}
-                    />
+                    {/* Rate button */}
+                    <Button
+                        colorScheme="teal"
+                        variant="outline"
+                        size="lg"
+                        mt={4}
+                        onClick={() => handleRateProduct()}
+                    >
+                        Rate Product
+                    </Button>
 
-                    <Flex gap={2}>
+                    {/* Quantity input and Buy Now / Add to Cart buttons */}
+                    <Flex gap={2} mt={4}>
+                        <Number_input
+                            handelChange={(value) => setQuantity(value)}
+                            value={quantity}
+                        />
                         <Button
                             colorScheme="teal"
                             size="lg"
-                            mt={4}>
+                            onClick={() => handleBuyNow()}
+                        >
                             Buy Now
                         </Button>
                         <Button
                             colorScheme="teal"
                             variant={"outline"}
                             size="lg"
-                            mt={4}
-                            onClick={() => isAuthenticated ? dispatch(addToCart({
-                                userId, productId: product.id, quantity
-                            })) : alert("Please login to add to cart")}
+                            onClick={() => isAuthenticated ? dispatch(addToCart({ userId, productId: product.id, quantity })) : alert("Please login to add to cart")}
                         >
                             Add to Cart
                         </Button>
                     </Flex>
                 </Box>
-
 
                 <Box display={"flex"} flexDirection={"row-reverse"} gap={4} borderRadius="lg"
                      bg={"white"} boxShadow="lg" p={4} textAlign="center">
@@ -251,6 +258,7 @@ const Product = () => {
 
                 </Box>
             </Flex>
+            </VStack>
         </MotionBox>
     </Container>);
 };

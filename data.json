@@ -7,11 +7,11 @@
       "description": "High-performance laptop with the latest specifications.",
       "stock": 39,
       "images": [
-        "../public/products/1/s-l1600.png",
-        "../public/products/1/s-l960.png",
-        "../public/products/1/s-l960 (1).png",
-        "../public/products/1/s-l960 (2).png",
-        "../public/products/1/s-l960 (3).png"
+        "../public/products/1/1.webp",
+        "../public/products/1/2.webp",
+        "../public/products/1/3.webp",
+        "../public/products/1/4.webp",
+        "../public/products/1/5.webp"
       ],
       "category": [
         "electronics",

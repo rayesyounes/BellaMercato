@@ -1,6 +1,4 @@
 import {Avatar, Tag, TagLabel} from "@chakra-ui/react";
-import male from "../../assets/avatars/Person.svg";
-import female from "../../assets/avatars/Person Female.svg";
 
 function HeaderTag ({user}){
     return (
