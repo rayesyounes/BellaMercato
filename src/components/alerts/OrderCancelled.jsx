@@ -11,7 +11,7 @@ export default function OrderCancelled() {
             alignItems='center'
             justifyContent='center'
             textAlign='center'
-            height={"80vh"}
+            height={"75vh"}
             width={"fit-content"}
         >
             <AlertIcon boxSize="40px" mr={0}/>

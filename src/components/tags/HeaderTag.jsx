@@ -1,13 +1,12 @@
 import {Avatar, Tag, TagLabel} from "@chakra-ui/react";
-import avatar from "../../assets/avatars/avatar.jpg";
 
 function HeaderTag ({user}){
     return (
         <Tag size='lg' colorScheme='cyan' borderRadius='full'>
             <Avatar
-                src={avatar}
+                src={user.avatar ? user.avatar : null}
                 size='xs'
-                name={user.username}
+                name={user.last_name + ' ' + user.first_name}
                 ml={-1}
                 mr={2}
             />

@@ -19,18 +19,18 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
     const {orders} = useSelector((state) => state.orders);
     const [countries, setCountries] = useState([]);
     const [data, setData] = useState({
-        address: '',
-        phone: '',
-        emailAddress: '',
+        address: '' || user.address,
+        phone: '' || user.phone,
+        emailAddress: '' || user.email,
 
-        country: '',
-        postcode: '',
-        state: '',
-        city: '',
+        country: '' ,
+        postcode: '' || user.zip,
+        state: '' || user.state,
+        city: '' || user.city,
 
-        notes: '' || 'None',
+        notes: '',
 
-        cardName: '' || user.username,
+        cardName: '' || user.first_name + " " + user.last_name,
         cardNumber: '',
         cardExpiry: '',
         cardCvc: '',
@@ -106,7 +106,7 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
             {
                 ...prev,
                 id: trackingNumber(),
-                shipping_address: data.address,
+                shipping_address: data.address + ", " + data.city + ", " + data.state + ", " + data.country + ", " + data.postcode,
                 tracking_number: trackingNumber(),
                 billing_address: data.address,
                 payment_method: data.payment_method,
@@ -117,7 +117,9 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
                 tax: data.tax,
                 discount: data.discount,
                 shipping_method: data.shipping_method,
-                notes: data.notes,
+                email: data.emailAddress,
+                phone: data.phone,
+                notes: data.notes  || 'None',
             }))
     }, [data]);
 
