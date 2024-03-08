@@ -13,6 +13,8 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import {StarIcon} from "@chakra-ui/icons";
 import InfoPanel from "../components/panels/InfoPanel.jsx";
+import ReviewsCard from "../components/cards/ReviewsCard.jsx";
+import SuggestedProductCard from "../components/cards/SuggestedProductCard.jsx";
 
 const MotionBox = motion(Box);
 
@@ -81,61 +83,55 @@ const Product = () => {
                     boxShadow="lg"
                     flexDirection={{base: "column", md: "row-reverse"}}
                 >
-                    <Box width={"auto"} flex={2} px={"4rem"} py={"2rem"} textAlign="left" bg={"white"} borderRadius="lg"
-                         >
-                        <Flex alignItems="center" mb={4} gap={10}>
+                    <Box
+                        width="auto"
+                        flex={2}
+                        px="4rem"
+                        py="2rem"
+                        m={{base: 0, md: 4}}
+                        textAlign="left"
+                    >
+                        <Flex alignItems="center" mb={6} justify="space-between">
                             <Text
-                                fontSize="5xl"
+                                fontSize="4xl"
                                 fontWeight="bold"
-                                mb={2}
-                                fontFamily="'Playfair Display', serif"
+                                fontFamily="heading"
+                                color="gray.800"
                             >
                                 {product.name}
                             </Text>
-                            <Box _hover={{transform: "scale(1.1)", transition: "all 0.2s ease-in-out"}}>
-                                <Flex alignItems={"center"}>
-                                    <Icon as={FiStar} color="teal.500" w={8} h={8}/>
-                                    <Text fontSize="3xl" color="teal.500" fontWeight="bold">
-                                        {product.rating.toFixed(1)}
-                                    </Text>
-                                </Flex>
-                            </Box>
+                            <Flex textAlign="center">
+                                <Icon as={StarIcon} w={7} h={7} color="yellow.400"/>
+                                <Text fontSize="3xl" color="teal.500" fontWeight="bold" ml={2}>
+                                    {product.rating.toFixed(1)}
+                                </Text>
+                            </Flex>
                         </Flex>
-                        <Text fontSize="3xl" color="teal.500" fontWeight="bold" ml={4}>
+                        <Text fontSize="2xl" color="teal.500" fontWeight="bold" mb={4}>
                             ${product.price.toFixed(2)}
                         </Text>
-                        <Text fontSize="xl" mb={4} color="gray.700">
+                        <Text fontSize="lg" color="gray.700" mb={6}>
                             {product.description}
                         </Text>
-                        <Text fontSize="lg" color="gray.500">
-                            <strong>Available Stock :</strong> {product.stock} units
+                        <Text fontSize="md" color="gray.600" mb={4}>
+                            <strong>Available Stock:</strong> {product.stock} units
                         </Text>
 
-                        {/*<Button*/}
-                        {/*    colorScheme="teal"*/}
-                        {/*    variant="outline"*/}
-                        {/*    size="lg"*/}
-                        {/*    mt={4}*/}
-                        {/*    onClick={() => handleRateProduct()}*/}
-                        {/*>*/}
-                        {/*    Rate Product*/}
-                        {/*</Button>*/}
-
                         <Number_input
-                            handelChange={(value) => setQuantity(value)}
+                            handleChange={(value) => setQuantity(value)}
                             value={quantity}
                         />
-                        <Flex gap={2} mt={4}>
+                        <Flex gap={4} mt={6}>
                             <Button
                                 colorScheme="teal"
                                 size="lg"
-                                onClick={() => handleBuyNow()}
+                                // onClick={handleBuyNow}
                             >
                                 Buy Now
                             </Button>
                             <Button
                                 colorScheme="teal"
-                                variant={"outline"}
+                                variant="outline"
                                 size="lg"
                                 onClick={() => isAuthenticated ? dispatch(addToCart({
                                     userId, productId: product.id, quantity
@@ -163,7 +159,7 @@ const Product = () => {
                             position={"relative"}
                         >
                             <Box
-                                _hover={{transform: "scale(1.05)", transition: "all 0.2s ease-in-out"}}
+                                // _hover={{transform: "scale(1.05)", transition: "all 0.2s ease-in-out"}}
                                 position="relative"
                                 borderRadius="lg"
                                 maxW={"500px"}
@@ -236,7 +232,7 @@ const Product = () => {
                                 _hover={{
                                     bg: "teal.500", cursor: "pointer",
                                     transition: "all 0.2s ease-in-out",
-                                    transform: "scale(1.1)"
+                                    // transform: "scale(1.1)"
                                 }}
                                 // onMouseEnter={
                                 //     () => setMainImage(thumbnail)
@@ -263,6 +259,11 @@ const Product = () => {
                         </Grid>
 
                     </Box>
+                </Flex>
+
+                <Flex gap={4} w="100%" flexDirection={"row-reverse"}>
+                    <SuggestedProductCard/>
+                    <ReviewsCard product={product}/>
                 </Flex>
             </VStack>
         </MotionBox>

@@ -63,25 +63,28 @@
   ],
   "reviews": [
     {
-      "id": "1",
-      "product_id": 1,
+      "id": "3",
+      "product_id": 5,
       "user_id": 3,
-      "rating": 4.5,
-      "comment": "Great laptop, I'm very satisfied with my purchase."
-    },
-    {
-      "id": "2",
-      "product_id": 2,
-      "user_id": 3,
-      "rating": 4,
-      "comment": "Great smartphone, I'm very satisfied with my purchase."
+      "rating": 4.2,
+      "comment": "Great tablet, I'm very satisfied with my purchase.",
+      "date": "2023-01-15T08:30:00Z"
     },
     {
       "id": "3",
       "product_id": 5,
       "user_id": 3,
       "rating": 4.2,
-      "comment": "Great tablet, I'm very satisfied with my purchase."
+      "comment": "Great tablet, I'm very satisfied with my purchase.",
+      "date": "2023-01-15T08:30:00Z"
+    },
+    {
+      "id": "3",
+      "product_id": 5,
+      "user_id": 3,
+      "rating": 4.2,
+      "comment": "Great tablet, I'm very satisfied with my purchase.",
+      "date": "2023-01-15T08:30:00Z"
     }
   ],
   "users": [
@@ -108,8 +111,13 @@
     {
       "id": "d752",
       "user_id": "3",
-      "items": [],
-      "total": 0
+      "items": [
+        {
+          "product_id": "2",
+          "quantity": 10
+        }
+      ],
+      "total": 1799.9
     }
   ],
   "orders": [

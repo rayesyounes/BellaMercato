@@ -1,0 +1,45 @@
+import {useEffect} from "react";
+import {Flex, Accordion} from "@chakra-ui/react";
+import {useDispatch, useSelector} from "react-redux";
+import {getReviewsByProductIdAsync} from "../../features/reviews/reviewsActions";
+import {getUsersAsync} from "../../features/users/usersAction.js";
+import ReviewAccordion from "../Accordions/ReviewsAccordion.jsx";
+
+
+const ReviewsCard = ({product}) => {
+    const dispatch = useDispatch();
+    const {users} = useSelector((state) => state.users);
+    const {reviews} = useSelector((state) => state.reviews);
+
+    useEffect(() => {
+        dispatch(getReviewsByProductIdAsync(product.id));
+        dispatch(getUsersAsync());
+    }, [dispatch, product.id]);
+
+    return (
+
+        <Accordion
+            width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"md"}
+            height={"70vh"}
+            overflow={"overlay"}
+            allowMultiple
+            defaultIndex={[0,1,2]}
+            // allowToggle={true}
+            p={4}>
+            {reviews.map((review, index) => {
+                const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
+                return (
+                    <ReviewAccordion
+                        key={index}
+                        review={review}
+                        user={user}
+                        replies={review.replies}
+                    />
+                );
+            })}
+        </Accordion>
+    )
+    ;
+};
+
+export default ReviewsCard;

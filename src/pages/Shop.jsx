@@ -1,5 +1,5 @@
 import {Box, Container, Grid} from "@chakra-ui/react";
-import CardProduct from "../components/cards/CardProduct.jsx";
+import ProductCard from "../components/cards/ProductCard.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../features/products/productsAction.js";
@@ -35,7 +35,7 @@ export default function Shop() {
                 >
                 <Grid templateColumns="repeat(4, 2fr)" gap={6}>
                     {products.map((product) => (
-                        <CardProduct key={product.id} product={product} />
+                        <ProductCard key={product.id} product={product} />
                     ))}
                 </Grid>
                 </MotionBox>

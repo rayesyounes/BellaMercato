@@ -5,7 +5,7 @@ import {addToCart} from "../../features/cart/cartAction.js";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
-function CardProduct({product}) {
+function ProductCard({product}) {
     const {name, description, price} = product;
     const dispatch = useDispatch();
     const quantity = 1;
@@ -67,4 +67,4 @@ function CardProduct({product}) {
     </Card>);
 }
 
-export default CardProduct;
+export default ProductCard;

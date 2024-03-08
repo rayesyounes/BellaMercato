@@ -6,6 +6,7 @@ import productsReducer from '../features/products/productsSlice';
 import ordersReducer from '../features/orders/ordersSlice';
 import cartReducer from '../features/cart/cartSlice';
 import pageReducer from '../features/page/pageSlice';
+import reviewsReducer from '../features/reviews/reviewsSlice';
 // import colorModeReducer from '../features/colorMode/colorModeSlice';
 
 const store = configureStore({
@@ -16,6 +17,7 @@ const store = configureStore({
         users: usersReducer,
         orders: ordersReducer,
         page: pageReducer,
+        reviews: reviewsReducer,
         // colorMode : colorModeReducer,
 
     },
