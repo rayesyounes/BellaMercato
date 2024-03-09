@@ -65,7 +65,7 @@
     {
       "id": "3",
       "product_id": 5,
-      "user_id": 3,
+      "user_id": 2,
       "rating": 4.2,
       "comment": "Great tablet, I'm very satisfied with my purchase.",
       "date": "2023-01-15T08:30:00Z"
@@ -73,18 +73,18 @@
     {
       "id": "3",
       "product_id": 5,
-      "user_id": 3,
+      "user_id": 1,
       "rating": 4.2,
       "comment": "Great tablet, I'm very satisfied with my purchase.",
       "date": "2023-01-15T08:30:00Z"
     },
     {
-      "id": "3",
-      "product_id": 5,
-      "user_id": 3,
-      "rating": 4.2,
-      "comment": "Great tablet, I'm very satisfied with my purchase.",
-      "date": "2023-01-15T08:30:00Z"
+      "user_id": "3",
+      "product_id": "5",
+      "rating": 5,
+      "comment": "aaaaaaaaaaaa",
+      "date": "2024-03-09T22:03:13.906Z",
+      "id": "6b39"
     }
   ],
   "users": [
@@ -105,19 +105,50 @@
       "city": "Los Angeles",
       "zip": "90001",
       "isAdmin": false
+    },
+    {
+      "id": "2",
+      "username": "gracedef",
+      "first_name": "grace",
+      "last_name": "def",
+      "gender": "m",
+      "email": "rayesyounes@gmail.com",
+      "phone": 1234567890,
+      "password": "11111111",
+      "billingAddress": "456 Oak St, Townsville",
+      "address": "123 Oak St, Townsville",
+      "avatar": "",
+      "country": "USA",
+      "state": "CA",
+      "city": "Los Angeles",
+      "zip": "90001",
+      "isAdmin": false
+    },
+    {
+      "id": "1",
+      "username": "spoutnikrs",
+      "first_name": "speddy",
+      "last_name": "fernandez",
+      "gender": "m",
+      "email": "rayesyounes@gmail.com",
+      "phone": 1234567890,
+      "password": "11111111",
+      "billingAddress": "456 Oak St, Townsville",
+      "address": "123 Oak St, Townsville",
+      "avatar": "",
+      "country": "USA",
+      "state": "CA",
+      "city": "Los Angeles",
+      "zip": "90001",
+      "isAdmin": false
     }
   ],
   "carts": [
     {
       "id": "d752",
       "user_id": "3",
-      "items": [
-        {
-          "product_id": "2",
-          "quantity": 10
-        }
-      ],
-      "total": 1799.9
+      "items": [],
+      "total": 0
     }
   ],
   "orders": [

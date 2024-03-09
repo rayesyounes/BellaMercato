@@ -15,11 +15,14 @@ import {
     Button,
     PopoverFooter,
     PopoverTrigger,
-    Popover
+    Popover, Badge, Stack
 } from '@chakra-ui/react';
 import {StarIcon} from '@chakra-ui/icons';
+import {postReviewAsync} from "../../features/reviews/reviewsActions";
+import {useDispatch} from "react-redux";
 
 const StarRating = ({product}) => {
+    const Dispatch = useDispatch();
     const [selectedStars, setSelectedStars] = useState(product.rating);
     const [hoveredStars, setHoveredStars] = useState(0);
     const [comment, setComment] = useState('');
@@ -34,8 +37,10 @@ const StarRating = ({product}) => {
     };
 
     const handleSubmit = () => {
+        Dispatch(postReviewAsync(product.id, selectedStars, comment));
         console.log('Submitted Rating:', selectedStars);
         console.log('Comment:', comment);
+        setComment('');
         setIsOpen(false);
     };
 
@@ -70,7 +75,15 @@ const StarRating = ({product}) => {
                     <PopoverCloseButton/>
                     <PopoverBody>
                         <Box>
-                            <Text mb={2}>You rated: {selectedStars} star(s)</Text>
+                            <Text mb={2} p={2} borderRadius={5} alignItems={"center"}>Your Rating:
+                                <Badge colorScheme="teal" size={"sm"} px={2} variant={"solid"} borderRadius={"xl"} fontSize={10} pt={1} ml={2}>
+                                    <Flex alignItems={"center"}>
+                                        <Icon as={StarIcon} mb={1.5} mr={1} w={2.5} h={2.5}/>
+                                        <Text fontSize='sm' fontWeight='bold'>{selectedStars}</Text>
+                                    </Flex>
+                                </Badge>
+                            </Text>
+
                             <Input
                                 value={comment}
                                 onChange={handleCommentChange}
@@ -83,7 +96,7 @@ const StarRating = ({product}) => {
                             <Button
                                 colorScheme="teal"
                                 onClick={handleSubmit}
-                                disabled={!comment.trim()}
+                                isDisabled={selectedStars === 0 || comment.trim() === ''}
                                 size="sm"
                                 variant="solid"
                             >

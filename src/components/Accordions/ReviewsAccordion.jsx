@@ -6,10 +6,12 @@ import {
     AccordionPanel,
     Avatar,
     Badge,
-    Flex,
+    Flex, Icon,
     Text,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import {StarIcon} from "@chakra-ui/icons";
+import React from "react";
 
 const ReviewAccordion = ({ review, user, replies }) => {
     // const { users } = useSelector((state) => state.users);
@@ -51,7 +53,7 @@ const ReviewAccordion = ({ review, user, replies }) => {
     // };
 
     return (
-
+        <Accordion defaultIndex={[0,1,2]} allowMultiple px={4}>
             <AccordionItem borderLeft="2px solid teal">
                 <h2>
                     <AccordionButton
@@ -71,14 +73,20 @@ const ReviewAccordion = ({ review, user, replies }) => {
                 </h2>
                 <AccordionPanel pb={4}>
                     <Flex mt={2}>
-                        <Badge colorScheme="green" mr={2}>
-                            {review.rating} Stars
+                        <Badge colorScheme="teal" size={"sm"} px={2} variant={"solid"} borderRadius={"xl"}
+                               fontSize={10} pt={0.5}>
+                            <Flex alignItems={"center"}>
+                                <Icon as={StarIcon} mb={0.5} mr={1} w={2} h={2}/>
+                                <Text fontSize='xxs' fontWeight='bold'>{review.rating}</Text>
+                            </Flex>
                         </Badge>
                     </Flex>
                     <Text mt={2}>{review.comment}</Text>
                     {/*{replies && renderReplies(replies)}*/}
                 </AccordionPanel>
             </AccordionItem>
+
+            </Accordion>
     );
 };
 

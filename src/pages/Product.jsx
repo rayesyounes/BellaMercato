@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {useParams} from "react-router-dom";
 import {
     Box, Text, Image, Flex, Container, Grid, GridItem, Button, Badge, Icon, VStack,
@@ -39,6 +39,10 @@ const Product = () => {
     if (user) {
         userId = user.id;
     }
+
+    useEffect(() => {
+        console.log(quantity)
+    }, [quantity])
 
     useEffect(() => {
         dispatch(setCurrentPage("product"));
@@ -94,25 +98,57 @@ const Product = () => {
                         textAlign="left"
                     >
                         <Flex alignItems="center" mb={6} justify="space-between">
-                            <Text
-                                fontSize="4xl"
-                                fontWeight="bold"
-                                fontFamily="heading"
-                                color="gray.800"
-                            >
-                                {product.name}
-                            </Text>
                             <Flex
-                                flexDirection={"column-reverse"}
-                                alignItems="center"
-                                gap={2}
+                                flexDirection={"column"}
+                                alignItems="flex-start"
                                 color="gray.600"
                                 fontWeight="bold"
+                                gap={2}
                             >
+                                <Text
+                                    fontSize="4xl"
+                                    fontWeight="bold"
+                                    fontFamily="heading"
+                                    color="gray.800"
+                                >
+                                    {product.name}
+                                </Text>
+                                <Box>
+                                    <Badge colorScheme="teal" size={"sm"} px={2} variant={"solid"} borderRadius={"xl"}
+                                           fontSize={10} pt={1}>
+                                        <Flex alignItems={"center"}>
+                                            <Icon as={StarIcon} mb={1.5} mr={1} w={2.5} h={2.5}/>
+                                            <Text fontSize='sm' fontWeight='bold'>{product.rating}</Text>
+                                        </Flex>
+                                    </Badge>
+                                    {product.category.map((c, index) => (
+                                        <Badge
+                                            key={index}
+                                            colorScheme="teal"
+                                            size={"md"}
+                                            px={2}
+                                            variant={"solid"}
+                                            borderRadius={"xl"}
+                                            fontSize='sm'
+                                            pt={1}
+                                            ml={2}
+                                        >
+                                            {c}
+                                        </Badge>
+                                    ))}
+                                </Box>
+                            </Flex>
+                            <Flex
+                                flexDirection={"column"}
+                                alignItems="center"
+                                color="gray.600"
+                                fontWeight="bold"
+                                gap={2}
+                            >
+                                <StarRating product={product}/>
                                 <Text>
                                     {product.rating} of 5 ({reviews.length}{" "} reviews)
                                 </Text>
-                                <StarRating product={product}/>
                             </Flex>
                         </Flex>
                         <Text fontSize="2xl" color="teal.500" fontWeight="bold" mb={4}>
@@ -142,9 +178,10 @@ const Product = () => {
                                 variant="outline"
                                 size="lg"
                                 onClick={() => isAuthenticated ? dispatch(addToCart({
-                                    userId, productId: product.id, quantity
-                                })) : alert("Please login to add to cart")}
-                            >
+                                    userId,
+                                    productId: product.id,
+                                    quantity
+                                })) : alert("Please login to add to cart")}>
                                 Add to Cart
                             </Button>
                         </Flex>

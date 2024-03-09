@@ -18,34 +18,22 @@ const ReviewsCard = ({product}) => {
 
     return (
 
-            <Accordion
-                width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"lg"}
-                height={"70vh"}
-                overflow={"overlay"}
-                allowMultiple
-                defaultIndex={[0, 1, 2]}
-                // allowToggle={true}
-                p={4}>
-                <Text
-                    bg="White"
-                    color="teal"
-                    fontSize={20}
-                    fontWeight="bold"
-                    p={4}
-                >
-                    Customers Reviews :
-                </Text>
-                {reviews.map((review, index) => {
-                    const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
-                    return (<ReviewAccordion
-                            key={index}
-                            review={review}
-                            user={user}
-                            replies={review.replies}
-                        />);
-                })}
-            </Accordion>
-        );
+        <Flex
+            flexDirection={"column"} width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"lg"}
+            height={"70vh"} overflow={"overlay"}>
+            <Text
+                bg="White" color="teal" fontSize={20} fontWeight="bold" p={4}> Customers Reviews :
+            </Text>
+            {reviews.map((review, index) => {
+                const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
+                return (<ReviewAccordion
+                    key={index}
+                    review={review}
+                    user={user}
+                    replies={review.replies}
+                />);
+            })}
+        </Flex>);
 };
 
 export default ReviewsCard;

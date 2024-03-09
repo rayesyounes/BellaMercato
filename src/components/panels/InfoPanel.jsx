@@ -1,9 +1,21 @@
-import { Badge, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+    Box,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    Flex,
+    HStack,
+    Tag,
+    TagLabel,
+    Text
+} from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function InfoPanel({ product }) {
+
+    const colors = ["#336699", "#FF6600", "#99CC00", "#FFCC00", "#663399", "#CC3333", "#0099CC", "#FF33CC"];
+
     return (
         <Flex
             borderWidth="1px"
@@ -34,20 +46,41 @@ export default function InfoPanel({ product }) {
                 </BreadcrumbItem>
             </Breadcrumb>
 
-            <Text fontSize="lg" color="gray.500">
-                <strong>Category :</strong>{" "}
+            <HStack justify="center" alignItems="center">
                 {product.category.map((cat, index) => (
-                    <Badge key={index} ml={index > 0 ? 2 : 0} p={2} borderRadius="lg" variant="solid" fontSize="0.8em" colorScheme="teal">
-                        {cat}
-                    </Badge>
+                    <Tag
+                        bg={colors[index % colors.length]}
+                        key={index}
+                        colorScheme="teal"
+                        size="lg"
+                        px={2}
+                        variant="solid"
+                        borderRadius="xl"
+                        fontSize="md"
+                        pt={1}
+                        ml={2}
+                    >
+                        <TagLabel>
+                            {cat}
+                        </TagLabel>
+                    </Tag>
                 ))}
-            </Text>
-            <Text fontSize="lg" color="gray.500">
-                <strong>Brand :</strong>{" "}
-                <Badge ml={2} p={2} borderRadius="lg" fontSize="0.8em" colorScheme="teal">
-                    {product.brand}
-                </Badge>
-            </Text>
+
+                <Tag
+                    colorScheme="teal"
+                    size="lg"
+                    px={2}
+                    variant="solid"
+                    borderRadius="xl"
+                    fontSize="md"
+                    pt={1}
+                    ml={2}
+                >
+                    <TagLabel>
+                        {product.brand}
+                    </TagLabel>
+                </Tag>
+            </HStack>
         </Flex>
     );
 }
