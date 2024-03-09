@@ -23,6 +23,7 @@ const Product = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const {products} = useSelector((state) => state.products);
+    const {reviews} = useSelector((state) => state.reviews);
     const {user, isAuthenticated} = useSelector((state) => state.auth);
     const product = products.find((product) => parseInt(product.id) === parseInt(id));
 
@@ -101,7 +102,18 @@ const Product = () => {
                             >
                                 {product.name}
                             </Text>
-                            <StarRating product={product}/>
+                            <Flex
+                                flexDirection={"column-reverse"}
+                                alignItems="center"
+                                gap={2}
+                                color="gray.600"
+                                fontWeight="bold"
+                            >
+                                <Text>
+                                    {product.rating} of 5 ({reviews.length}{" "} reviews)
+                                </Text>
+                                <StarRating product={product}/>
+                            </Flex>
                         </Flex>
                         <Text fontSize="2xl" color="teal.500" fontWeight="bold" mb={4}>
                             ${product.price.toFixed(2)}
