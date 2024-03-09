@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {Flex, Accordion} from "@chakra-ui/react";
+import {Flex, Accordion, Heading, Text} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
 import {getReviewsByProductIdAsync} from "../../features/reviews/reviewsActions";
 import {getUsersAsync} from "../../features/users/usersAction.js";
@@ -12,34 +12,40 @@ const ReviewsCard = ({product}) => {
     const {reviews} = useSelector((state) => state.reviews);
 
     useEffect(() => {
-        dispatch(getReviewsByProductIdAsync(product.id));
         dispatch(getUsersAsync());
+        dispatch(getReviewsByProductIdAsync(product.id));
     }, [dispatch, product.id]);
 
     return (
 
-        <Accordion
-            width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"md"}
-            height={"70vh"}
-            overflow={"overlay"}
-            allowMultiple
-            defaultIndex={[0,1,2]}
-            // allowToggle={true}
-            p={4}>
-            {reviews.map((review, index) => {
-                const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
-                return (
-                    <ReviewAccordion
-                        key={index}
-                        review={review}
-                        user={user}
-                        replies={review.replies}
-                    />
-                );
-            })}
-        </Accordion>
-    )
-    ;
+            <Accordion
+                width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"lg"}
+                height={"70vh"}
+                overflow={"overlay"}
+                allowMultiple
+                defaultIndex={[0, 1, 2]}
+                // allowToggle={true}
+                p={4}>
+                <Text
+                    bg="White"
+                    color="teal"
+                    fontSize={20}
+                    fontWeight="bold"
+                    p={4}
+                >
+                    Customers Reviews :
+                </Text>
+                {reviews.map((review, index) => {
+                    const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
+                    return (<ReviewAccordion
+                            key={index}
+                            review={review}
+                            user={user}
+                            replies={review.replies}
+                        />);
+                })}
+            </Accordion>
+        );
 };
 
 export default ReviewsCard;

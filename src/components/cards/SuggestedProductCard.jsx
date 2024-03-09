@@ -3,7 +3,7 @@ import {Flex} from "@chakra-ui/react";
 export default function SuggestedProductCard() {
     return (
         <Flex
-            width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"md"} p={4}
+            width={"50vw"} bg={"white"} borderRadius={"md"} boxShadow={"lg"} p={4}
         >
 
         </Flex>

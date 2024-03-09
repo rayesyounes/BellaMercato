@@ -12,7 +12,7 @@ import {
 import { useSelector } from "react-redux";
 
 const ReviewAccordion = ({ review, user, replies }) => {
-    const { users } = useSelector((state) => state.users);
+    // const { users } = useSelector((state) => state.users);
     // const renderReplies = (replies) => {
     //     return (
     //         <Accordion allowMultiple>
@@ -61,21 +61,21 @@ const ReviewAccordion = ({ review, user, replies }) => {
                             <Avatar size="sm" name={user.username} src={user.avatar} />
                             <Text>{user.username}</Text>
                         </Flex>
-                        <AccordionIcon
-                            _expanded={{ transform: "rotate(180deg)" }}
-                        />
+                        <Text fontSize="sm" color="gray.500">
+                            Posted on {new Date(review.date).toDateString()}
+                        </Text>
+                        {/*<AccordionIcon*/}
+                        {/*    _expanded={{ transform: "rotate(180deg)" }}*/}
+                        {/*/>*/}
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                    <Text fontSize="sm" color="gray.500">
-                        Posted on {new Date(review.date).toDateString()}
-                    </Text>
-                    <Text mt={2}>{review.comment}</Text>
                     <Flex mt={2}>
                         <Badge colorScheme="green" mr={2}>
                             {review.rating} Stars
                         </Badge>
                     </Flex>
+                    <Text mt={2}>{review.comment}</Text>
                     {/*{replies && renderReplies(replies)}*/}
                 </AccordionPanel>
             </AccordionItem>

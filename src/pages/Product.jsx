@@ -15,6 +15,7 @@ import {StarIcon} from "@chakra-ui/icons";
 import InfoPanel from "../components/panels/InfoPanel.jsx";
 import ReviewsCard from "../components/cards/ReviewsCard.jsx";
 import SuggestedProductCard from "../components/cards/SuggestedProductCard.jsx";
+import StarRating from "../components/Feedbacks/StarRating.jsx";
 
 const MotionBox = motion(Box);
 
@@ -100,12 +101,7 @@ const Product = () => {
                             >
                                 {product.name}
                             </Text>
-                            <Flex textAlign="center">
-                                <Icon as={StarIcon} w={7} h={7} color="yellow.400"/>
-                                <Text fontSize="3xl" color="teal.500" fontWeight="bold" ml={2}>
-                                    {product.rating.toFixed(1)}
-                                </Text>
-                            </Flex>
+                            <StarRating product={product}/>
                         </Flex>
                         <Text fontSize="2xl" color="teal.500" fontWeight="bold" mb={4}>
                             ${product.price.toFixed(2)}
