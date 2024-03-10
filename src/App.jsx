@@ -34,6 +34,7 @@ function App() {
                 <Route path="sales" element={<Sales/>}/>
                 <Route path={"product/:id"} element={<Product/>}/>
 
+
                 {/* protectedRoute */}
                 {isAuthenticated && <Route path="checkout" element={<CheckOut/>}/>}
                 {isAuthenticated && <Route path="profile" element={<Profile/>}/>}

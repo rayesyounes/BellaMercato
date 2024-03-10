@@ -187,7 +187,7 @@
       "description": "The latest electronic products.",
       "image": "../public/categories/electronics.webp",
       "color": "#e63946",
-      "textColor": "#000",
+      "textColor": "white",
       "link": "/category/electronics",
       "subcategories": [
         {
@@ -196,7 +196,7 @@
           "description": "The latest computer products.",
           "image": "../public/categories/computers.webp",
           "color": "#457b9d",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/category/electronics/computers"
         },
         {
@@ -205,7 +205,7 @@
           "description": "The latest smartphone products.",
           "image": "../public/categories/smartphones.webp",
           "color": "#dda15e",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/category/electronics/smartphones"
         },
         {
@@ -214,7 +214,7 @@
           "description": "The latest tablet products.",
           "image": "../public/categories/tablets.webp",
           "color": "#606c38",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/category/electronics/tablets"
         }
       ]
@@ -227,7 +227,7 @@
       "description": "The latest Apple products.",
       "image": "../public/brands/apple.webp",
       "color": "#2a9d8f",
-      "textColor": "#000",
+      "textColor": "white",
       "link": "/brand/apple",
       "subbrands": [
         {
@@ -236,7 +236,7 @@
           "description": "The latest Mac products.",
           "image": "../public/brands/mac.webp",
           "color": "#ffbe0b",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/brand/apple/mac"
         },
         {
@@ -245,7 +245,7 @@
           "description": "The latest iPhone products.",
           "image": "../public/brands/iphone.webp",
           "color": "#588157",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/brand/apple/iphone"
         },
         {
@@ -254,7 +254,7 @@
           "description": "The latest iPad products.",
           "image": "../public/brands/ipad.webp",
           "color": "#8ac926",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/brand/apple/ipad"
         }
       ]
@@ -265,7 +265,7 @@
       "description": "The latest Samsung products.",
       "image": "../public/brands/samsung.webp",
       "color": "#6a4c93",
-      "textColor": "#000",
+      "textColor": "white",
       "link": "/brand/samsung",
       "subbrands": [
         {
@@ -274,7 +274,7 @@
           "description": "The latest Galaxy products.",
           "image": "../public/brands/galaxy.webp",
           "color": "#e4c1f9",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/brand/samsung/galaxy"
         },
         {
@@ -283,7 +283,7 @@
           "description": "The latest Galaxy Tab products.",
           "image": "../public/brands/galaxy-tab.webp",
           "color": "#a9def9",
-          "textColor": "#000",
+          "textColor": "white",
           "link": "/brand/samsung/galaxy-tab"
         }
       ]
