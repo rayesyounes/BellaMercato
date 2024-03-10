@@ -7,6 +7,8 @@ import ordersReducer from '../features/orders/ordersSlice';
 import cartReducer from '../features/cart/cartSlice';
 import pageReducer from '../features/page/pageSlice';
 import reviewsReducer from '../features/reviews/reviewsSlice';
+import categoriesSlice from "../features/categories/categoriesSlice.js";
+import brandsSlice from "../features/brands/brandsSlice.js";
 // import colorModeReducer from '../features/colorMode/colorModeSlice';
 
 const store = configureStore({
@@ -18,6 +20,8 @@ const store = configureStore({
         orders: ordersReducer,
         page: pageReducer,
         reviews: reviewsReducer,
+        categories: categoriesSlice,
+        brands: brandsSlice,
         // colorMode : colorModeReducer,
 
     },

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialProductsState = {
+const initialReviewsState = {
     reviews: [],
     error: null,
     isLoading: false,
@@ -8,7 +8,7 @@ const initialProductsState = {
 
 const reviewsSlice = createSlice({
     name: "reviews",
-    initialState: initialProductsState,
+    initialState: initialReviewsState,
     reducers: {
         getReviewsStart(state) {
             state.isLoading = true;

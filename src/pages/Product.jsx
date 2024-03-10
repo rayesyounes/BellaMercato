@@ -16,6 +16,7 @@ import InfoPanel from "../components/panels/InfoPanel.jsx";
 import ReviewsCard from "../components/cards/ReviewsCard.jsx";
 import SuggestedProductCard from "../components/cards/SuggestedProductCard.jsx";
 import StarRating from "../components/Feedbacks/StarRating.jsx";
+import {getCategories} from "../features/categories/categoriesAction.js";
 
 const MotionBox = motion(Box);
 
@@ -29,7 +30,7 @@ const Product = () => {
 
     const [quantity, setQuantity] = useState(10);
     const [productImages, setProductImages] = useState([]);
-    const [mainImage, setMainImage] = useState("");
+    const [mainImage, setMainImage] = useState();
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const mainImageRef = useRef(null);
@@ -169,6 +170,7 @@ const Product = () => {
                             <Button
                                 colorScheme="teal"
                                 size="lg"
+                                isDisabled={true}
                                 // onClick={handleBuyNow}
                             >
                                 Buy Now

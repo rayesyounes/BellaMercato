@@ -37,7 +37,7 @@
         "electronics",
         "smartphones"
       ],
-      "brand": "Samsung",
+      "brand": "Apple",
       "rating": 4
     },
     {
@@ -81,9 +81,9 @@
     {
       "user_id": "3",
       "product_id": "5",
-      "rating": 5,
-      "comment": "aaaaaaaaaaaa",
-      "date": "2024-03-09T22:03:13.906Z",
+      "rating": 2,
+      "comment": "r5",
+      "date": "2024-03-10T10:40:26.420Z",
       "id": "6b39"
     }
   ],
@@ -178,6 +178,133 @@
       "email": "ggggggggggggggg",
       "phone": "123456789",
       "notes": "Please handle with care."
+    }
+  ],
+
+
+
+  "categories": [
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "description": "The latest electronic products.",
+      "image": "../public/categories/electronics.webp",
+      "icon": "fas fa-laptop",
+      "color": "#e63946",
+      "textColor": "#000",
+      "link": "/category/electronics",
+      "subcategories": [
+        {
+          "id": "computers",
+          "name": "Computers",
+          "description": "The latest computer products.",
+          "image": "../public/categories/computers.webp",
+          "icon": "fas fa-laptop",
+          "color": "#457b9d",
+          "textColor": "#000",
+          "link": "/category/electronics/computers"
+        },
+        {
+          "id": "smartphones",
+          "name": "Smartphones",
+          "description": "The latest smartphone products.",
+          "image": "../public/categories/smartphones.webp",
+          "icon": "fas fa-mobile-alt",
+          "color": "#dda15e",
+          "textColor": "#000",
+          "link": "/category/electronics/smartphones"
+        },
+        {
+          "id": "tablets",
+          "name": "Tablets",
+          "description": "The latest tablet products.",
+          "image": "../public/categories/tablets.webp",
+          "icon": "fas fa-tablet-alt",
+          "color": "#606c38",
+          "textColor": "#000",
+          "link": "/category/electronics/tablets"
+        }
+      ]
+    }
+  ],
+
+
+
+
+  "brands": [
+    {
+      "id": "Apple",
+      "name": "Apple",
+      "description": "The latest Apple products.",
+      "image": "../public/brands/apple.webp",
+      "icon": "fab fa-apple",
+      "color": "#2a9d8f",
+      "textColor": "#000",
+      "link": "/brand/apple",
+      "subbrands": [
+        {
+          "id": "Mac",
+          "name": "Mac",
+          "description": "The latest Mac products.",
+          "image": "../public/brands/mac.webp",
+          "icon": "fas fa-laptop",
+          "color": "#ffbe0b",
+          "textColor": "#000",
+          "link": "/brand/apple/mac"
+        },
+        {
+          "id": "iPhone",
+          "name": "iPhone",
+          "description": "The latest iPhone products.",
+          "image": "../public/brands/iphone.webp",
+          "icon": "fas fa-mobile-alt",
+          "color": "#588157",
+          "textColor": "#000",
+          "link": "/brand/apple/iphone"
+        },
+        {
+          "id": "iPad",
+          "name": "iPad",
+          "description": "The latest iPad products.",
+          "image": "../public/brands/ipad.webp",
+          "icon": "fas fa-tablet-alt",
+          "color": "#8ac926",
+          "textColor": "#000",
+          "link": "/brand/apple/ipad"
+        }
+      ]
+    },
+    {
+      "id": "Samsung",
+      "name": "Samsung",
+      "description": "The latest Samsung products.",
+      "image": "../public/brands/samsung.webp",
+      "icon": "fab fa-samsung",
+      "color": "#6a4c93",
+      "textColor": "#000",
+      "link": "/brand/samsung",
+      "subbrands": [
+        {
+          "id": "Galaxy",
+          "name": "Galaxy",
+          "description": "The latest Galaxy products.",
+          "image": "../public/brands/galaxy.webp",
+          "icon": "fas fa-mobile-alt",
+          "color": "#e4c1f9",
+          "textColor": "#000",
+          "link": "/brand/samsung/galaxy"
+        },
+        {
+          "id": "Galaxy Tab",
+          "name": "Galaxy Tab",
+          "description": "The latest Galaxy Tab products.",
+          "image": "../public/brands/galaxy-tab.webp",
+          "icon": "fas fa-tablet-alt",
+          "color": "#a9def9",
+          "textColor": "#000",
+          "link": "/brand/samsung/galaxy-tab"
+        }
+      ]
     }
   ]
 }

@@ -19,20 +19,29 @@ const ReviewsCard = ({product}) => {
     return (
 
         <Flex
-            flexDirection={"column"} width={"100%"} bg={"white"} borderRadius={"md"} boxShadow={"lg"}
-            height={"70vh"} overflow={"overlay"}>
+            flexDirection={"column"} width={"100%"} p={4} bg={"white"} borderRadius={"md"} boxShadow={"lg"}
+            height={"70vh"} gap={4}>
             <Text
-                bg="White" color="teal" fontSize={20} fontWeight="bold" p={4}> Customers Reviews :
+                bg="White" color="teal" fontSize={20} fontWeight="bold"> Customers Reviews :
             </Text>
-            {reviews.map((review, index) => {
-                const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
-                return (<ReviewAccordion
-                    key={index}
-                    review={review}
-                    user={user}
-                    replies={review.replies}
-                />);
-            })}
+            <Flex
+                flexDirection={"column"}
+                overflow={"overlay"} gap={4}
+                borderRadius={"lg"}
+                bg={"gray.100"}
+                p={4}
+            >
+
+                {reviews.map((review, index) => {
+                    const user = users.find((u) => parseInt(u.id) === parseInt(review.user_id));
+                    return (<ReviewAccordion
+                        key={index}
+                        review={review}
+                        user={user}
+                        replies={review.replies}
+                    />);
+                })}
+            </Flex>
         </Flex>);
 };
 
