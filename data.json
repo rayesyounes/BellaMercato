@@ -180,16 +180,12 @@
       "notes": "Please handle with care."
     }
   ],
-
-
-
   "categories": [
     {
       "id": "electronics",
       "name": "Electronics",
       "description": "The latest electronic products.",
       "image": "../public/categories/electronics.webp",
-      "icon": "fas fa-laptop",
       "color": "#e63946",
       "textColor": "#000",
       "link": "/category/electronics",
@@ -199,7 +195,6 @@
           "name": "Computers",
           "description": "The latest computer products.",
           "image": "../public/categories/computers.webp",
-          "icon": "fas fa-laptop",
           "color": "#457b9d",
           "textColor": "#000",
           "link": "/category/electronics/computers"
@@ -209,7 +204,6 @@
           "name": "Smartphones",
           "description": "The latest smartphone products.",
           "image": "../public/categories/smartphones.webp",
-          "icon": "fas fa-mobile-alt",
           "color": "#dda15e",
           "textColor": "#000",
           "link": "/category/electronics/smartphones"
@@ -219,7 +213,6 @@
           "name": "Tablets",
           "description": "The latest tablet products.",
           "image": "../public/categories/tablets.webp",
-          "icon": "fas fa-tablet-alt",
           "color": "#606c38",
           "textColor": "#000",
           "link": "/category/electronics/tablets"
@@ -227,17 +220,12 @@
       ]
     }
   ],
-
-
-
-
   "brands": [
     {
       "id": "Apple",
       "name": "Apple",
       "description": "The latest Apple products.",
       "image": "../public/brands/apple.webp",
-      "icon": "fab fa-apple",
       "color": "#2a9d8f",
       "textColor": "#000",
       "link": "/brand/apple",
@@ -247,7 +235,6 @@
           "name": "Mac",
           "description": "The latest Mac products.",
           "image": "../public/brands/mac.webp",
-          "icon": "fas fa-laptop",
           "color": "#ffbe0b",
           "textColor": "#000",
           "link": "/brand/apple/mac"
@@ -257,7 +244,6 @@
           "name": "iPhone",
           "description": "The latest iPhone products.",
           "image": "../public/brands/iphone.webp",
-          "icon": "fas fa-mobile-alt",
           "color": "#588157",
           "textColor": "#000",
           "link": "/brand/apple/iphone"
@@ -267,7 +253,6 @@
           "name": "iPad",
           "description": "The latest iPad products.",
           "image": "../public/brands/ipad.webp",
-          "icon": "fas fa-tablet-alt",
           "color": "#8ac926",
           "textColor": "#000",
           "link": "/brand/apple/ipad"
@@ -279,7 +264,6 @@
       "name": "Samsung",
       "description": "The latest Samsung products.",
       "image": "../public/brands/samsung.webp",
-      "icon": "fab fa-samsung",
       "color": "#6a4c93",
       "textColor": "#000",
       "link": "/brand/samsung",
@@ -289,7 +273,6 @@
           "name": "Galaxy",
           "description": "The latest Galaxy products.",
           "image": "../public/brands/galaxy.webp",
-          "icon": "fas fa-mobile-alt",
           "color": "#e4c1f9",
           "textColor": "#000",
           "link": "/brand/samsung/galaxy"
@@ -299,7 +282,6 @@
           "name": "Galaxy Tab",
           "description": "The latest Galaxy Tab products.",
           "image": "../public/brands/galaxy-tab.webp",
-          "icon": "fas fa-tablet-alt",
           "color": "#a9def9",
           "textColor": "#000",
           "link": "/brand/samsung/galaxy-tab"
