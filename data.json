@@ -17,7 +17,7 @@
         "electronics",
         "computers"
       ],
-      "brand": "Apple",
+      "brand": "apple",
       "rating": 4.5
     },
     {
@@ -37,7 +37,7 @@
         "electronics",
         "smartphones"
       ],
-      "brand": "Apple",
+      "brand": "apple",
       "rating": 4
     },
     {
@@ -57,7 +57,7 @@
         "electronics",
         "tablets"
       ],
-      "brand": "Samsung",
+      "brand": "samsung",
       "rating": 4.2
     }
   ],
@@ -183,7 +183,7 @@
   "categories": [
     {
       "id": "electronics",
-      "name": "Electronics",
+      "name": "electronics",
       "description": "The latest electronic products.",
       "image": "../public/categories/electronics.webp",
       "color": "#e63946",
@@ -192,7 +192,7 @@
       "subcategories": [
         {
           "id": "computers",
-          "name": "Computers",
+          "name": "computers",
           "description": "The latest computer products.",
           "image": "../public/categories/computers.webp",
           "color": "#457b9d",
@@ -201,7 +201,7 @@
         },
         {
           "id": "smartphones",
-          "name": "Smartphones",
+          "name": "smartphones",
           "description": "The latest smartphone products.",
           "image": "../public/categories/smartphones.webp",
           "color": "#dda15e",
@@ -210,7 +210,7 @@
         },
         {
           "id": "tablets",
-          "name": "Tablets",
+          "name": "tablets",
           "description": "The latest tablet products.",
           "image": "../public/categories/tablets.webp",
           "color": "#606c38",
@@ -222,8 +222,8 @@
   ],
   "brands": [
     {
-      "id": "Apple",
-      "name": "Apple",
+      "id": "apple",
+      "name": "apple",
       "description": "The latest Apple products.",
       "image": "../public/brands/apple.webp",
       "color": "#2a9d8f",
@@ -231,8 +231,8 @@
       "link": "/shop?brand=apple",
       "subbrands": [
         {
-          "id": "Mac",
-          "name": "Mac",
+          "id": "mac",
+          "name": "mac",
           "description": "The latest Mac products.",
           "image": "../public/brands/mac.webp",
           "color": "#ffbe0b",
@@ -240,8 +240,8 @@
           "link": "/shop?brand=mac"
         },
         {
-          "id": "iPhone",
-          "name": "iPhone",
+          "id": "iphone",
+          "name": "iphone",
           "description": "The latest iPhone products.",
           "image": "../public/brands/iphone.webp",
           "color": "#588157",
@@ -249,8 +249,8 @@
           "link": "/shop?brand=iphone"
         },
         {
-          "id": "iPad",
-          "name": "iPad",
+          "id": "ipad",
+          "name": "ipad",
           "description": "The latest iPad products.",
           "image": "../public/brands/ipad.webp",
           "color": "#8ac926",
@@ -260,8 +260,8 @@
       ]
     },
     {
-      "id": "Samsung",
-      "name": "Samsung",
+      "id": "samsung",
+      "name": "samsung",
       "description": "The latest Samsung products.",
       "image": "../public/brands/samsung.webp",
       "color": "#6a4c93",
@@ -269,8 +269,8 @@
       "link": "/shop?brand=samsung",
       "subbrands": [
         {
-          "id": "Galaxy",
-          "name": "Galaxy",
+          "id": "galaxy",
+          "name": "galaxy",
           "description": "The latest Galaxy products.",
           "image": "../public/brands/galaxy.webp",
           "color": "#e4c1f9",
@@ -278,8 +278,8 @@
           "link": "/shop?brand=galaxy"
         },
         {
-          "id": "Galaxy Tab",
-          "name": "Galaxy Tab",
+          "id": "galaxy-tab",
+          "name": "galaxy-tab",
           "description": "The latest Galaxy Tab products.",
           "image": "../public/brands/galaxy-tab.webp",
           "color": "#a9def9",

@@ -1,9 +1,7 @@
-import {
-    Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, HStack, Icon, Tag, TagLabel, Text, useRadio, useRadioGroup
-} from "@chakra-ui/react";
+import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, HStack, Icon, Text, useRadio, useRadioGroup} from "@chakra-ui/react";
 import {ArrowForwardIcon, ChevronRightIcon} from "@chakra-ui/icons";
-import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {Link, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -18,44 +16,66 @@ function RadioCard({children, handelClick, spec, ...props}) {
             <input  {...input} style={{maxWidth: '100%', width: '100%', display: "none"}}/>
             <Box
                 {...checkbox}
-                fontSize={"lg"}
+                fontSize="lg"
                 cursor="pointer"
                 borderWidth="1px"
                 borderRadius="lg"
                 boxShadow="sm"
-                bg={"white"} color={"black"}
+                bg={"white"}
                 _checked={{bg: spec.color, color: spec.textColor}}
                 onClick={handelClick}
                 px={4}
+                transition="background-color 0.3s, color 0.3s"
             >
-                <Flex style={{whiteSpace: "nowrap", overflow: "hidden"}}>
-                    {children}
-                    <Icon as={ArrowForwardIcon} ml={2} mt={1} fontSize={"xl"}/>
+                <Flex alignItems="center">
+                    <Text fontSize="lg" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                        {children
+                            .split("-")
+                            .join(" ")
+                            .split(" ")
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join(" ")}
+                    </Text>
+                    <Icon as={ArrowForwardIcon} ml={2} fontSize="xl"/>
                 </Flex>
             </Box>
+
         </Box>
     </>);
 }
 
-export default function InfoPanel({product}) {
+export default function InfoPanel({product, setFilter}) {
+
     const navigate = useNavigate();
+
     const {currentPage} = useSelector((state) => state.page);
     const categories = useSelector((state) => state.categories.categories);
     const brands = useSelector((state) => state.brands.brands);
 
     const [categoriesList, setCategoriesList] = useState([]);
     const [brandsList, setBrandsList] = useState([]);
-    const [type, setType] = useState(null);
 
 
+    const location = useLocation()
+    const params = new URLSearchParams(location.search);
+    let param;
+
+    if (params.has("category")) {
+        param = params.get("category");
+    } else if (params.has("brand")) {
+        param = params.get("brand");
+    } else {
+        param = null;
+    }
+
+    const [type, setType] = useState(param || null);
     const {getRootProps, getRadioProps} = useRadioGroup({
-        name: "type", onChange: setType
+        name: "type", onChange: setType, defaultValue: type
     });
 
     const group = getRootProps();
 
     useEffect(() => {
-        console.log(type)
         if (currentPage === "shop") {
             setCategoriesList(categories);
             setBrandsList(brands);
@@ -65,7 +85,7 @@ export default function InfoPanel({product}) {
             setCategoriesList(categoryList);
             setBrandsList(brandList);
         }
-    }, [currentPage, type]);
+    }, [currentPage]);
 
 
     return (<Flex
@@ -82,29 +102,32 @@ export default function InfoPanel({product}) {
         alignItems="center"
         justifyContent="space-between"
     >
-        <Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.500"/>}>
+        <Breadcrumb spacing="8px" separator={<ChevronRightIcon fontSize={"lg"} color="gray.500"/>}>
             <BreadcrumbItem>
                 <Link to={"/"}>
-                    <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Home</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
                 <Link to={"/shop"}>
-                    <BreadcrumbLink href="#">Shop</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Shop</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
                 <Link to={"/shop"}>
-                    <BreadcrumbLink href="#">Products</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Products</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
-            {currentPage === "product" && (<BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink href="#">{product?.name}</BreadcrumbLink>
-            </BreadcrumbItem>)}
+            {currentPage === "product" && (
+                <BreadcrumbItem isCurrentPage>
+                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>{product?.name}</BreadcrumbLink>
+                </BreadcrumbItem>
+            )}
         </Breadcrumb>
+
 
         <Box maxW={"70vw"} bg={"gray.100"} p={2} borderRadius={"lg"}>
             <HStack display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"auto"}
@@ -119,6 +142,7 @@ export default function InfoPanel({product}) {
                             key={category.id}
                             handelClick={() => {
                                 setType(category.name);
+                                setFilter({category: category.name})
                                 navigate(category.link);
                             }}>
                             {category.name}
@@ -132,6 +156,7 @@ export default function InfoPanel({product}) {
                                 key={subcategory.id}
                                 handelClick={() => {
                                     setType(subcategory.name);
+                                    setFilter({category: subcategory.name})
                                     navigate(subcategory.link);
                                 }}>
                                 {subcategory.name}
@@ -149,6 +174,7 @@ export default function InfoPanel({product}) {
                             key={brand.id}
                             handelClick={() => {
                                 setType(brand.name);
+                                setFilter({brand: brand.name})
                                 navigate(brand.link);
                             }}>
                             {brand.name}
@@ -162,6 +188,7 @@ export default function InfoPanel({product}) {
                                 key={subbrand.id}
                                 handelClick={() => {
                                     setType(subbrand.name);
+                                    setFilter({brand: subbrand.name})
                                     navigate(subbrand.link);
                                 }}>
                                 {subbrand.name}

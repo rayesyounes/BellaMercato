@@ -1,6 +1,6 @@
 import { Box, Container, Grid, VStack } from "@chakra-ui/react";
 import ProductCard from "../components/cards/ProductCard.jsx";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../features/products/productsAction.js";
 import { setCurrentPage } from "../features/page/PageAction.js";
@@ -8,9 +8,18 @@ import { motion } from "framer-motion";
 import InfoPanel from "../components/panels/InfoPanel.jsx";
 
 export default function Shop() {
+
+    const MotionBox = motion(Box);
     const dispatch = useDispatch();
     const { products, error, isLoading } = useSelector((state) => state.products);
-    const MotionBox = motion(Box);
+
+    const [filter, setFilter] = useState({});
+
+    useEffect(() => {
+        console.log("filter", filter);
+    }, [filter]);
+
+
 
     useEffect(() => {
         dispatch(setCurrentPage("shop"));
@@ -28,7 +37,7 @@ export default function Shop() {
         <div>
             <Container maxW="container.xxl" my={4}>
                 <VStack spacing={4}>
-                    <InfoPanel />
+                    <InfoPanel setFilter={setFilter} />
                     <MotionBox
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
