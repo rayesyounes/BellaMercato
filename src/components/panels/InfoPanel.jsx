@@ -44,7 +44,7 @@ function RadioCard({children, handelClick, spec, ...props}) {
     </>);
 }
 
-export default function InfoPanel({product, setFilter}) {
+export default function InfoPanel({product, param}) {
 
     const navigate = useNavigate();
 
@@ -54,19 +54,6 @@ export default function InfoPanel({product, setFilter}) {
 
     const [categoriesList, setCategoriesList] = useState([]);
     const [brandsList, setBrandsList] = useState([]);
-
-
-    const location = useLocation()
-    const params = new URLSearchParams(location.search);
-    let param;
-
-    if (params.has("category")) {
-        param = params.get("category");
-    } else if (params.has("brand")) {
-        param = params.get("brand");
-    } else {
-        param = null;
-    }
 
     const [type, setType] = useState(param || null);
     const {getRootProps, getRadioProps} = useRadioGroup({
@@ -143,7 +130,6 @@ export default function InfoPanel({product, setFilter}) {
                             handelClick={() => {
                                 setType(category.name);
                                 navigate(category.link);
-                                setFilter({category: category.name})
                             }}>
                             {category.name}
                         </RadioCard>
@@ -157,7 +143,6 @@ export default function InfoPanel({product, setFilter}) {
                                 handelClick={() => {
                                     setType(subcategory.name);
                                     navigate(subcategory.link);
-                                    setFilter({category: subcategory.name})
                                 }}>
                                 {subcategory.name}
                             </RadioCard>)
@@ -175,7 +160,6 @@ export default function InfoPanel({product, setFilter}) {
                             handelClick={() => {
                                 setType(brand.name);
                                 navigate(brand.link);
-                                setFilter({brand: brand.name})
                             }}>
                             {brand.name}
                         </RadioCard>
@@ -189,7 +173,6 @@ export default function InfoPanel({product, setFilter}) {
                                 handelClick={() => {
                                     setType(subbrand.name);
                                     navigate(subbrand.link);
-                                    setFilter({brand: subbrand.name})
                                 }}>
                                 {subbrand.name}
                             </RadioCard>)
