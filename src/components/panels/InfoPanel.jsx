@@ -142,8 +142,8 @@ export default function InfoPanel({product, setFilter}) {
                             key={category.id}
                             handelClick={() => {
                                 setType(category.name);
-                                setFilter({category: category.name})
                                 navigate(category.link);
+                                setFilter({category: category.name})
                             }}>
                             {category.name}
                         </RadioCard>
@@ -156,8 +156,8 @@ export default function InfoPanel({product, setFilter}) {
                                 key={subcategory.id}
                                 handelClick={() => {
                                     setType(subcategory.name);
-                                    setFilter({category: subcategory.name})
                                     navigate(subcategory.link);
+                                    setFilter({category: subcategory.name})
                                 }}>
                                 {subcategory.name}
                             </RadioCard>)
@@ -174,8 +174,8 @@ export default function InfoPanel({product, setFilter}) {
                             key={brand.id}
                             handelClick={() => {
                                 setType(brand.name);
-                                setFilter({brand: brand.name})
                                 navigate(brand.link);
+                                setFilter({brand: brand.name})
                             }}>
                             {brand.name}
                         </RadioCard>
@@ -188,8 +188,8 @@ export default function InfoPanel({product, setFilter}) {
                                 key={subbrand.id}
                                 handelClick={() => {
                                     setType(subbrand.name);
-                                    setFilter({brand: subbrand.name})
                                     navigate(subbrand.link);
+                                    setFilter({brand: subbrand.name})
                                 }}>
                                 {subbrand.name}
                             </RadioCard>)
