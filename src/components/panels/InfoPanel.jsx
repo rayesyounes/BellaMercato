@@ -1,20 +1,61 @@
 import {
-    Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, HStack, Icon, Tag, TagLabel, Text
+    Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, HStack, Icon, Tag, TagLabel, Text, useRadio, useRadioGroup
 } from "@chakra-ui/react";
 import {ArrowForwardIcon, ChevronRightIcon} from "@chakra-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
+
+function RadioCard({children, handelClick, spec, ...props}) {
+    const {getInputProps, getRadioProps} = useRadio(props);
+    const input = getInputProps();
+    const checkbox = getRadioProps();
+
+    return (<>
+        <Box as={"label"}>
+            <input  {...input} style={{maxWidth: '100%', width: '100%', display: "none"}}/>
+            <Box
+                {...checkbox}
+                fontSize={"lg"}
+                cursor="pointer"
+                borderWidth="1px"
+                borderRadius="lg"
+                boxShadow="sm"
+                bg={"white"} color={"black"}
+                _checked={{bg: spec.color, color: spec.textColor}}
+                onClick={handelClick}
+                px={4}
+            >
+                <Flex style={{whiteSpace: "nowrap", overflow: "hidden"}}>
+                    {children}
+                    <Icon as={ArrowForwardIcon} ml={2} mt={1} fontSize={"xl"}/>
+                </Flex>
+            </Box>
+        </Box>
+    </>);
+}
 
 export default function InfoPanel({product}) {
+    const navigate = useNavigate();
     const {currentPage} = useSelector((state) => state.page);
     const categories = useSelector((state) => state.categories.categories);
     const brands = useSelector((state) => state.brands.brands);
 
     const [categoriesList, setCategoriesList] = useState([]);
     const [brandsList, setBrandsList] = useState([]);
+    const [type, setType] = useState(null);
+
+
+    const {getRootProps, getRadioProps} = useRadioGroup({
+        name: "type", onChange: setType
+    });
+
+    const group = getRootProps();
 
     useEffect(() => {
+        console.log(type)
         if (currentPage === "shop") {
             setCategoriesList(categories);
             setBrandsList(brands);
@@ -24,10 +65,13 @@ export default function InfoPanel({product}) {
             setCategoriesList(categoryList);
             setBrandsList(brandList);
         }
-    }, [currentPage]);
+    }, [currentPage, type]);
 
 
     return (<Flex
+        position={currentPage === "product" ? "static" : "sticky"}
+        top={20}
+        zIndex={10}
         borderWidth="1px"
         borderRadius="md"
         boxShadow="md"
@@ -62,91 +106,73 @@ export default function InfoPanel({product}) {
             </BreadcrumbItem>)}
         </Breadcrumb>
 
-        <HStack maxW={"70vw"}>
-            <Box display={"grid"} gridAutoFlow={"column"} overflowX={"auto"} css={{
-                '&::-webkit-scrollbar': {
-                    display: 'none'
-                }
-            }}>
-                {categoriesList.map((category) => (<>
-                    <Box
-                        as={Link}
-                        to={`/shop?category=${category.name}`}
-                        bg={category.color}
-                        key={category.id}
-                        size="lg"
-                        px={2}
-                        variant="solid"
-                        borderRadius="xl"
-                        fontSize="md"
-                        pt={1}
-                        ml={2}
-                    >
-                        <Flex color={category.textColor} style={{whiteSpace: "nowrap", overflow: "hidden"}}>
-                            {category.name.toUpperCase()}
-                            <Icon as={ArrowForwardIcon} ml={2} mb={1} fontSize={"xl"}/>
-                        </Flex>
-                    </Box>
-                    {category.subcategories.map((subcategory) => (<Box
-                        as={Link}
-                        to={`/shop?subcategory=${subcategory.name}`}
-                        key={subcategory.id}
-                        bg={subcategory.color}
-                        size="lg"
-                        px={2}
-                        variant="solid"
-                        borderRadius="xl"
-                        fontSize="md"
-                        pt={1}
-                        ml={2}
-                    >
-                        <Flex color={subcategory.textColor} style={{whiteSpace: "nowrap", overflow: "hidden"}}>
-                            {subcategory.name.toUpperCase()}
-                            <Icon as={ArrowForwardIcon} ml={2} mb={1} fontSize={"xl"}/>
-                        </Flex>
-                    </Box>))}
-                </>))}
-                {brandsList.map((brand) => (<>
-                    <Box
-                        as={Link}
-                        to={`/shop?brand=${brand.name}`}
-                        bg={brand.color}
-                        key={brand.id}
-                        size="lg"
-                        px={2}
-                        variant="solid"
-                        borderRadius="xl"
-                        fontSize="md"
-                        pt={1}
-                        ml={2}
-                    >
-                        <Flex color={brand.textColor}  style={{whiteSpace: "nowrap", overflow: "hidden"}}>
-                            <Text>
-                                {brand.name.toUpperCase()}
-                            </Text>
-                            <Icon as={ArrowForwardIcon} ml={2} mb={1}fontSize={"xl"}/>
-                        </Flex>
-                    </Box>
-                    {brand.subbrands.map((subbrand) => (<Box
-                        as={Link}
-                        key={subbrand.id}
-                        to={`/shop?subbrand=${subbrand.name}`}
-                        bg={subbrand.color}
-                        size="lg"
-                        px={2}
-                        variant="solid"
-                        borderRadius="xl"
-                        fontSize="md"
-                        pt={1}
-                        ml={2}
-                    >
-                        <Flex color={subbrand.textColor}  style={{whiteSpace: "nowrap", overflow: "hidden"}}>
-                            {subbrand.name.toUpperCase()}
-                            <Icon as={ArrowForwardIcon} ml={2} mb={1} fontSize={"xl"}/>
-                        </Flex>
-                    </Box>))}
-                </>))}
-            </Box>
-        </HStack>
-    </Flex>);
+        <Box maxW={"70vw"} bg={"gray.100"} p={2} borderRadius={"lg"}>
+            <HStack display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"auto"}
+                    {...group} css={{'&::-webkit-scrollbar': {display: 'none'}}}>
+
+                {categoriesList.map((category) => {
+                    const radio = getRadioProps({value: category.name});
+                    return (<Flex key={category.id} gap={2}>
+                        <RadioCard
+                            {...radio}
+                            spec={category}
+                            key={category.id}
+                            handelClick={() => {
+                                setType(category.name);
+                                navigate(category.link);
+                            }}>
+                            {category.name}
+                        </RadioCard>
+
+                        {category.subcategories.map((subcategory) => {
+                            const radio = getRadioProps({value: subcategory.name});
+                            return (<RadioCard
+                                {...radio}
+                                spec={subcategory}
+                                key={subcategory.id}
+                                handelClick={() => {
+                                    setType(subcategory.name);
+                                    navigate(subcategory.link);
+                                }}>
+                                {subcategory.name}
+                            </RadioCard>)
+                        })}
+                    </Flex>)
+                })}
+
+                {brandsList.map((brand) => {
+                    const radio = getRadioProps({value: brand.name});
+                    return (<Flex key={brand.id} gap={2}>
+                        <RadioCard
+                            {...radio}
+                            spec={brand}
+                            key={brand.id}
+                            handelClick={() => {
+                                setType(brand.name);
+                                navigate(brand.link);
+                            }}>
+                            {brand.name}
+                        </RadioCard>
+
+                        {brand.subbrands.map((subbrand) => {
+                            const radio = getRadioProps({value: subbrand.name});
+                            return (<RadioCard
+                                {...radio}
+                                spec={subbrand}
+                                key={subbrand.id}
+                                handelClick={() => {
+                                    setType(subbrand.name);
+                                    navigate(subbrand.link);
+                                }}>
+                                {subbrand.name}
+                            </RadioCard>)
+                        })}
+
+                    </Flex>)
+                })}
+
+            </HStack>
+        </Box>
+    </Flex>)
+
 }

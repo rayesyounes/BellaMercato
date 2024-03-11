@@ -188,7 +188,7 @@
       "image": "../public/categories/electronics.webp",
       "color": "#e63946",
       "textColor": "white",
-      "link": "/category/electronics",
+      "link": "/shop?category=electronics",
       "subcategories": [
         {
           "id": "computers",
@@ -197,7 +197,7 @@
           "image": "../public/categories/computers.webp",
           "color": "#457b9d",
           "textColor": "white",
-          "link": "/category/electronics/computers"
+          "link": "/shop?category=computers"
         },
         {
           "id": "smartphones",
@@ -206,7 +206,7 @@
           "image": "../public/categories/smartphones.webp",
           "color": "#dda15e",
           "textColor": "white",
-          "link": "/category/electronics/smartphones"
+          "link": "/shop?category=smartphones"
         },
         {
           "id": "tablets",
@@ -215,7 +215,7 @@
           "image": "../public/categories/tablets.webp",
           "color": "#606c38",
           "textColor": "white",
-          "link": "/category/electronics/tablets"
+          "link": "/shop?category=tablets"
         }
       ]
     }
@@ -228,7 +228,7 @@
       "image": "../public/brands/apple.webp",
       "color": "#2a9d8f",
       "textColor": "white",
-      "link": "/brand/apple",
+      "link": "/shop?brand=apple",
       "subbrands": [
         {
           "id": "Mac",
@@ -237,7 +237,7 @@
           "image": "../public/brands/mac.webp",
           "color": "#ffbe0b",
           "textColor": "white",
-          "link": "/brand/apple/mac"
+          "link": "/shop?brand=mac"
         },
         {
           "id": "iPhone",
@@ -246,7 +246,7 @@
           "image": "../public/brands/iphone.webp",
           "color": "#588157",
           "textColor": "white",
-          "link": "/brand/apple/iphone"
+          "link": "/shop?brand=iphone"
         },
         {
           "id": "iPad",
@@ -255,7 +255,7 @@
           "image": "../public/brands/ipad.webp",
           "color": "#8ac926",
           "textColor": "white",
-          "link": "/brand/apple/ipad"
+          "link": "/shop?brand=ipad"
         }
       ]
     },
@@ -266,7 +266,7 @@
       "image": "../public/brands/samsung.webp",
       "color": "#6a4c93",
       "textColor": "white",
-      "link": "/brand/samsung",
+      "link": "/shop?brand=samsung",
       "subbrands": [
         {
           "id": "Galaxy",
@@ -275,7 +275,7 @@
           "image": "../public/brands/galaxy.webp",
           "color": "#e4c1f9",
           "textColor": "white",
-          "link": "/brand/samsung/galaxy"
+          "link": "/shop?brand=galaxy"
         },
         {
           "id": "Galaxy Tab",
@@ -284,7 +284,7 @@
           "image": "../public/brands/galaxy-tab.webp",
           "color": "#a9def9",
           "textColor": "white",
-          "link": "/brand/samsung/galaxy-tab"
+          "link": "/shop?brand=galaxy-tab"
         }
       ]
     }

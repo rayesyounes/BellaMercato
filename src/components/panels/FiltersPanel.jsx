@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {Flex, Input, InputGroup, InputLeftElement, Box, HStack, useRadioGroup, useRadio} from "@chakra-ui/react";
 import {SearchIcon} from "@chakra-ui/icons";
 import AddModal from "../modals/AddModal.jsx";
@@ -54,6 +54,7 @@ function FiltersPanel({setFilteredData}) {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
+        console.log(status)
         if ( currentPage === "history" || currentPage === "orders") {
             let filtered = orders.filter((order) => order.status === status || status === "All");
             if (searchTerm) {
