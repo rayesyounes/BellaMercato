@@ -1,4 +1,4 @@
-import {Box, Container, Grid, VStack} from "@chakra-ui/react";
+import {Box, Container, Flex, Grid, HStack, VStack} from "@chakra-ui/react";
 import ProductCard from "../components/cards/ProductCard.jsx";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,6 +6,7 @@ import {getProductsAsync} from "../features/products/productsAction.js";
 import {setCurrentPage} from "../features/page/PageAction.js";
 import {motion} from "framer-motion";
 import InfoPanel from "../components/panels/InfoPanel.jsx";
+import ProductsFilterPanel from "../components/panels/ProductsFilterPanel.jsx";
 import {useLocation} from "react-router-dom";
 
 export default function Shop() {
@@ -79,20 +80,26 @@ export default function Shop() {
         fetchData();
     }, []);
 
-    return (<div>
-            <Container maxW="container.xxl" my={4}>
-                <VStack spacing={4}>
-                    <InfoPanel param={param}/>
+    return (
+
+        <Container maxW="container.xxl" my={4}>
+            <VStack spacing={4}>
+                <InfoPanel param={param}/>
+                <Flex gap={4}>
+                    <ProductsFilterPanel/>
                     <MotionBox
                         initial={{opacity: 0, y: -20}}
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.9}}
                     >
-                        <Grid templateColumns="repeat(4, 2fr)" gap={6}>
+                        <Grid templateColumns="repeat(3, 2fr)" alignItems={"start"} gap={4}>
                             {filteredProducts.map((product) => (<ProductCard key={product.id} product={product}/>))}
                         </Grid>
                     </MotionBox>
-                </VStack>
-            </Container>
-        </div>);
+                </Flex>
+            </VStack>
+        </Container>
+
+    );
+
 }

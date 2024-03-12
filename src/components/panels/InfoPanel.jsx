@@ -1,7 +1,18 @@
-import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, HStack, Icon, Text, useRadio, useRadioGroup} from "@chakra-ui/react";
+import {
+    Box,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    Flex,
+    HStack,
+    Icon,
+    Text,
+    useRadio,
+    useRadioGroup
+} from "@chakra-ui/react";
 import {ArrowForwardIcon, ChevronRightIcon} from "@chakra-ui/icons";
 import {useSelector} from "react-redux";
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -55,7 +66,7 @@ export default function InfoPanel({product, param}) {
     const [categoriesList, setCategoriesList] = useState([]);
     const [brandsList, setBrandsList] = useState([]);
 
-    const [type, setType] = useState(param|| null);
+    const [type, setType] = useState(param || null);
 
     const {getRootProps, getRadioProps} = useRadioGroup({
         name: "type", onChange: setType, defaultValue: type
@@ -69,7 +80,7 @@ export default function InfoPanel({product, param}) {
             setBrandsList(brands);
         } else if (currentPage === "product" && product) {
             const categoryList = categories.filter((category) => (product.category).includes(category.id));
-            const brandList = brands.filter((brand) => product.brand === brand.id);
+            const brandList = brands.filter((brand) => (product.brand).includes(brand.id));
             setCategoriesList(categoryList);
             setBrandsList(brandList);
         }
@@ -77,7 +88,7 @@ export default function InfoPanel({product, param}) {
 
 
     return (<Flex
-        position={currentPage === "product" ? "static" : "sticky"}
+        // position={currentPage === "product" ? "static" : "sticky"}
         top={20}
         zIndex={10}
         borderWidth="1px"
@@ -93,32 +104,40 @@ export default function InfoPanel({product, param}) {
         <Breadcrumb spacing="8px" separator={<ChevronRightIcon fontSize={"lg"} color="gray.500"/>}>
             <BreadcrumbItem>
                 <Link to={"/"}>
-                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Home</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#"
+                                    _hover={{textDecoration: "none", cursor: "pointer"}}>Home</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
                 <Link to={"/shop"}>
-                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Shop</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#"
+                                    _hover={{textDecoration: "none", cursor: "pointer"}}>Shop</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
                 <Link to={"/shop"}>
-                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>Products</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#"
+                                    _hover={{textDecoration: "none", cursor: "pointer"}}>Products</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             {currentPage === "product" && (
                 <BreadcrumbItem isCurrentPage>
-                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{ textDecoration: "none", cursor: "pointer" }}>{product?.name}</BreadcrumbLink>
+                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{
+                        textDecoration: "none",
+                        cursor: "pointer"
+                    }}>{product?.name}</BreadcrumbLink>
                 </BreadcrumbItem>
             )}
         </Breadcrumb>
 
 
-        <Box maxW={"70vw"} bg={"gray.100"} p={2} borderRadius={"lg"} gap={2} display={"flex"}>
+        <Box  bg={"gray.100"} p={2} borderRadius={"lg"} gap={2} display={"flex"}>
 
+
+            {currentPage === "shop" && (
                 <RadioCard
                     {...getRadioProps({value: "all"})}
                     handelClick={() => {
@@ -129,12 +148,11 @@ export default function InfoPanel({product, param}) {
                 >
                     All
                 </RadioCard>
+            )}
 
 
-            <HStack display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"auto"}
+            <HStack maxW={"65vw"} display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"scroll"}
                     {...group} css={{'&::-webkit-scrollbar': {display: 'none'}}}>
-
-
 
 
                 {categoriesList.map((category) => {
