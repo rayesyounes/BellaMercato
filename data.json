@@ -17,8 +17,12 @@
         "electronics",
         "computers"
       ],
-      "brand": "Apple",
-      "rating": 4.5
+      "brand": [
+        "apple",
+        "mac"
+      ],
+      "rating": 4.5,
+      "createdAt": "2023-01-15T08:30:00Z"
     },
     {
       "id": "2",
@@ -37,15 +41,19 @@
         "electronics",
         "smartphones"
       ],
-      "brand": "Samsung",
-      "rating": 4
+      "brand": [
+        "apple",
+        "iphone"
+      ],
+      "rating": 4,
+      "createdAt": "2024-03-15T08:30:00Z"
     },
     {
       "id": "5",
       "name": "Tablet",
       "price": 199.99,
       "description": "High-performance tablet with the latest specifications.",
-      "stock": 19,
+      "stock": 1,
       "images": [
         "../public/products/5/1.webp",
         "../public/products/5/2.webp",
@@ -57,31 +65,46 @@
         "electronics",
         "tablets"
       ],
-      "brand": "Samsung",
-      "rating": 4.2
+      "brand": [
+        "samsung",
+        "galaxy-tab"
+      ],
+      "rating": 4.2,
+      "createdAt": "2023-01-15T08:30:00Z"
     }
   ],
   "reviews": [
     {
-      "id": "1",
-      "product_id": 1,
-      "user_id": 3,
-      "rating": 4.5,
-      "comment": "Great laptop, I'm very satisfied with my purchase."
-    },
-    {
-      "id": "2",
-      "product_id": 2,
-      "user_id": 3,
-      "rating": 4,
-      "comment": "Great smartphone, I'm very satisfied with my purchase."
+      "id": "3",
+      "product_id": 5,
+      "user_id": 2,
+      "rating": 4.2,
+      "comment": "Great tablet, I'm very satisfied with my purchase.",
+      "date": "2023-01-15T08:30:00Z"
     },
     {
       "id": "3",
       "product_id": 5,
-      "user_id": 3,
+      "user_id": 1,
       "rating": 4.2,
-      "comment": "Great tablet, I'm very satisfied with my purchase."
+      "comment": "Great tablet, I'm very satisfied with my purchase.",
+      "date": "2023-01-15T08:30:00Z"
+    },
+    {
+      "user_id": "3",
+      "product_id": "5",
+      "rating": 2,
+      "comment": "r5",
+      "date": "2024-03-03T10:40:26.420Z",
+      "id": "6b39"
+    },
+    {
+      "id": "7394",
+      "user_id": "3",
+      "product_id": "2",
+      "rating": 5,
+      "comment": "fantastic product ",
+      "date": "2024-03-12T00:22:38.930Z"
     }
   ],
   "users": [
@@ -90,6 +113,42 @@
       "username": "rayesyounes",
       "first_name": "younes",
       "last_name": "rayes",
+      "gender": "m",
+      "email": "rayesyounes@gmail.com",
+      "phone": 1234567890,
+      "password": "11111111",
+      "billingAddress": "456 Oak St, Townsville",
+      "address": "123 Oak St, Townsville",
+      "avatar": "",
+      "country": "USA",
+      "state": "CA",
+      "city": "Los Angeles",
+      "zip": "90001",
+      "isAdmin": false
+    },
+    {
+      "id": "2",
+      "username": "gracedef",
+      "first_name": "grace",
+      "last_name": "def",
+      "gender": "m",
+      "email": "rayesyounes@gmail.com",
+      "phone": 1234567890,
+      "password": "11111111",
+      "billingAddress": "456 Oak St, Townsville",
+      "address": "123 Oak St, Townsville",
+      "avatar": "",
+      "country": "USA",
+      "state": "CA",
+      "city": "Los Angeles",
+      "zip": "90001",
+      "isAdmin": false
+    },
+    {
+      "id": "1",
+      "username": "spoutnikrs",
+      "first_name": "speddy",
+      "last_name": "fernandez",
       "gender": "m",
       "email": "rayesyounes@gmail.com",
       "phone": 1234567890,
@@ -139,6 +198,115 @@
       "email": "ggggggggggggggg",
       "phone": "123456789",
       "notes": "Please handle with care."
+    }
+  ],
+  "categories": [
+    {
+      "id": "electronics",
+      "name": "electronics",
+      "description": "The latest electronic products.",
+      "image": "../public/categories/electronics.webp",
+      "color": "#e63946",
+      "textColor": "white",
+      "link": "/shop?category=electronics",
+      "subcategories": [
+        {
+          "id": "computers",
+          "name": "computers",
+          "description": "The latest computer products.",
+          "image": "../public/categories/computers.webp",
+          "color": "#457b9d",
+          "textColor": "white",
+          "link": "/shop?category=computers"
+        },
+        {
+          "id": "smartphones",
+          "name": "smartphones",
+          "description": "The latest smartphone products.",
+          "image": "../public/categories/smartphones.webp",
+          "color": "#dda15e",
+          "textColor": "white",
+          "link": "/shop?category=smartphones"
+        },
+        {
+          "id": "tablets",
+          "name": "tablets",
+          "description": "The latest tablet products.",
+          "image": "../public/categories/tablets.webp",
+          "color": "#606c38",
+          "textColor": "white",
+          "link": "/shop?category=tablets"
+        }
+      ]
+    }
+  ],
+  "brands": [
+    {
+      "id": "apple",
+      "name": "apple",
+      "description": "The latest Apple products.",
+      "image": "../public/brands/apple.webp",
+      "color": "#2a9d8f",
+      "textColor": "white",
+      "link": "/shop?brand=apple",
+      "subbrands": [
+        {
+          "id": "mac",
+          "name": "mac",
+          "description": "The latest Mac products.",
+          "image": "../public/brands/mac.webp",
+          "color": "#ffbe0b",
+          "textColor": "white",
+          "link": "/shop?brand=mac"
+        },
+        {
+          "id": "iphone",
+          "name": "iphone",
+          "description": "The latest iPhone products.",
+          "image": "../public/brands/iphone.webp",
+          "color": "#588157",
+          "textColor": "white",
+          "link": "/shop?brand=iphone"
+        },
+        {
+          "id": "ipad",
+          "name": "ipad",
+          "description": "The latest iPad products.",
+          "image": "../public/brands/ipad.webp",
+          "color": "#8ac926",
+          "textColor": "white",
+          "link": "/shop?brand=ipad"
+        }
+      ]
+    },
+    {
+      "id": "samsung",
+      "name": "samsung",
+      "description": "The latest Samsung products.",
+      "image": "../public/brands/samsung.webp",
+      "color": "#6a4c93",
+      "textColor": "white",
+      "link": "/shop?brand=samsung",
+      "subbrands": [
+        {
+          "id": "galaxy",
+          "name": "galaxy",
+          "description": "The latest Galaxy products.",
+          "image": "../public/brands/galaxy.webp",
+          "color": "#e4c1f9",
+          "textColor": "white",
+          "link": "/shop?brand=galaxy"
+        },
+        {
+          "id": "galaxy-tab",
+          "name": "galaxy-tab",
+          "description": "The latest Galaxy Tab products.",
+          "image": "../public/brands/galaxy-tab.webp",
+          "color": "#a9def9",
+          "textColor": "white",
+          "link": "/shop?brand=galaxy-tab"
+        }
+      ]
     }
   ]
 }
