@@ -55,7 +55,8 @@ export default function InfoPanel({product, param}) {
     const [categoriesList, setCategoriesList] = useState([]);
     const [brandsList, setBrandsList] = useState([]);
 
-    const [type, setType] = useState(param || null);
+    const [type, setType] = useState(param|| null);
+
     const {getRootProps, getRadioProps} = useRadioGroup({
         name: "type", onChange: setType, defaultValue: type
     });
@@ -116,9 +117,25 @@ export default function InfoPanel({product, param}) {
         </Breadcrumb>
 
 
-        <Box maxW={"70vw"} bg={"gray.100"} p={2} borderRadius={"lg"}>
+        <Box maxW={"70vw"} bg={"gray.100"} p={2} borderRadius={"lg"} gap={2} display={"flex"}>
+
+                <RadioCard
+                    {...getRadioProps({value: "all"})}
+                    handelClick={() => {
+                        setType("all");
+                        navigate("/shop");
+                    }}
+                    spec={{name: "all", color: "teal.400", textColor: "white"}}
+                >
+                    All
+                </RadioCard>
+
+
             <HStack display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"auto"}
                     {...group} css={{'&::-webkit-scrollbar': {display: 'none'}}}>
+
+
+
 
                 {categoriesList.map((category) => {
                     const radio = getRadioProps({value: category.name});

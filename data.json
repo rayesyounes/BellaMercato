@@ -17,7 +17,10 @@
         "electronics",
         "computers"
       ],
-      "brand": "apple",
+      "brand": [
+        "apple",
+        "mac"
+      ],
       "rating": 4.5
     },
     {
@@ -37,7 +40,10 @@
         "electronics",
         "smartphones"
       ],
-      "brand": "apple",
+      "brand": [
+        "apple",
+        "iphone"
+      ],
       "rating": 4
     },
     {
@@ -57,7 +63,10 @@
         "electronics",
         "tablets"
       ],
-      "brand": "samsung",
+      "brand": [
+        "samsung",
+        "galaxy-tab"
+      ],
       "rating": 4.2
     }
   ],

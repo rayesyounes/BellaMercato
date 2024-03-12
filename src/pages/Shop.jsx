@@ -13,22 +13,58 @@ export default function Shop() {
     const MotionBox = motion(Box);
     const dispatch = useDispatch();
     const {products, error, isLoading} = useSelector((state) => state.products);
+    const [filteredProducts, setFilteredProducts] = useState(products);
 
     const location = useLocation()
     const params = new URLSearchParams(location.search);
-    let param;
+    const param = (params.get('category') || params.get('brand') || null);
 
-    if (params.has("category")) {
-        param = params.get("category");
-    } else if (params.has("brand")) {
-        param = params.get("brand");
-    } else {
-        param = null;
-    }
+
+    const [filter, setFilter] = useState(() => {
+        const category = params.get("category");
+        const brand = params.get("brand");
+
+        if (category) {
+            return {category: category};
+        } else if (brand) {
+            return {brand: brand};
+        } else {
+            return null;
+        }
+    });
 
     useEffect(() => {
-        console.log(param);
-    }, [param]);
+        const category = params.get("category");
+        const brand = params.get("brand");
+
+        if (category) {
+            setFilter({category: category});
+        } else if (brand) {
+            setFilter({brand: brand});
+        } else {
+            setFilter(null);
+        }
+    }, [location]);
+
+
+    useEffect(() => {
+        if (filter) {
+            if (filter.category) {
+                setFilteredProducts(products.filter((product) => {
+                    const productCategories = product.category
+                    return productCategories.includes(filter.category);
+
+                }));
+            } else if (filter.brand) {
+                setFilteredProducts(products.filter((product) => {
+                    const productBrand = product.brand
+                    return productBrand.includes(filter.brand);
+                }));
+            }
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [filter]);
 
 
     useEffect(() => {
@@ -43,8 +79,7 @@ export default function Shop() {
         fetchData();
     }, []);
 
-    return (
-        <div>
+    return (<div>
             <Container maxW="container.xxl" my={4}>
                 <VStack spacing={4}>
                     <InfoPanel param={param}/>
@@ -54,13 +89,10 @@ export default function Shop() {
                         transition={{duration: 0.9}}
                     >
                         <Grid templateColumns="repeat(4, 2fr)" gap={6}>
-                            {products.map((product) => (
-                                <ProductCard key={product.id} product={product}/>
-                            ))}
+                            {filteredProducts.map((product) => (<ProductCard key={product.id} product={product}/>))}
                         </Grid>
                     </MotionBox>
                 </VStack>
             </Container>
-        </div>
-    );
+        </div>);
 }
