@@ -15,12 +15,13 @@ import {
     HStack,
     Box,
     useDisclosure,
-    Text,
+    Text, InputGroup, Input, InputRightElement, IconButton,
 } from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import HeaderTag from "./tags/HeaderTag.jsx";
 import HeaderMenu from "./menus/HeaderMenu.jsx";
 import CartDrawer from "./drawers/CartDrawer.jsx";
+import {SearchIcon} from "@chakra-ui/icons";
 
 export default function Header() {
     // const {isOpen, onToggle} = useDisclosure();
@@ -59,7 +60,9 @@ export default function Header() {
         <Flex
             as="nav"
             p={4}
+            gap={8}
             bg="white"
+            justifyContent={"space-between"}
             alignItems="center"
             borderBottom="1px"
             borderColor="gray.200"
@@ -73,10 +76,39 @@ export default function Header() {
                 <Logo>DEMO</Logo>
             )}
 
-            <Spacer />
+            {/*{!admin && (*/}
+            {/*    <InputGroup maxW={"600px"}>*/}
+            {/*        <Input*/}
+            {/*            type="text"*/}
+            {/*            placeholder="Search for..."*/}
+            {/*            bg="gray.100"*/}
+            {/*            borderTop="none"*/}
+            {/*            borderLeft="none"*/}
+            {/*            borderRight="none"*/}
+            {/*            borderBottom="1px"*/}
+            {/*            borderColor="gray.200"*/}
+            {/*            _focus={{*/}
+            {/*                borderColor: "teal.400",*/}
+            {/*                boxShadow: "none",*/}
+            {/*            }}*/}
+            {/*            // onChange={(e) => handleSearch(e.target.value)}*/}
+            {/*            isDisabled={true}*/}
+            {/*        />*/}
+            {/*        <InputRightElement>*/}
+            {/*            <IconButton*/}
+            {/*                aria-label="Search database"*/}
+            {/*                icon={<SearchIcon/>} b*/}
+            {/*                // onClick={() => handleSearch()}*/}
+            {/*                colorScheme="teal" // Change button color scheme if needed*/}
+            {/*                isDisabled={true}*/}
+            {/*            />*/}
+            {/*        </InputRightElement>*/}
+            {/*    </InputGroup>*/}
+            {/*)}*/}
 
-            {/* Desktop Menu */}
-            <HStack spacing="20px" display={{ base: "none", md: "flex" }}>
+
+            <HStack spacing="20px" display={{base: "none", md: "flex"}}>
+
                 {!admin && (
                     <>
                         <NavLink as={ChakraLink} className="navlink" to="/shop">
@@ -112,16 +144,16 @@ export default function Header() {
                                 Contact
                             </Box>
                         </NavLink>
-                        <Spacer />
-                        <Spacer />
-                        <Spacer />
+                        <Spacer/>
+                        <Spacer/>
+                        <Spacer/>
                     </>
                 )}
                 {isAuthenticated && (
                     <>
-                        {!isAdmin && <CartDrawer />}
+                        {!isAdmin && <CartDrawer/>}
                         <HeaderMenu>
-                            <HeaderTag user={user} />
+                            <HeaderTag user={user}/>
                         </HeaderMenu>
                     </>
                 )}
@@ -129,15 +161,15 @@ export default function Header() {
 
             {hidden && (
                 <>
-                    <Spacer />
-                    <HStack display={{ base: "none", md: "flex" }}>
-                        <AuthModal />
+                    <Spacer/>
+                    <HStack display={{base: "none", md: "flex"}}>
+                        <AuthModal/>
                     </HStack>
                 </>
             )}
 
             {/* Mobile Menu */}
-            <MobileMenu />
+            <MobileMenu/>
         </Flex>
     );
 }

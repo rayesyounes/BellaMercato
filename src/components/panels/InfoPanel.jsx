@@ -3,18 +3,29 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
     Flex,
+    FormControl,
+    FormLabel,
     HStack,
     Icon,
+    Input,
+    Menu,
+    MenuButton,
+    MenuDivider,
+    MenuItemOption,
+    MenuList,
+    MenuOptionGroup,
     Text,
     useRadio,
     useRadioGroup
 } from "@chakra-ui/react";
-import {ArrowForwardIcon, ChevronRightIcon} from "@chakra-ui/icons";
+import {ArrowForwardIcon, ChevronDownIcon, ChevronRightIcon} from "@chakra-ui/icons";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {FaSearch} from "react-icons/fa";
 
 
 function RadioCard({children, handelClick, spec, ...props}) {
@@ -55,7 +66,7 @@ function RadioCard({children, handelClick, spec, ...props}) {
     </>);
 }
 
-export default function InfoPanel({product, param}) {
+export default function InfoPanel({product, filters, setFilters, param}) {
 
     const navigate = useNavigate();
 
@@ -86,6 +97,13 @@ export default function InfoPanel({product, param}) {
         }
     }, [currentPage]);
 
+    const updateOrderFilters = (e) => {
+        setFilters(prev => ({...prev, order: e}));
+    };
+    const updateSortFilters = (e) => {
+        setFilters(prev => ({...prev, sort: e}));
+    };
+
 
     return (<Flex
         // position={currentPage === "product" ? "static" : "sticky"}
@@ -99,7 +117,7 @@ export default function InfoPanel({product, param}) {
         p={4}
         gap={20}
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent={"space-between"}
     >
         <Breadcrumb spacing="8px" separator={<ChevronRightIcon fontSize={"lg"} color="gray.500"/>}>
             <BreadcrumbItem>
@@ -123,22 +141,18 @@ export default function InfoPanel({product, param}) {
                 </Link>
             </BreadcrumbItem>
 
-            {currentPage === "product" && (
-                <BreadcrumbItem isCurrentPage>
-                    <BreadcrumbLink fontSize={"lg"} href="#" _hover={{
-                        textDecoration: "none",
-                        cursor: "pointer"
-                    }}>{product?.name}</BreadcrumbLink>
-                </BreadcrumbItem>
-            )}
+            {currentPage === "product" && (<BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink fontSize={"lg"} href="#" _hover={{
+                    textDecoration: "none", cursor: "pointer"
+                }}>{product?.name}</BreadcrumbLink>
+            </BreadcrumbItem>)}
         </Breadcrumb>
+        <Flex gap={4}>
+
+            <Box bg={"gray.100"} p={2} borderRadius={"lg"} gap={2} display={"flex"}>
 
 
-        <Box  bg={"gray.100"} p={2} borderRadius={"lg"} gap={2} display={"flex"}>
-
-
-            {currentPage === "shop" && (
-                <RadioCard
+                {currentPage === "shop" && (<RadioCard
                     {...getRadioProps({value: "all"})}
                     handelClick={() => {
                         setType("all");
@@ -147,77 +161,98 @@ export default function InfoPanel({product, param}) {
                     spec={{name: "all", color: "teal.400", textColor: "white"}}
                 >
                     All
-                </RadioCard>
-            )}
+                </RadioCard>)}
 
 
-            <HStack maxW={"65vw"} display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"scroll"}
-                    {...group} css={{'&::-webkit-scrollbar': {display: 'none'}}}>
+                <HStack maxW={"55vw"} display={"grid"} gridAutoFlow={"column"} borderRadius="lg" overflowX={"auto"}
+                        {...group} css={{'&::-webkit-scrollbar': {display: 'none'}}}>
 
 
-                {categoriesList.map((category) => {
-                    const radio = getRadioProps({value: category.name});
-                    return (<Flex key={category.id} gap={2}>
-                        <RadioCard
-                            {...radio}
-                            spec={category}
-                            key={category.id}
-                            handelClick={() => {
-                                setType(category.name);
-                                navigate(category.link);
-                            }}>
-                            {category.name}
-                        </RadioCard>
-
-                        {category.subcategories.map((subcategory) => {
-                            const radio = getRadioProps({value: subcategory.name});
-                            return (<RadioCard
+                    {categoriesList.map((category) => {
+                        const radio = getRadioProps({value: category.name});
+                        return (<Flex key={category.id} gap={2}>
+                            <RadioCard
                                 {...radio}
-                                spec={subcategory}
-                                key={subcategory.id}
+                                spec={category}
+                                key={category.id}
                                 handelClick={() => {
-                                    setType(subcategory.name);
-                                    navigate(subcategory.link);
+                                    setType(category.name);
+                                    navigate(category.link);
                                 }}>
-                                {subcategory.name}
-                            </RadioCard>)
-                        })}
-                    </Flex>)
-                })}
+                                {category.name}
+                            </RadioCard>
 
-                {brandsList.map((brand) => {
-                    const radio = getRadioProps({value: brand.name});
-                    return (<Flex key={brand.id} gap={2}>
-                        <RadioCard
-                            {...radio}
-                            spec={brand}
-                            key={brand.id}
-                            handelClick={() => {
-                                setType(brand.name);
-                                navigate(brand.link);
-                            }}>
-                            {brand.name}
-                        </RadioCard>
+                            {category.subcategories.map((subcategory) => {
+                                const radio = getRadioProps({value: subcategory.name});
+                                return (<RadioCard
+                                    {...radio}
+                                    spec={subcategory}
+                                    key={subcategory.id}
+                                    handelClick={() => {
+                                        setType(subcategory.name);
+                                        navigate(subcategory.link);
+                                    }}>
+                                    {subcategory.name}
+                                </RadioCard>)
+                            })}
+                        </Flex>)
+                    })}
 
-                        {brand.subbrands.map((subbrand) => {
-                            const radio = getRadioProps({value: subbrand.name});
-                            return (<RadioCard
+                    {brandsList.map((brand) => {
+                        const radio = getRadioProps({value: brand.name});
+                        return (<Flex key={brand.id} gap={2}>
+                            <RadioCard
                                 {...radio}
-                                spec={subbrand}
-                                key={subbrand.id}
+                                spec={brand}
+                                key={brand.id}
                                 handelClick={() => {
-                                    setType(subbrand.name);
-                                    navigate(subbrand.link);
+                                    setType(brand.name);
+                                    navigate(brand.link);
                                 }}>
-                                {subbrand.name}
-                            </RadioCard>)
-                        })}
+                                {brand.name}
+                            </RadioCard>
 
-                    </Flex>)
-                })}
+                            {brand.subbrands.map((subbrand) => {
+                                const radio = getRadioProps({value: subbrand.name});
+                                return (<RadioCard
+                                    {...radio}
+                                    spec={subbrand}
+                                    key={subbrand.id}
+                                    handelClick={() => {
+                                        setType(subbrand.name);
+                                        navigate(subbrand.link);
+                                    }}>
+                                    {subbrand.name}
+                                </RadioCard>)
+                            })}
 
-            </HStack>
-        </Box>
+                        </Flex>)
+                    })}
+
+                </HStack>
+            </Box>
+            {currentPage === "shop" && (
+                <Menu closeOnSelect={false} matchWidth>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon/>} colorScheme='teal'>
+                        Sort Products
+                    </MenuButton>
+                    <MenuList minWidth='100%'>
+                        <MenuOptionGroup title='Order' type='radio' value={filters?.order}
+                                         onChange={(value) => updateOrderFilters(value)}>
+                            <MenuItemOption value='asc'>Ascending</MenuItemOption>
+                            <MenuItemOption value='desc'>Descending</MenuItemOption>
+                        </MenuOptionGroup>
+                        <MenuDivider/>
+                        <MenuOptionGroup title={"Sort"} type='radio' value={filters?.sort}
+                                         onChange={(value) => updateSortFilters(value)}>
+                            <MenuItemOption value='none'>None</MenuItemOption>
+                            <MenuItemOption value='price'>Price</MenuItemOption>
+                            <MenuItemOption value='rating'>Rating</MenuItemOption>
+                        </MenuOptionGroup>
+                    </MenuList>
+                </Menu>)}
+        </Flex>
+
     </Flex>)
 
 }

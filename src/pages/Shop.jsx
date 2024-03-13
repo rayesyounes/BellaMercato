@@ -22,7 +22,7 @@ export default function Shop() {
         maxPrice: null,
         category: [],
         brand: [],
-        sort: null,
+        sort: "none",
         order: "asc"
     })
 
@@ -100,7 +100,7 @@ export default function Shop() {
 
         <Container maxW="container.xxl" my={4}>
             <VStack spacing={4}>
-                <InfoPanel param={param}/>
+                <InfoPanel filters={filters} setFilters={setFilters} param={param}/>
                 <Flex gap={4}>
                     <ProductsFilterPanel filters={filters} setFilters={setFilters}/>
                     <MotionBox

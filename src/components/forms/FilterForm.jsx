@@ -8,7 +8,16 @@ import {
     RangeSliderTrack,
     RangeSliderThumb,
     RangeSliderFilledTrack,
-    Tooltip, CheckboxGroup, Stack, Checkbox, Accordion, AccordionItem, AccordionIcon, AccordionButton, AccordionPanel,
+    Tooltip,
+    CheckboxGroup,
+    Stack,
+    Checkbox,
+    Accordion,
+    AccordionItem,
+    AccordionIcon,
+    AccordionButton,
+    AccordionPanel,
+    Input,
 } from "@chakra-ui/react";
 import {MdGraphicEq} from "react-icons/md";
 import {useEffect, useState} from "react";
@@ -59,13 +68,25 @@ export default function FilterForm({filters, setFilters}) {
             maxPrice: null,
             category: [],
             brand: [],
-            sort: null,
+            sort: "none",
             order: "asc"
         })
     }
 
 
     return (<Flex gap={4} flexDirection="column">
+
+        <FormControl>
+            <Input
+                variant="filled"
+                focusBorderColor="teal.500"
+                value={filters?.searchTerm}
+                onChange={(e) => {
+                    setFilters(prev => ({...prev, searchTerm: e.target.value}));
+                }}
+                placeholder="Search for ..."
+            />
+        </FormControl>
 
         <FormControl>
 
@@ -110,64 +131,63 @@ export default function FilterForm({filters, setFilters}) {
             <FormLabel>Categories</FormLabel>
             <CheckboxGroup colorScheme='teal' value={filters.category}>
                 {categoriesList.map((category) => (
-                    <>
-                        <Accordion allowMultiple>
-                            <AccordionItem>
-                                <h2>
-                                    <AccordionButton>
-                                        <Box as="span" flex='1' textAlign='left'>
-                                            {category.name}
-                                        </Box>
-                                        <AccordionIcon/>
-                                    </AccordionButton>
-                                </h2>
-                                <AccordionPanel pb={4}>
-                                    <Stack spacing={[1, 3]} direction={['column', 'column']}>
-                                        {category.subcategories.map((subcategory) => (
-                                            <Checkbox
-                                                onChange={(e) => updateCategoriesFilters(e)}
-                                                key={subcategory.id} value={subcategory.name}>{subcategory.name}</Checkbox>
-                                        ))}
-                                    </Stack>
-                                </AccordionPanel>
-                            </AccordionItem>
-                        </Accordion>
-                    </>
+
+                    <Accordion key={category.id} allowMultiple>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box as="span" flex='1' textAlign='left'>
+                                        {category.name}
+                                    </Box>
+                                    <AccordionIcon/>
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                <Stack spacing={[1, 3]} direction={['column', 'column']}>
+                                    {category.subcategories.map((subcategory) => (
+                                        <Checkbox
+                                            onChange={(e) => updateCategoriesFilters(e)}
+                                            key={subcategory.id} value={subcategory.name}>{subcategory.name}</Checkbox>
+                                    ))}
+                                </Stack>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+
                 ))}
             </CheckboxGroup>
         </FormControl>
 
         <FormControl>
             <FormLabel>Brands</FormLabel>
-            <CheckboxGroup colorScheme='teal' value={filters.brand} >
+            <CheckboxGroup colorScheme='teal' value={filters.brand}>
                 {brandsList.map((brand) => (
-                    <>
-                        <Accordion allowMultiple>
-                            <AccordionItem>
-                                <h2>
-                                    <AccordionButton>
-                                        <Box as="span" flex='1' textAlign='left'>
-                                            {brand.name}
-                                        </Box>
-                                        <AccordionIcon/>
-                                    </AccordionButton>
-                                </h2>
-                                <AccordionPanel pb={4}>
-                                    <Stack spacing={[1, 3]} direction={['column', 'column']}>
-                                        {brand.subbrands.map((subbrand) => (
-                                            <Checkbox
-                                                onChange={(e) => updateBrandsFilters(e)}
-                                                key={subbrand.id} value={subbrand.name}>{subbrand.name}</Checkbox>
-                                        ))}
-                                    </Stack>
-                                </AccordionPanel>
-                            </AccordionItem>
-                        </Accordion>
-                    </>
+
+                    <Accordion key={brand.id} allowMultiple>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box as="span" flex='1' textAlign='left'>
+                                        {brand.name}
+                                    </Box>
+                                    <AccordionIcon/>
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                <Stack spacing={[1, 3]} direction={['column', 'column']}>
+                                    {brand.subbrands.map((subbrand) => (
+                                        <Checkbox
+                                            onChange={(e) => updateBrandsFilters(e)}
+                                            key={subbrand.id} value={subbrand.name}>{subbrand.name}</Checkbox>
+                                    ))}
+                                </Stack>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+
                 ))}
             </CheckboxGroup>
         </FormControl>
-
 
 
         <Button colorScheme="teal" variant={"outline"} onClick={handelClear}>Clear Filters</Button>
