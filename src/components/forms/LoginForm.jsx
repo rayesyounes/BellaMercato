@@ -90,6 +90,7 @@ export default function AnimatedLoginForm({onClose}) {
                     placeholder="Enter your email"
                     isInvalid={!!emailError}
                     variant="flushed"
+                    focusBorderColor="teal.400"
                 />
                 {emailError && (<MotionText
                     color="red.500"
@@ -117,6 +118,7 @@ export default function AnimatedLoginForm({onClose}) {
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     <InputRightElement width='4.5rem'>
                         {/*<Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>*/}

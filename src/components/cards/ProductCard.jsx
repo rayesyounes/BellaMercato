@@ -5,10 +5,12 @@ import {addToCart} from "../../features/cart/cartAction.js";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {StarIcon} from "@chakra-ui/icons";
+import {useState} from "react";
 
 function ProductCard({product}) {
     const dispatch = useDispatch();
     const {user, isAuthenticated} = useSelector((state) => state.auth);
+    const [image, setImage] = useState(product.images[0]);
     let userId = null;
 
     if (user) {
@@ -42,6 +44,20 @@ function ProductCard({product}) {
 
     }
 
+    // const handelImageChange = (id) => () => {
+    //     setInterval(() => {
+    //         const curProduct = products.find((product) => product.id === id);
+    //         const index = curProduct.images.indexOf(image);
+    //         setImage(prev => {
+    //             if (index === curProduct.images.length - 1) {
+    //                 return curProduct.images[0]
+    //             } else {
+    //                 return curProduct.images[index + 1]
+    //             }
+    //         })
+    //     }, 2000);
+    // }
+
 
     return (<Card boxShadow="md" borderRadius="lg">
         <CardBody
@@ -52,7 +68,11 @@ function ProductCard({product}) {
             position={"relative"}
         >
             <Image
-                src={product.images[0]}
+                src={image}
+                _hover={{
+                    transform: "scale(1.08)", transition: "all 0.4s ease-in-out",
+                }}
+                // onMouseEnter={handelImageChange(product.id)}
                 fallbackSrc="https://via.placeholder.com/600"
                 alt={`${name} - Product image`}
                 borderRadius="lg"

@@ -99,6 +99,7 @@ export default function Register({setState}) {
                         placeholder="Enter your email"
                         isInvalid={!!emailError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {emailError && (
                         <MotionText
@@ -127,6 +128,7 @@ export default function Register({setState}) {
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {passwordError && (
                         <MotionText
@@ -155,6 +157,7 @@ export default function Register({setState}) {
                         placeholder="Confirm your password"
                         isInvalid={!!confirmPasswordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {confirmPasswordError && (
                         <MotionText

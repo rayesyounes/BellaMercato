@@ -14,14 +14,29 @@ export default function Shop() {
     const MotionBox = motion(Box);
     const dispatch = useDispatch();
     const {products, error, isLoading} = useSelector((state) => state.products);
+
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [filters, setFilters] = useState({
+        searchTerm: "",
+        minPrice: null,
+        maxPrice: null,
+        category: [],
+        brand: [],
+        sort: null,
+        order: "asc"
+    })
+
+    useEffect(() => {
+        console.log(filters);
+    }, [filters]);
+
 
     const location = useLocation()
     const params = new URLSearchParams(location.search);
     const param = (params.get('category') || params.get('brand') || null);
 
 
-    const [filter, setFilter] = useState(() => {
+    const [query, setQuery] = useState(() => {
         const category = params.get("category");
         const brand = params.get("brand");
 
@@ -39,33 +54,33 @@ export default function Shop() {
         const brand = params.get("brand");
 
         if (category) {
-            setFilter({category: category});
+            setQuery({category: category});
         } else if (brand) {
-            setFilter({brand: brand});
+            setQuery({brand: brand});
         } else {
-            setFilter(null);
+            setQuery(null);
         }
     }, [location]);
 
 
     useEffect(() => {
-        if (filter) {
-            if (filter.category) {
+        if (query) {
+            if (query.category) {
                 setFilteredProducts(products.filter((product) => {
                     const productCategories = product.category
-                    return productCategories.includes(filter.category);
+                    return productCategories.includes(query.category);
 
                 }));
-            } else if (filter.brand) {
+            } else if (query.brand) {
                 setFilteredProducts(products.filter((product) => {
                     const productBrand = product.brand
-                    return productBrand.includes(filter.brand);
+                    return productBrand.includes(query.brand);
                 }));
             }
         } else {
             setFilteredProducts(products);
         }
-    }, [filter]);
+    }, [query]);
 
 
     useEffect(() => {
@@ -80,13 +95,14 @@ export default function Shop() {
         fetchData();
     }, []);
 
+
     return (
 
         <Container maxW="container.xxl" my={4}>
             <VStack spacing={4}>
                 <InfoPanel param={param}/>
                 <Flex gap={4}>
-                    <ProductsFilterPanel/>
+                    <ProductsFilterPanel filters={filters} setFilters={setFilters}/>
                     <MotionBox
                         initial={{opacity: 0, y: -20}}
                         animate={{opacity: 1, y: 0}}

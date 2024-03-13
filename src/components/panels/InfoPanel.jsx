@@ -110,14 +110,14 @@ export default function InfoPanel({product, param}) {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-                <Link to={"/shop"}>
+                <Link to={currentPage === "shop" ? null : "/shop"}>
                     <BreadcrumbLink fontSize={"lg"} href="#"
                                     _hover={{textDecoration: "none", cursor: "pointer"}}>Shop</BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-                <Link to={"/shop"}>
+                <Link to={currentPage === "shop" ? null : "/shop"}>
                     <BreadcrumbLink fontSize={"lg"} href="#"
                                     _hover={{textDecoration: "none", cursor: "pointer"}}>Products</BreadcrumbLink>
                 </Link>
