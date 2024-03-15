@@ -1,16 +1,9 @@
 import {useEffect, useState} from "react";
-import { Flex, List, ListItem, Icon, Button, Tooltip, Image, Text, Divider } from "@chakra-ui/react";
+import {Button, Divider, Flex, Icon, Image, List, ListItem, Text, Tooltip} from "@chakra-ui/react";
 import StoreSvg from "../../assets/Shopping.svg"
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {
-    RiDashboardLine,
-    RiFileListLine,
-    RiShoppingBagLine,
-    RiUserLine,
-    RiExpandRightLine,
-
-} from "react-icons/ri";
+import {RiDashboardLine, RiExpandRightLine, RiFileListLine, RiShoppingBagLine, RiUserLine,} from "react-icons/ri";
 
 const iconMap = {
     dashboard: RiDashboardLine,
@@ -57,7 +50,7 @@ const SidebarLink = ({to, icon, children, isSelected, onClick, minimized}) => {
 };
 
 export default function AdminPanel() {
-    const { currentPage } = useSelector((state) => state.page);
+    const {currentPage} = useSelector((state) => state.page);
     const [selectedItem, setSelectedItem] = useState();
     const [minimized, setMinimized] = useState(false);
 
@@ -94,7 +87,7 @@ export default function AdminPanel() {
         >
 
             <Flex direction="row" justifyContent={"center"} align="center" mb={4}>
-                <Image src={StoreSvg} alt="Store"  boxSize="35px" borderRadius="full" />
+                <Image src={StoreSvg} alt="Store" boxSize="35px" borderRadius="full"/>
                 {
                     minimized ? "" : <Text color="white" fontWeight={"bold"} fontSize="xl" ml={2} mt={2}>
                         RAYSTORE

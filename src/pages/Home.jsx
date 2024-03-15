@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../features/page/PageAction.js";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentPage} from "../features/page/PageAction.js";
 
 export default function Home() {
     const dispatch = useDispatch();
-    const { currentPage } = useSelector((state) => state.page);
+    const {currentPage} = useSelector((state) => state.page);
 
     useEffect(() => {
         dispatch(setCurrentPage("home"));
@@ -15,9 +15,9 @@ export default function Home() {
             {/* Hero Section */}
             <section
                 id="home"
-                style={{ background: "#f8f8f8", padding: "100px 0" }}
+                style={{background: "#f8f8f8", padding: "100px 0"}}
             >
-                <div style={{ textAlign: "center" }}>
+                <div style={{textAlign: "center"}}>
                     <h1>Welcome to RayStore</h1>
                     <p>Your Destination for Quality Shopping</p>
                     <button
@@ -37,7 +37,7 @@ export default function Home() {
             </section>
 
             {/* Mission Section */}
-            <section id="mission" style={{ padding: "50px 0" }}>
+            <section id="mission" style={{padding: "50px 0"}}>
                 <div
                     style={{
                         maxWidth: "800px",
@@ -59,7 +59,7 @@ export default function Home() {
             {/* About Us Section */}
             <section
                 id="about"
-                style={{ background: "#f8f8f8", padding: "50px 0" }}
+                style={{background: "#f8f8f8", padding: "50px 0"}}
             >
                 <div
                     style={{
@@ -81,7 +81,7 @@ export default function Home() {
             </section>
 
             {/* Contact Us Section */}
-            <section id="contact" style={{ padding: "50px 0" }}>
+            <section id="contact" style={{padding: "50px 0"}}>
                 <div
                     style={{
                         maxWidth: "800px",

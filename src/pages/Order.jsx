@@ -1,7 +1,5 @@
-import {
-    Box, Container, HStack
-} from "@chakra-ui/react";
-import {useSelector, useDispatch} from "react-redux";
+import {Box, Container, HStack} from "@chakra-ui/react";
+import {useDispatch, useSelector} from "react-redux";
 import ShippingStepper from "../components/steppers/ShippingStepper.jsx";
 import {getOrdersAsync} from "../features/orders/ordersAction.js";
 import {useEffect, useState} from "react";

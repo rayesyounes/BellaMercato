@@ -1,4 +1,4 @@
-import {Box, Container, Flex, Grid, HStack, VStack} from "@chakra-ui/react";
+import {Box, Container, Flex, Grid, VStack} from "@chakra-ui/react";
 import ProductCard from "../components/cards/ProductCard.jsx";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,7 +9,6 @@ import {motion} from "framer-motion";
 import InfoPanel from "../components/panels/InfoPanel.jsx";
 import ProductsFilterPanel from "../components/panels/ProductsFilterPanel.jsx";
 import {useLocation} from "react-router-dom";
-import EmptyCartSvg from "../assets/EmptyCart.svg";
 
 export default function Shop() {
 
@@ -119,36 +118,36 @@ export default function Shop() {
 
 
                     {filteredProducts.length === 0 ? (<MotionGrid
+                        width={"100%"}
+                        initial={{opacity: 0, y: -20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 1.9}}
+                    >
+                        <Box
+                            bg={"white"}
                             width={"100%"}
-                            initial={{opacity: 0, y: -20}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{duration: 1.9}}
+                            borderRadius={"lg"}
+                            boxShadow={"md"}
                         >
-                            <Box
-                                bg={"white"}
-                                width={"100%"}
-                                borderRadius={"lg"}
-                                boxShadow={"md"}
-                            >
-                                <Box textAlign="center" mt={100}>
-                                    <Box maxW="250px" mx="auto">
-                                        <img
-                                            src={NoData}
-                                            alt="No Available Products"
-                                            width="100%"
-                                            style={{borderRadius: "8px"}}
-                                        />
-                                    </Box>
-                                    <Box fontSize="xl" fontWeight="bold" mt={4}>No Available Products</Box>
+                            <Box textAlign="center" mt={100}>
+                                <Box maxW="250px" mx="auto">
+                                    <img
+                                        src={NoData}
+                                        alt="No Available Products"
+                                        width="100%"
+                                        style={{borderRadius: "8px"}}
+                                    />
                                 </Box>
+                                <Box fontSize="xl" fontWeight="bold" mt={4}>No Available Products</Box>
                             </Box>
-                        </MotionGrid>) : (<MotionGrid
-                            initial={{opacity: 0, y: -20}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{duration: 1.9}}
-                            templateColumns="repeat(3, 2fr)" alignItems={"start"} gap={4}>
-                            {filteredProducts.map((product) => (<ProductCard key={product.id} product={product}/>))}
-                        </MotionGrid>)}
+                        </Box>
+                    </MotionGrid>) : (<MotionGrid
+                        initial={{opacity: 0, y: -20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 1.9}}
+                        templateColumns="repeat(3, 2fr)" alignItems={"start"} gap={4}>
+                        {filteredProducts.map((product) => (<ProductCard key={product.id} product={product}/>))}
+                    </MotionGrid>)}
                     {/*)}*/}
 
                 </Flex>

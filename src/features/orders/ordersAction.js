@@ -1,16 +1,13 @@
 import {
-    getOrdersStart,
-    getOrdersSuccess,
-    getOrdersFailure,
+    addOrderFailure,
     addOrderStart,
     addOrderSuccess,
-    addOrderFailure,
+    getOrdersFailure,
+    getOrdersStart,
+    getOrdersSuccess,
+    updateOrderFailure,
     updateOrderStart,
     updateOrderSuccess,
-    updateOrderFailure,
-    // deleteOrderStart,
-    // deleteOrderSuccess,
-    // deleteOrderFailure,
 } from "./ordersSlice";
 import axios from "axios";
 

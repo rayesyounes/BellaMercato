@@ -1,5 +1,5 @@
 // cartSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialCartsState = {
     id: null,
@@ -21,7 +21,7 @@ const cartSlice = createSlice({
             state.total = action.payload.total;
         },
         setError: (state, action) => {
-            state.error = { message: action.payload };
+            state.error = {message: action.payload};
         },
         setLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -30,4 +30,4 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { setCart, setError, setLoading } = cartSlice.actions;
+export const {setCart, setError, setLoading} = cartSlice.actions;

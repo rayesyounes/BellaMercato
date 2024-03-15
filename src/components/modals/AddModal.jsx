@@ -1,17 +1,17 @@
 import {
+    Button,
+    Center,
     Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
     ModalBody,
     ModalCloseButton,
-    Center,
-    useDisclosure,
-    Button
+    ModalContent,
+    ModalHeader,
+    ModalOverlay,
+    useDisclosure
 } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
+import {AddIcon} from "@chakra-ui/icons";
 import AddLayout from "../../layouts/AddLayout.jsx";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const renderHeader = (state) => {
     switch (state) {
@@ -25,28 +25,28 @@ const renderHeader = (state) => {
 };
 
 export default function AddModal() {
-    const { currentPage } = useSelector((state) => state.page);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {currentPage} = useSelector((state) => state.page);
+    const {isOpen, onOpen, onClose} = useDisclosure();
 
     return (
         <>
             <Button
                 colorScheme="teal"
                 size={"sm"}
-                _hover={{ bg: "teal.600" }}
+                _hover={{bg: "teal.600"}}
                 onClick={onOpen}
             >
-                <AddIcon mr={2} />
+                <AddIcon mr={2}/>
                 Add
             </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
+                <ModalOverlay/>
                 <ModalContent>
                     <ModalHeader>
                         <Center>{renderHeader(currentPage)}</Center>
                     </ModalHeader>
-                    <ModalCloseButton />
+                    <ModalCloseButton/>
                     <ModalBody pb={6}>
                         <AddLayout
                             onClose={onClose}

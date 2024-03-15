@@ -1,9 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../../features/page/PageAction.js";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentPage} from "../../features/page/PageAction.js";
+
 export default function Categories() {
     const dispatch = useDispatch();
-    const { currentPage } = useSelector((state) => state.page);
+    const {currentPage} = useSelector((state) => state.page);
 
     useEffect(() => {
         dispatch(setCurrentPage("categories"));

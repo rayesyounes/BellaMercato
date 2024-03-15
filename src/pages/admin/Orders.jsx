@@ -3,12 +3,12 @@ import FiltersPanel from "../../components/panels/FiltersPanel";
 import DataTable from "../../components/tables/DataTable";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import { getOrdersAsync } from "../../features/orders/ordersAction.js";
-import { setCurrentPage } from "../../features/page/PageAction.js";
+import {getOrdersAsync} from "../../features/orders/ordersAction.js";
+import {setCurrentPage} from "../../features/page/PageAction.js";
 
 function Orders() {
     const dispatch = useDispatch();
-    const { orders, error, isLoading } = useSelector((state) => state.orders);
+    const {orders, error, isLoading} = useSelector((state) => state.orders);
     const [filteredData, setFilteredData] = useState(orders);
     const [columns, setColumns] = useState([]);
 
@@ -29,7 +29,7 @@ function Orders() {
     return (
         <Container p={4} maxW="container.xxl">
             <VStack spacing={4}>
-                <FiltersPanel setFilteredData={setFilteredData} />
+                <FiltersPanel setFilteredData={setFilteredData}/>
 
                 <Box
                     borderWidth="1px"
@@ -49,7 +49,7 @@ function Orders() {
                         Orders
                     </Text>
 
-                    <DataTable data={filteredData} columns={columns} />
+                    <DataTable data={filteredData} columns={columns}/>
 
                     <Box color="teal" p={4}></Box>
                 </Box>

@@ -1,22 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import {
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Switch,
-    Button,
-    FormErrorMessage,
-    Flex,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import {
-    addUserAsync,
-    updateUserAsync,
-} from "../../features/users/usersAction";
+import {useEffect, useRef, useState} from "react";
+import {Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Switch,} from "@chakra-ui/react";
+import {motion} from "framer-motion";
+import {useDispatch} from "react-redux";
+import {addUserAsync, updateUserAsync,} from "../../features/users/usersAction";
 
-const UserForm = ({ onClose, item }) => {
+const UserForm = ({onClose, item}) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({});
     const [formErrors, setFormErrors] = useState({});
@@ -75,9 +63,9 @@ const UserForm = ({ onClose, item }) => {
     return (
         <Box p={0}>
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{opacity: 0, y: -50}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.5}}
             >
                 <FormControl isInvalid={!!formErrors.username}>
                     <FormLabel>Username</FormLabel>
@@ -106,7 +94,7 @@ const UserForm = ({ onClose, item }) => {
                         value={formData.email || ""}
                         placeholder="Enter email"
                         onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
+                            setFormData({...formData, email: e.target.value})
                         }
                     />
                     <FormErrorMessage>{formErrors.email}</FormErrorMessage>
@@ -169,8 +157,8 @@ const UserForm = ({ onClose, item }) => {
                         colorScheme="teal"
                         mt={4}
                         onClick={handleSubmit}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
                         flexBasis={"60%"}
                     >
                         Submit
@@ -179,8 +167,8 @@ const UserForm = ({ onClose, item }) => {
                         ml={4}
                         mt={4}
                         onClick={() => onClose()}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
                         flexBasis={"40%"}
                     >
                         Cancel

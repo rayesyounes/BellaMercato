@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { Container, VStack, Box, Text } from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import {Box, Container, Text, VStack} from "@chakra-ui/react";
 
 import DataTable from "../../components/tables/DataTable";
 import FiltersPanel from "../../components/panels/FiltersPanel";
 
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../../features/page/PageAction";
-import { getUsersAsync } from "../../features/users/usersAction";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentPage} from "../../features/page/PageAction";
+import {getUsersAsync} from "../../features/users/usersAction";
 
 function Users() {
     const dispatch = useDispatch();
-    const { users, error, isLoading } = useSelector((state) => state.users);
+    const {users, error, isLoading} = useSelector((state) => state.users);
     const [columns, setColumns] = useState([]);
     const [filteredData, setFilteredData] = useState(users);
 
@@ -50,7 +50,7 @@ function Users() {
                     >
                         Customers
                     </Text>
-                    <DataTable data={users} columns={columns} />
+                    <DataTable data={users} columns={columns}/>
                     <Box color="teal" p={4}></Box>
                 </Box>
             </VStack>

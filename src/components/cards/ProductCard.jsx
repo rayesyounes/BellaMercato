@@ -1,5 +1,16 @@
 import {
-    CardFooter, CardBody, Image, Stack, Heading, Text, ButtonGroup, Button, Card, Flex, Icon, Badge,
+    Badge,
+    Button,
+    ButtonGroup,
+    Card,
+    CardBody,
+    CardFooter,
+    Flex,
+    Heading,
+    Icon,
+    Image,
+    Stack,
+    Text,
 } from "@chakra-ui/react";
 import {addToCart} from "../../features/cart/cartAction.js";
 import {useDispatch, useSelector} from "react-redux";

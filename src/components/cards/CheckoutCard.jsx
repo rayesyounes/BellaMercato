@@ -1,21 +1,21 @@
 import {
-    Button,
-    Flex,
     Box,
-    VStack,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    Tfoot,
+    Button,
+    Card,
+    CardBody,
+    CardHeader,
+    Flex,
     FormControl,
     FormLabel,
     Input,
-    Card,
-    CardHeader,
-    CardBody, Divider, Spacer,
+    Table,
+    Tbody,
+    Td,
+    Tfoot,
+    Th,
+    Thead,
+    Tr,
+    VStack,
 } from "@chakra-ui/react";
 import {motion} from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -103,9 +103,9 @@ export default function CheckoutCard({step, handelConfirm, setStep, data, confir
                 </Flex>
 
                 <Card maxW="500px" bg="gray.100" border="2px solid teal"
-                 borderRadius="lg" overflow="hidden">
+                      borderRadius="lg" overflow="hidden">
                     <CardHeader pb={0}>
-                        <Box textAlign="center"fontSize="xl" fontWeight="bold" >
+                        <Box textAlign="center" fontSize="xl" fontWeight="bold">
                             Order Summary
                         </Box>
                     </CardHeader>
@@ -113,7 +113,7 @@ export default function CheckoutCard({step, handelConfirm, setStep, data, confir
                         <Table size="sm">
                             <Thead>
                                 <Tr>
-                                    <Th >Product / Unit(s)</Th>
+                                    <Th>Product / Unit(s)</Th>
                                     <Th textAlign="end">
                                         Subtotal
                                     </Th>
@@ -130,8 +130,10 @@ export default function CheckoutCard({step, handelConfirm, setStep, data, confir
 
                                     return (
                                         <Tr key={item.product_id}>
-                                            <Td fontSize="md" paddingBottom={isLast ? "3" : null}>{`${product.name}  X  ${item.quantity}`}</Td>
-                                            <Td fontSize="md" bottom={5} textAlign="end" >{`${(product.price * item.quantity).toFixed(2)} $`}</Td>
+                                            <Td fontSize="md"
+                                                paddingBottom={isLast ? "3" : null}>{`${product.name}  X  ${item.quantity}`}</Td>
+                                            <Td fontSize="md" bottom={5}
+                                                textAlign="end">{`${(product.price * item.quantity).toFixed(2)} $`}</Td>
                                         </Tr>
                                     );
                                 })}

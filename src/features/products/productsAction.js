@@ -1,16 +1,16 @@
 import {
-    getProductsStart,
-    getProductsSuccess,
-    getProductsFailure,
+    addProductFailure,
     addProductStart,
     addProductSuccess,
-    addProductFailure,
-    updateProductStart,
-    updateProductSuccess,
-    updateProductFailure,
+    deleteProductFailure,
     deleteProductStart,
     deleteProductSuccess,
-    deleteProductFailure,
+    getProductsFailure,
+    getProductsStart,
+    getProductsSuccess,
+    updateProductFailure,
+    updateProductStart,
+    updateProductSuccess,
 } from "./productsSlice";
 import axios from "axios";
 
@@ -42,7 +42,7 @@ export const updateProductAsync = (productId, updatedProduct) => async (dispatch
     try {
         dispatch(updateProductStart());
         await axios.put(`${API_BASE_URL}/products/${productId}`, updatedProduct);
-        dispatch(updateProductSuccess({ id: productId, updatedProduct }));
+        dispatch(updateProductSuccess({id: productId, updatedProduct}));
     } catch (error) {
         dispatch(updateProductFailure(error.message));
         console.error("Error updating product:", error);
@@ -64,9 +64,9 @@ export const decreaseProductStockAsync = (productId, quantity) => async (dispatc
     try {
         dispatch(updateProductStart());
         const response = await axios.get(`${API_BASE_URL}/products/${productId}`);
-        const updatedProduct = { ...response.data, stock: response.data.stock - quantity };
+        const updatedProduct = {...response.data, stock: response.data.stock - quantity};
         await axios.put(`${API_BASE_URL}/products/${productId}`, updatedProduct);
-        dispatch(updateProductSuccess({ id: productId, updatedProduct }));
+        dispatch(updateProductSuccess({id: productId, updatedProduct}));
     } catch (error) {
         dispatch(updateProductFailure(error.message));
         console.error("Error updating product:", error);

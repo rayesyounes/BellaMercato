@@ -34,7 +34,7 @@ export default function CheckOut() {
                 {/*    animate={{opacity: 1, y: 0}}*/}
                 {/*    transition={{duration: 0.9}}*/}
                 {/*>*/}
-                    <CheckoutLayout confirmed={confirmed} setConfirmed={setConfirmed} step={step} setStep={setStep}/>
+                <CheckoutLayout confirmed={confirmed} setConfirmed={setConfirmed} step={step} setStep={setStep}/>
                 {/*</MotionBox>*/}
             </Flex>
         </Container>

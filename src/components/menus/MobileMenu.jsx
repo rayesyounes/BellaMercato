@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
     Box,
     Drawer,
-    DrawerOverlay,
+    DrawerBody,
     DrawerContent,
     DrawerHeader,
-    DrawerBody,
+    DrawerOverlay,
     Flex,
     IconButton,
-    Spacer,
     Link as ChakraLink,
+    Spacer,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
+import {CloseIcon, HamburgerIcon} from "@chakra-ui/icons";
+import {NavLink} from "react-router-dom";
 
 const linkStyles = {
     color: "black",
@@ -32,17 +32,17 @@ export default function MobileMenu() {
 
     return (
         <>
-            <Box display={{ md: "none" }} ml={5}>
+            <Box display={{md: "none"}} ml={5}>
                 <IconButton zIndex={30}
-                    icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                    onClick={onToggle}
-                    variant="ghost"
-                    aria-label="Toggle Navigation"
+                            icon={isOpen ? <CloseIcon/> : <HamburgerIcon/>}
+                            onClick={onToggle}
+                            variant="ghost"
+                            aria-label="Toggle Navigation"
                 />
             </Box>
 
             <Drawer placement="top" onClose={() => setIsOpen(false)} isOpen={isOpen}>
-                <DrawerOverlay />
+                <DrawerOverlay/>
                 <DrawerContent>
                     <DrawerHeader borderBottomWidth="1px"><Flex>
                         <ChakraLink as={NavLink} to="/" {...linkStyles}>
@@ -50,12 +50,12 @@ export default function MobileMenu() {
                                 RAYSTORE
                             </Box>
                         </ChakraLink>
-                        <Spacer />
+                        <Spacer/>
                         <IconButton zIndex={30}
-                            icon={<CloseIcon />}
-                            onClick={onToggle}
-                            variant="ghost"
-                            aria-label="Toggle Navigation"
+                                    icon={<CloseIcon/>}
+                                    onClick={onToggle}
+                                    variant="ghost"
+                                    aria-label="Toggle Navigation"
                         />
                     </Flex></DrawerHeader>
                     <DrawerBody>

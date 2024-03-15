@@ -2,9 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Box, Button, Flex, IconButton, Text, VStack} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {getProductsAsync} from "../../features/products/productsAction.js";
-import {
-    decreaseQuantity, fetchUserCart, increaseQuantity, removeItem
-} from "../../features/cart/cartAction.js";
+import {decreaseQuantity, fetchUserCart, increaseQuantity, removeItem} from "../../features/cart/cartAction.js";
 import {AddIcon, DeleteIcon, MinusIcon} from "@chakra-ui/icons";
 import {motion} from "framer-motion";
 

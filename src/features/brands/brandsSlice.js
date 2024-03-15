@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
-const  inicialBrandsState = {
+const inicialBrandsState = {
     brands: [],
     error: null,
     isLoading: false,
@@ -25,5 +25,5 @@ const brandsSlice = createSlice({
     },
 });
 
-export const { getBrandsStart, getBrandsSuccess, getBrandsFailure } = brandsSlice.actions;
+export const {getBrandsStart, getBrandsSuccess, getBrandsFailure} = brandsSlice.actions;
 export default brandsSlice.reducer;

@@ -1,21 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import {
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Button,
-    FormErrorMessage,
-    Flex,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import {
-    addProductAsync,
-    updateProductAsync,
-} from "../../features/products/productsAction";
+import {useEffect, useRef, useState} from "react";
+import {Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input,} from "@chakra-ui/react";
+import {motion} from "framer-motion";
+import {useDispatch} from "react-redux";
+import {addProductAsync, updateProductAsync,} from "../../features/products/productsAction";
 
-const ProductForm = ({ onClose, item }) => {
+const ProductForm = ({onClose, item}) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({});
     const [formErrors, setFormErrors] = useState({});
@@ -78,9 +67,9 @@ const ProductForm = ({ onClose, item }) => {
     return (
         <Box p={0}>
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{opacity: 0, y: -50}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.5}}
             >
                 <FormControl isInvalid={!!formErrors.name}>
                     <FormLabel>Name</FormLabel>
@@ -109,7 +98,7 @@ const ProductForm = ({ onClose, item }) => {
                         value={formData.price || ""}
                         placeholder="Enter price"
                         onChange={(e) =>
-                            setFormData({ ...formData, price: e.target.value })
+                            setFormData({...formData, price: e.target.value})
                         }
                     />
                     <FormErrorMessage>{formErrors.price}</FormErrorMessage>
@@ -158,8 +147,8 @@ const ProductForm = ({ onClose, item }) => {
                         colorScheme="teal"
                         mt={4}
                         onClick={handleSubmit}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
                         flexBasis={"60%"}
                     >
                         Submit
@@ -168,8 +157,8 @@ const ProductForm = ({ onClose, item }) => {
                         ml={4}
                         mt={4}
                         onClick={() => onClose()}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
                         flexBasis={"40%"}
                     >
                         Cancel

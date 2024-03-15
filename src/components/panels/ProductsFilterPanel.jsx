@@ -1,7 +1,14 @@
 import {Flex} from "@chakra-ui/react";
 import FilterForm from "../forms/FilterForm.jsx";
 
-export default function ProductsFilterPanel({filters, setFilters, categoriesList, brandsList, flatCategories, flatBrands}) {
+export default function ProductsFilterPanel({
+                                                filters,
+                                                setFilters,
+                                                categoriesList,
+                                                brandsList,
+                                                flatCategories,
+                                                flatBrands
+                                            }) {
     return (<Flex
         width={"50vh"}
         height={"75vh"}

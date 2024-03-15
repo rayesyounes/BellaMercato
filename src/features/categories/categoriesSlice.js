@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
-const  initialCategoriesState = {
+const initialCategoriesState = {
     categories: [],
     error: null,
     isLoading: false,
@@ -25,6 +25,6 @@ const categoriesSlice = createSlice({
     },
 });
 
-export const { getCategoriesStart, getCategoriesSuccess, getCategoriesFailure } = categoriesSlice.actions;
+export const {getCategoriesStart, getCategoriesSuccess, getCategoriesFailure} = categoriesSlice.actions;
 export default categoriesSlice.reducer;
 

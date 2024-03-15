@@ -2,13 +2,13 @@ import {
     Box,
     Step,
     StepDescription,
-    Stepper,
-    StepIndicator,
-    StepStatus,
     StepIcon,
+    StepIndicator,
     StepNumber,
-    StepTitle,
+    Stepper,
     StepSeparator,
+    StepStatus,
+    StepTitle,
     useSteps
 } from "@chakra-ui/react";
 import {useEffect} from "react";

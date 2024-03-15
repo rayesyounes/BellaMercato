@@ -1,27 +1,15 @@
-import {Link as ReactRouterLink, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import AuthModal from "./modals/AuthModal.jsx";
 import Logo from "./Logo.jsx";
-
-import CartSvg from "../assets/Cart.svg";
 import MobileMenu from "./menus/MobileMenu.jsx";
 import "../assets/styles/header.css"
 
-import {
-    Flex,
-    Heading,
-    Link as ChakraLink,
-    Spacer,
-    HStack,
-    Box,
-    useDisclosure,
-    Text, InputGroup, Input, InputRightElement, IconButton,
-} from "@chakra-ui/react";
+import {Box, Flex, Heading, HStack, Link as ChakraLink, Spacer,} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import HeaderTag from "./tags/HeaderTag.jsx";
 import HeaderMenu from "./menus/HeaderMenu.jsx";
 import CartDrawer from "./drawers/CartDrawer.jsx";
-import {SearchIcon} from "@chakra-ui/icons";
 
 export default function Header() {
     // const {isOpen, onToggle} = useDisclosure();

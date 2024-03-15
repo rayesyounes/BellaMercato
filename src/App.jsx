@@ -1,10 +1,5 @@
-import { Analytics } from "@vercel/analytics/react"
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    RouterProvider,
-    Route,
-} from "react-router-dom";
+import {Analytics} from "@vercel/analytics/react"
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} from "react-router-dom";
 
 import {useSelector} from "react-redux";
 import RootLayout from "./layouts/RootLayout.jsx";
@@ -53,14 +48,14 @@ function App() {
                 <Route path="product/:id" element={<Product/>}/>
                 <Route path="categories" element={<Categories/>}/>
                 <Route path="brands" element={<Brands/>}/>
-                <Route path="*" component={NotFound} />
+                <Route path="*" component={NotFound}/>
 
 
                 {/* protectedRoute */}
                 {isAuthenticated && <Route path="checkout" element={<CheckOut/>}/>}
                 {isAuthenticated && <Route path="profile" element={<Profile/>}/>}
-                {isAuthenticated && <Route path="history" element={<History />}/>}
-                {isAuthenticated && <Route path="order/:id" element={<Order />}/>}
+                {isAuthenticated && <Route path="history" element={<History/>}/>}
+                {isAuthenticated && <Route path="order/:id" element={<Order/>}/>}
 
 
                 {/* adminRoute */}
@@ -82,7 +77,7 @@ function App() {
     return (
         <div>
             <RouterProvider router={router}/>
-            <Analytics />
+            <Analytics/>
         </div>
     );
 }

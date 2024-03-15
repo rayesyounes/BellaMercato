@@ -1,9 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
-import {
-    Box, Text, Image, Flex, Container, Grid, GridItem, Button, Badge, Icon, VStack,
-} from "@chakra-ui/react";
-import {FiChevronLeft, FiChevronRight, FiStar} from "react-icons/fi";
+import {Badge, Box, Button, Container, Flex, Grid, GridItem, Icon, Image, Text, VStack,} from "@chakra-ui/react";
+import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
 import {useDispatch, useSelector} from "react-redux";
 import {motion} from "framer-motion";
 import {addToCart} from "../features/cart/cartAction.js";
@@ -16,7 +14,6 @@ import InfoPanel from "../components/panels/InfoPanel.jsx";
 import ReviewsCard from "../components/cards/ReviewsCard.jsx";
 import SuggestedProductCard from "../components/cards/SuggestedProductCard.jsx";
 import StarRating from "../components/Feedbacks/StarRating.jsx";
-import {getCategories} from "../features/categories/categoriesAction.js";
 
 const MotionBox = motion(Box);
 
@@ -223,7 +220,7 @@ const Product = () => {
                                     transform="translate(0, -50%)"
                                     // opacity={0}
                                     transition="all 0.2s ease-in-out"
-                                    _hover={{opacity: 1, bg: "gray.100",transition: "all 0.2s ease-in-out"}}
+                                    _hover={{opacity: 1, bg: "gray.100", transition: "all 0.2s ease-in-out"}}
                                     w={"50px"}
                                     h={"50px"}
                                     bg={"white"}
@@ -251,7 +248,7 @@ const Product = () => {
                                     transform="translate(0, -50%)"
                                     // opacity={0}
                                     transition="all 0.2s ease-in-out"
-                                    _hover={{opacity: 1, bg: "gray.100",transition: "all 0.2s ease-in-out"}}
+                                    _hover={{opacity: 1, bg: "gray.100", transition: "all 0.2s ease-in-out"}}
                                     w={"50px"}
                                     h={"50px"}
                                     bg={"white"}

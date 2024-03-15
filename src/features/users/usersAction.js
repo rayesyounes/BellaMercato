@@ -1,16 +1,16 @@
 import {
-    getUsersStart,
-    getUsersSuccess,
-    getUsersFailure,
+    addUserFailure,
     addUserStart,
     addUserSuccess,
-    addUserFailure,
-    updateUserStart,
-    updateUserSuccess,
-    updateUserFailure,
+    deleteUserFailure,
     deleteUserStart,
     deleteUserSuccess,
-    deleteUserFailure,
+    getUsersFailure,
+    getUsersStart,
+    getUsersSuccess,
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
 } from "./usersSlice";
 import axios from "axios";
 
@@ -42,7 +42,7 @@ export const updateUserAsync = (userId, updatedUser) => async (dispatch) => {
     try {
         dispatch(updateUserStart());
         await axios.put(`${API_BASE_URL}/users/${userId}`, updatedUser);
-        dispatch(updateUserSuccess({ id: userId, updatedUser }));
+        dispatch(updateUserSuccess({id: userId, updatedUser}));
     } catch (error) {
         dispatch(updateUserFailure(error.message));
         console.error("Error updating user:", error);

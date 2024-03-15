@@ -1,13 +1,5 @@
-import {
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuGroup,
-    MenuItem,
-    MenuList,
-} from "@chakra-ui/react";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
+import {Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList,} from "@chakra-ui/react";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {logoutAuth} from "../../features/auth/authAction.js";
 

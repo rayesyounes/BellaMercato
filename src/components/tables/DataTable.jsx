@@ -1,28 +1,18 @@
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    Box,
-    IconButton,
-    Flex,
-} from "@chakra-ui/react";
+import {Box, Flex, IconButton, Table, Tbody, Td, Th, Thead, Tr,} from "@chakra-ui/react";
 
-import { DeleteIcon } from "@chakra-ui/icons";
+import {DeleteIcon} from "@chakra-ui/icons";
 
-import { useSelector, useDispatch } from "react-redux";
-import { deleteUserAsync } from "../../features/users/usersAction";
-import { deleteProductAsync } from "../../features/products/productsAction";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteUserAsync} from "../../features/users/usersAction";
+import {deleteProductAsync} from "../../features/products/productsAction";
 
 import EditModal from "../modals/EditModal";
 import ActionsMenu from "../menus/ActionsMenu";
 
-function DataTable({ columns, data }) {
-    const { users } = useSelector((state) => state.users);
-    const { products } = useSelector((state) => state.products);
-    const { currentPage } = useSelector((state) => state.page);
+function DataTable({columns, data}) {
+    const {users} = useSelector((state) => state.users);
+    const {products} = useSelector((state) => state.products);
+    const {currentPage} = useSelector((state) => state.page);
     const dispatch = useDispatch();
 
     const renderHeadData = (col, tag, fontSize, fontWeight, textTransform) => {
@@ -113,7 +103,7 @@ function DataTable({ columns, data }) {
                                 >
                                     {parseFloat(
                                         getProductPrice(i.product_id) *
-                                            i.quantity
+                                        i.quantity
                                     ).toFixed(2)}{" "}
                                     $
                                 </Box>
@@ -148,7 +138,7 @@ function DataTable({ columns, data }) {
             case "status":
                 return (
                     <Td fontSize={"sm"} key={col} textAlign={"center"}>
-                        <ActionsMenu item={item} />
+                        <ActionsMenu item={item}/>
                     </Td>
                 );
             case "id":
@@ -212,7 +202,7 @@ function DataTable({ columns, data }) {
     return (
         <Table
             variant="simple"
-            
+
         >
             <Thead>
                 <Tr>
@@ -240,11 +230,11 @@ function DataTable({ columns, data }) {
                         {currentPage !== "orders" && (
                             <Td border={"none"}>
                                 <Flex justifyContent={"center"} gap={2}>
-                                    <EditModal item={item} />
+                                    <EditModal item={item}/>
                                     <IconButton
                                         aria-label="Delete"
                                         onClick={() => handelDelete(item.id)}
-                                        icon={<DeleteIcon />}
+                                        icon={<DeleteIcon/>}
                                         colorScheme="red"
                                         size={"sm"}
                                     />

@@ -23,9 +23,8 @@ import {
 } from "@chakra-ui/react";
 import {ArrowForwardIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon} from "@chakra-ui/icons";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 function RadioCard({children, handelClick, spec, ...props}) {
     const {getInputProps, getRadioProps} = useRadio(props);

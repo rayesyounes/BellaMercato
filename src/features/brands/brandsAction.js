@@ -1,4 +1,4 @@
-import {getBrandsStart, getBrandsSuccess, getBrandsFailure} from "./brandsSlice.js";
+import {getBrandsFailure, getBrandsStart, getBrandsSuccess} from "./brandsSlice.js";
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3000";

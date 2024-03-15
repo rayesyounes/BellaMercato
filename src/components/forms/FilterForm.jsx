@@ -1,23 +1,23 @@
 import {
-    Flex,
+    Accordion,
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
+    Box,
     Button,
+    Checkbox,
+    CheckboxGroup,
+    Flex,
     FormControl,
     FormLabel,
-    RangeSlider,
-    Box,
-    RangeSliderTrack,
-    RangeSliderThumb,
-    RangeSliderFilledTrack,
-    Tooltip,
-    CheckboxGroup,
-    Stack,
-    Checkbox,
-    Accordion,
-    AccordionItem,
-    AccordionIcon,
-    AccordionButton,
-    AccordionPanel,
     Input,
+    RangeSlider,
+    RangeSliderFilledTrack,
+    RangeSliderThumb,
+    RangeSliderTrack,
+    Stack,
+    Tooltip,
 } from "@chakra-ui/react";
 import {MdGraphicEq} from "react-icons/md";
 
@@ -36,12 +36,12 @@ export default function FilterForm({filters, setFilters, categoriesList, brandsL
 
     const updateCategoriesFilters = (e) => {
         const updatedCategories = e.target.checked ? [...filters.categories, e.target.value] : filters.categories.filter(cat => cat !== e.target.value);
-            setFilters(prev => ({...prev, categories: [...updatedCategories]}));
+        setFilters(prev => ({...prev, categories: [...updatedCategories]}));
     }
 
     const updateBrandsFilters = (e) => {
         const updatedBrands = e.target.checked ? [...filters.brands, e.target.value] : filters.brands.filter(br => br !== e.target.value);
-            setFilters(prev => ({...prev, brands: [...updatedBrands]}));
+        setFilters(prev => ({...prev, brands: [...updatedBrands]}));
     }
 
     const handelClear = () => {

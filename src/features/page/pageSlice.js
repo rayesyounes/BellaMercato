@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialPageState = {
     currentPage: null,
@@ -14,7 +14,7 @@ const pageSlice = createSlice({
     },
 });
 
-export const { setPage } = pageSlice.actions;
+export const {setPage} = pageSlice.actions;
 
 export default pageSlice.reducer;
 

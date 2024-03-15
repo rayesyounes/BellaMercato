@@ -1,10 +1,10 @@
-import {Heading, Text, Container, Box, SimpleGrid} from "@chakra-ui/react";
+import {Box, Container, Heading, SimpleGrid, Text} from "@chakra-ui/react";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {getUsersAsync} from "../../features/users/usersAction.js";
 import {getOrdersAsync} from "../../features/orders/ordersAction.js";
-import { getProductsAsync } from "../../features/products/productsAction.js";
-import { setCurrentPage } from "../../features/page/PageAction";
+import {getProductsAsync} from "../../features/products/productsAction.js";
+import {setCurrentPage} from "../../features/page/PageAction";
 
 export default function Dashboard() {
     const dispatch = useDispatch();

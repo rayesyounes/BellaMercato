@@ -1,6 +1,5 @@
-import {loginStart, loginSuccess, loginFailure, logout, clearAuthError} from "./authSlice";
+import {clearAuthError, loginFailure, loginStart, loginSuccess, logout} from "./authSlice";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 
 const API_BASE_URL = "http://localhost:3000";
 
