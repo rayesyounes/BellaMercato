@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Laptop",
-      "price": 999.99,
+      "price": 1900.99,
       "description": "High-performance laptop with the latest specifications.",
       "stock": 39,
       "images": [
@@ -27,7 +27,7 @@
     {
       "id": "2",
       "name": "Smartphone",
-      "price": 179.99,
+      "price": 970.99,
       "description": "High-performance smartphone with the latest specifications.",
       "stock": 75,
       "images": [
@@ -51,7 +51,7 @@
     {
       "id": "5",
       "name": "Tablet",
-      "price": 199.99,
+      "price": 1490.99,
       "description": "High-performance tablet with the latest specifications.",
       "stock": 1,
       "images": [
@@ -66,8 +66,8 @@
         "tablets"
       ],
       "brand": [
-        "samsung",
-        "galaxy-tab"
+        "apple",
+        "ipad"
       ],
       "rating": 4.2,
       "createdAt": "2023-01-15T08:30:00Z"
@@ -208,7 +208,7 @@
       "image": "../public/categories/electronics.webp",
       "color": "#e63946",
       "textColor": "white",
-      "link": "/shop?category=electronics",
+      "link": "/categories?category=electronics",
       "subcategories": [
         {
           "id": "computers",
@@ -248,7 +248,7 @@
       "image": "../public/brands/apple.webp",
       "color": "#2a9d8f",
       "textColor": "white",
-      "link": "/shop?brand=apple",
+      "link": "/brands?brand=apple",
       "subbrands": [
         {
           "id": "mac",
@@ -286,7 +286,7 @@
       "image": "../public/brands/samsung.webp",
       "color": "#6a4c93",
       "textColor": "white",
-      "link": "/shop?brand=samsung",
+      "link": "/brands?brand=samsung",
       "subbrands": [
         {
           "id": "galaxy",

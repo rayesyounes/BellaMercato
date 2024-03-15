@@ -1,13 +1,13 @@
 import { Button, HStack, Input } from '@chakra-ui/react'
 import { useNumberInput } from '@chakra-ui/react'
 
-export default function Number_Input({ handleChange, value }) {
+export default function Number_Input({ handleChange, value, max }) {
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
         useNumberInput({
             step: 1,
-            defaultValue: value,
+            defaultValue:  max > value ? value : max,
             min: 1,
-            max: 50,
+            max: max,
             precision: 0,
             onChange: (valueString) => handleChange(Number(valueString)),
         })

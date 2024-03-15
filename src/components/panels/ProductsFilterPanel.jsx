@@ -1,19 +1,24 @@
 import {Flex} from "@chakra-ui/react";
 import FilterForm from "../forms/FilterForm.jsx";
 
-export default function ProductsFilterPanel({filters, setFilters}) {
+export default function ProductsFilterPanel({filters, setFilters, categoriesList, brandsList, flatCategories, flatBrands}) {
     return (<Flex
-            position={"sticky"}
-            top={20}
-            width={"50vh"}
-            borderWidth="1px"
-            borderRadius="md"
-            boxShadow="md"
-            bg="white"
-            p={4}
-            gap={4}
-            flexDirection="column"
-        >
-            <FilterForm filters={filters} setFilters={setFilters}/>
-        </Flex>);
+        width={"50vh"}
+        height={"75vh"}
+        position={"sticky"}
+        top={20}
+        borderWidth="1px"
+        borderRadius="md"
+        boxShadow="md"
+        bg="white"
+        p={4}
+        gap={4}
+        flexDirection="column"
+        overflowY={"scroll"}
+    >
+        <FilterForm filters={filters} setFilters={setFilters}
+                    flatCategories={flatCategories} flatBrands={flatBrands}
+                    brandsList={brandsList} categoriesList={categoriesList}
+        />
+    </Flex>);
 }

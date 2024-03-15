@@ -78,6 +78,7 @@ function ProductCard({product}) {
                 borderRadius="lg"
                 boxSize="250px"
                 objectFit="cover"
+                transition="all 0.2s ease-in-out"
             />
             <Flex gap={1} position={"absolute"} right={4} top={4}>
                 {productState()}

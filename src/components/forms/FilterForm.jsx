@@ -20,21 +20,10 @@ import {
     Input,
 } from "@chakra-ui/react";
 import {MdGraphicEq} from "react-icons/md";
-import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
 
 
-export default function FilterForm({filters, setFilters}) {
-    const categories = useSelector((state) => state.categories.categories);
-    const brands = useSelector((state) => state.brands.brands);
+export default function FilterForm({filters, setFilters, categoriesList, brandsList, flatCategories, flatBrands}) {
 
-    const [categoriesList, setCategoriesList] = useState([]);
-    const [brandsList, setBrandsList] = useState([]);
-
-    useEffect(() => {
-        setCategoriesList(categories);
-        setBrandsList(brands)
-    }, []);
 
     const handleSliderChange = (values) => {
         const [min, max] = values;
@@ -46,19 +35,13 @@ export default function FilterForm({filters, setFilters}) {
     };
 
     const updateCategoriesFilters = (e) => {
-        if (e.target.checked) {
-            setFilters(prev => ({...prev, category: [...prev.category, e.target.value]}))
-        } else {
-            setFilters(prev => ({...prev, category: prev.category.filter((cat) => cat !== e.target.value)}))
-        }
+        const updatedCategories = e.target.checked ? [...filters.categories, e.target.value] : filters.categories.filter(cat => cat !== e.target.value);
+            setFilters(prev => ({...prev, categories: [...updatedCategories]}));
     }
 
     const updateBrandsFilters = (e) => {
-        if (e.target.checked) {
-            setFilters(prev => ({...prev, brand: [...prev.brand, e.target.value]}))
-        } else {
-            setFilters(prev => ({...prev, brand: prev.brand.filter((cat) => cat !== e.target.value)}))
-        }
+        const updatedBrands = e.target.checked ? [...filters.brands, e.target.value] : filters.brands.filter(br => br !== e.target.value);
+            setFilters(prev => ({...prev, brands: [...updatedBrands]}));
     }
 
     const handelClear = () => {
@@ -66,8 +49,10 @@ export default function FilterForm({filters, setFilters}) {
             searchTerm: "",
             minPrice: null,
             maxPrice: null,
-            category: [],
-            brand: [],
+            category: null,
+            brand: null,
+            categories: [],
+            brands: [],
             sort: "none",
             order: "asc"
         })
@@ -95,10 +80,7 @@ export default function FilterForm({filters, setFilters}) {
                 <RangeSlider
                     step={10}
                     aria-label="Price Range"
-                    value={
-                        [filters.minPrice === null ? 0 : (filters.minPrice / 1500) * 100,
-                            filters.maxPrice === null ? 100 : (filters.maxPrice / 1500) * 100]
-                    }
+                    value={[filters.minPrice === null ? 0 : (filters.minPrice / 1500) * 100, filters.maxPrice === null ? 100 : (filters.maxPrice / 1500) * 100]}
                     onChange={handleSliderChange}
                     colorScheme="teal"
                 >
@@ -108,8 +90,6 @@ export default function FilterForm({filters, setFilters}) {
                     <Tooltip isOpen label={filters.minPrice !== null ? `$${filters.minPrice}` : "$0"}
                              placement="bottom" hasArrow={true}
                              bg="white" color="teal" borderRadius={4} boxShadow={"md"}
-                             zIndex={-1}
-
                     >
                         <RangeSliderThumb boxSize={6} index={0}>
                             <Box color="teal" as={MdGraphicEq}/>
@@ -127,28 +107,38 @@ export default function FilterForm({filters, setFilters}) {
             </Flex>
         </FormControl>
 
+
         <FormControl>
             <FormLabel>Categories</FormLabel>
-            <CheckboxGroup colorScheme='teal' value={filters.category}>
-                {categoriesList.map((category) => (
-
-                    <Accordion key={category.id} allowMultiple>
+            <CheckboxGroup colorScheme='teal' value={filters.categories}>
+                {categoriesList.map((category) => (<Accordion key={category.id} defaultIndex={[0]} allowMultiple>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
                                     <Box as="span" flex='1' textAlign='left'>
-                                        {category.name}
+                                        {category.name
+                                            .split("-")
+                                            .join(" ")
+                                            .split(" ")
+                                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                            .join(" ")}
                                     </Box>
                                     <AccordionIcon/>
                                 </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4}>
                                 <Stack spacing={[1, 3]} direction={['column', 'column']}>
-                                    {category.subcategories.map((subcategory) => (
-                                        <Checkbox
-                                            onChange={(e) => updateCategoriesFilters(e)}
-                                            key={subcategory.id} value={subcategory.name}>{subcategory.name}</Checkbox>
-                                    ))}
+                                    {category.subcategories.map((subcategory) => (<Checkbox
+                                        onChange={(e) => updateCategoriesFilters(e)}
+                                        key={subcategory.id}
+                                        value={subcategory.name}>
+                                        {subcategory.name
+                                            .split("-")
+                                            .join(" ")
+                                            .split(" ")
+                                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                            .join(" ")}
+                                    </Checkbox>))}
                                 </Stack>
                             </AccordionPanel>
                         </AccordionItem>
@@ -160,7 +150,7 @@ export default function FilterForm({filters, setFilters}) {
 
         <FormControl>
             <FormLabel>Brands</FormLabel>
-            <CheckboxGroup colorScheme='teal' value={filters.brand}>
+            <CheckboxGroup colorScheme='teal' value={filters.brands}>
                 {brandsList.map((brand) => (
 
                     <Accordion key={brand.id} allowMultiple>
@@ -168,18 +158,27 @@ export default function FilterForm({filters, setFilters}) {
                             <h2>
                                 <AccordionButton>
                                     <Box as="span" flex='1' textAlign='left'>
-                                        {brand.name}
+                                        {brand.name.split("-")
+                                            .join(" ")
+                                            .split(" ")
+                                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                            .join(" ")}
                                     </Box>
                                     <AccordionIcon/>
                                 </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4}>
                                 <Stack spacing={[1, 3]} direction={['column', 'column']}>
-                                    {brand.subbrands.map((subbrand) => (
-                                        <Checkbox
-                                            onChange={(e) => updateBrandsFilters(e)}
-                                            key={subbrand.id} value={subbrand.name}>{subbrand.name}</Checkbox>
-                                    ))}
+                                    {brand.subbrands.map((subbrand) => (<Checkbox
+                                        onChange={(e) => updateBrandsFilters(e)}
+                                        key={subbrand.id} value={subbrand.name}>
+                                        {subbrand.name
+                                            .split("-")
+                                            .join(" ")
+                                            .split(" ")
+                                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                            .join(" ")}
+                                    </Checkbox>))}
                                 </Stack>
                             </AccordionPanel>
                         </AccordionItem>
