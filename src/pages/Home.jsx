@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentPage} from "../features/page/PageAction.js";
 import {Box, Container, Image,} from "@chakra-ui/react";
 import HeroSection from "./sections/hero/HeroSection.jsx";
-import BannerTop from "../assets/bannerTop.svg";
-import BannerBottom from "../assets/bannerBottom.svg";
+import BannerTop from "../assets/BannerTop.svg";
+import BannerBottom from "../assets/BannerBottom.svg";
 import HeroSlider from "./sections/hero/HeroSlider.jsx";
 
 export default function Home() {
