@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
 import {
+    Badge,
+    Box,
+    Button,
     Flex,
     Icon,
-    Tooltip,
     Input,
-    Text,
-    Box,
-    Portal,
-    PopoverContent,
+    Popover,
     PopoverArrow,
-    PopoverHeader,
-    PopoverCloseButton,
     PopoverBody,
-    Button,
+    PopoverCloseButton,
+    PopoverContent,
     PopoverFooter,
+    PopoverHeader,
     PopoverTrigger,
-    Popover, Badge, Stack
+    Portal,
+    Text,
+    Tooltip
 } from '@chakra-ui/react';
 import {StarIcon} from '@chakra-ui/icons';
 import {postReviewAsync} from "../../features/reviews/reviewsActions";
@@ -76,7 +77,8 @@ const StarRating = ({product}) => {
                     <PopoverBody>
                         <Box>
                             <Text mb={2} p={2} borderRadius={5} alignItems={"center"}>Your Rating:
-                                <Badge colorScheme="teal" size={"sm"} px={2} variant={"solid"} borderRadius={"xl"} fontSize={10} pt={1} ml={2}>
+                                <Badge colorScheme="teal" size={"sm"} px={2} variant={"solid"} borderRadius={"xl"}
+                                       fontSize={10} pt={1} ml={2}>
                                     <Flex alignItems={"center"}>
                                         <Icon as={StarIcon} mb={1.5} mr={1} w={2.5} h={2.5}/>
                                         <Text fontSize='sm' fontWeight='bold'>{selectedStars}</Text>

@@ -1,4 +1,4 @@
-import {getCategoriesStart, getCategoriesSuccess, getCategoriesFailure} from "./categoriesSlice.js";
+import {getCategoriesFailure, getCategoriesStart, getCategoriesSuccess} from "./categoriesSlice.js";
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3000";

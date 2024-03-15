@@ -1,4 +1,4 @@
-import {Badge, Box, Divider, Flex, Heading, Spacer, Text} from "@chakra-ui/react";
+import {Badge, Box, Divider, Flex, Heading, Text} from "@chakra-ui/react";
 import {motion} from 'framer-motion';
 import {useSelector} from "react-redux";
 import OrderSubmitAlert from "../alerts/OrderSubmitedAlert.jsx";
@@ -12,9 +12,9 @@ export default function OrderConfirmed({data, order}) {
 
     useEffect(() => {
         setTimeout(() => {
-            setSubmit(true);
-        }
-        , 1300);
+                setSubmit(true);
+            }
+            , 1300);
     }, []);
 
     return (<Flex
@@ -78,7 +78,7 @@ export default function OrderConfirmed({data, order}) {
                              borderLeft="1px solid"
                              borderColor="gray.200"
                              height="100%"
-                                alignSelf="stretch"
+                             alignSelf="stretch"
                              mx={5}
                     />
 

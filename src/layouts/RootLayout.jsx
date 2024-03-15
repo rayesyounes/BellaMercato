@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { Grid, GridItem, Box } from "@chakra-ui/react";
+import {useEffect} from "react";
+import {Outlet, useNavigate} from "react-router-dom";
+import {Grid, GridItem} from "@chakra-ui/react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,7 +9,7 @@ import {getBrands} from "../features/brands/brandsAction.js";
 
 export default function RootLayout() {
     const dispatch = useDispatch();
-    const { isAuthenticated, isAdmin, error } = useSelector(
+    const {isAuthenticated, isAdmin, error} = useSelector(
         (state) => state.auth
     );
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function RootLayout() {
     useEffect(() => {
         dispatch(getCategories());
         dispatch(getBrands());
-    },[]);
+    }, []);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -33,15 +33,15 @@ export default function RootLayout() {
         <Grid bg="gray.100">
             {!isAdmin && (
                 <GridItem className="sticky-header" gridColumn={"1 / -1"}>
-                    <Header />
+                    <Header/>
                 </GridItem>
             )}
             <GridItem>
-                <Outlet />
+                <Outlet/>
             </GridItem>
             {!isAdmin && (
                 <GridItem gridColumn={"1 / -1"}>
-                    <Footer />
+                    <Footer/>
                 </GridItem>
             )}
         </Grid>

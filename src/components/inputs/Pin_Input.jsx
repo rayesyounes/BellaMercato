@@ -2,28 +2,28 @@ import {HStack, PinInput, PinInputField, Spacer} from '@chakra-ui/react';
 
 
 export default function Pin_Input() {
-    return(
+    return (
         <HStack>
             <PinInput size={"sm"}>
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <Spacer />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <Spacer />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <Spacer />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <Spacer/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <Spacer/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <Spacer/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
+                <PinInputField/>
             </PinInput>
         </HStack>
     )

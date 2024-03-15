@@ -1,12 +1,5 @@
 import {useRef, useState} from "react";
-import {
-    FormControl,
-    FormLabel,
-    Input,
-    Button,
-    Text,
-    VStack,
-} from "@chakra-ui/react";
+import {Button, FormControl, FormLabel, Input, Text, VStack,} from "@chakra-ui/react";
 import {motion} from "framer-motion";
 import axios from "axios";
 
@@ -99,6 +92,7 @@ export default function Register({setState}) {
                         placeholder="Enter your email"
                         isInvalid={!!emailError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {emailError && (
                         <MotionText
@@ -127,6 +121,7 @@ export default function Register({setState}) {
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {passwordError && (
                         <MotionText
@@ -155,6 +150,7 @@ export default function Register({setState}) {
                         placeholder="Confirm your password"
                         isInvalid={!!confirmPasswordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     {confirmPasswordError && (
                         <MotionText

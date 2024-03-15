@@ -1,6 +1,6 @@
 import {Avatar, Tag, TagLabel} from "@chakra-ui/react";
 
-function HeaderTag ({user}){
+function HeaderTag({user}) {
     return (
         <Tag size='lg' colorScheme='cyan' borderRadius='full'>
             <Avatar

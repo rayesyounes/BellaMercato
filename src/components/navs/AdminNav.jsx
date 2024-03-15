@@ -1,11 +1,11 @@
-import { Flex, Input, InputGroup, InputRightElement, Spacer, IconButton } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import {Flex, IconButton, Input, InputGroup, InputRightElement, Spacer} from "@chakra-ui/react";
+import {SearchIcon} from "@chakra-ui/icons";
 import HeaderMenu from "../menus/HeaderMenu.jsx";
 import HeaderTag from "../tags/HeaderTag.jsx";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 export default function AdminNav() {
-    const { user } = useSelector((state) => state.auth);
+    const {user} = useSelector((state) => state.auth);
 
     const handleSearch = (value) => {
         console.log("Searching for:", value);
@@ -21,7 +21,7 @@ export default function AdminNav() {
             borderColor="gray.200"
         >
 
-            <Spacer />
+            <Spacer/>
 
             <InputGroup w="70%">
                 <Input
@@ -43,18 +43,18 @@ export default function AdminNav() {
                 <InputRightElement>
                     <IconButton
                         aria-label="Search database"
-                        icon={<SearchIcon />} b
+                        icon={<SearchIcon/>} b
                         onClick={() => handleSearch()}
                         colorScheme="teal"
                     />
                 </InputRightElement>
             </InputGroup>
 
-            <Spacer />
+            <Spacer/>
 
             {/* Header Menu and Tag */}
             <HeaderMenu>
-                <HeaderTag user={user} />
+                <HeaderTag user={user}/>
             </HeaderMenu>
         </Flex>
     );

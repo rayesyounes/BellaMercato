@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialProductsState = {
     products: [],
@@ -42,10 +42,10 @@ const productsSlice = createSlice({
         },
         updateProductSuccess: (state, action) => {
             state.isLoading = false;
-            const { id, updatedProduct } = action.payload;
+            const {id, updatedProduct} = action.payload;
             const index = state.products.findIndex((product) => product.id === id);
             if (index !== -1) {
-                state.products[index] = { ...state.products[index], ...updatedProduct };
+                state.products[index] = {...state.products[index], ...updatedProduct};
             }
             state.error = null;
         },

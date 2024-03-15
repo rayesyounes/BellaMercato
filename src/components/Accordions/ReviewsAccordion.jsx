@@ -1,15 +1,4 @@
-import {
-    Accordion,
-    AccordionButton,
-    AccordionIcon,
-    AccordionItem,
-    AccordionPanel,
-    Avatar,
-    Badge, Box,
-    Flex, Heading, Icon, Stat, StatLabel,
-    Text,
-} from "@chakra-ui/react";
-import {useSelector} from "react-redux";
+import {Avatar, Badge, Box, Flex, Heading, Icon, Stat, StatLabel, Text,} from "@chakra-ui/react";
 import {StarIcon} from "@chakra-ui/icons";
 
 const ReviewAccordion = ({review, user, replies}) => {

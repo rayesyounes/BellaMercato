@@ -1,10 +1,5 @@
 import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
-import {
-    MdCheckCircle,
-    MdCancel,
-    MdHourglassEmpty,
-    MdLocalShipping,
-} from "react-icons/md";
+import {MdCancel, MdCheckCircle, MdHourglassEmpty, MdLocalShipping,} from "react-icons/md";
 
 import {useDispatch} from "react-redux";
 import {updateOrderAsync} from "../../features/orders/ordersAction";

@@ -1,12 +1,5 @@
-import {
-    Box,
-    Flex,
-    Text,
-    Link,
-    IconButton,
-    Heading,
-} from "@chakra-ui/react";
-import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import {Box, Flex, Heading, IconButton, Link,} from "@chakra-ui/react";
+import {FaGithub, FaLinkedin, FaTwitter} from "react-icons/fa";
 import Logo from "./Logo";
 
 function Footer() {
@@ -29,27 +22,27 @@ function Footer() {
                             as={Link}
                             href="https://github.com/rayesyounes"
                             aria-label="Github"
-                            icon={<FaGithub />}
+                            icon={<FaGithub/>}
                             fontSize="20px"
                             mr={2}
-                            _hover={{ color: "teal.500" }}
+                            _hover={{color: "teal.500"}}
                         />
                         <IconButton
                             as={Link}
                             href="#"
                             aria-label="Twitter"
-                            icon={<FaTwitter />}
+                            icon={<FaTwitter/>}
                             fontSize="20px"
                             mr={2}
-                            _hover={{ color: "teal.500" }}
+                            _hover={{color: "teal.500"}}
                         />
                         <IconButton
                             as={Link}
                             href="#"
                             aria-label="Linkedin"
-                            icon={<FaLinkedin />}
+                            icon={<FaLinkedin/>}
                             fontSize="20px"
-                            _hover={{ color: "teal.500" }}
+                            _hover={{color: "teal.500"}}
                         />
                     </Flex>
                 </Box>

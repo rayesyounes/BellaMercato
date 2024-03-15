@@ -1,5 +1,20 @@
 import {
-    Badge, Box, Card, CardBody, CardHeader, Divider, Flex, Heading, Table, Tbody, Td, Text, Tfoot, Th, Thead, Tr
+    Badge,
+    Box,
+    Card,
+    CardBody,
+    CardHeader,
+    Divider,
+    Flex,
+    Heading,
+    Table,
+    Tbody,
+    Td,
+    Text,
+    Tfoot,
+    Th,
+    Thead,
+    Tr
 } from "@chakra-ui/react";
 
 export default function OrderCard({order, products}) {

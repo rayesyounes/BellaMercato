@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 import LoginForm from "../components/forms/LoginForm";
 import RegisterForm from "../components/forms/RegisterForm";
-import { Box, Text, VStack } from "@chakra-ui/react";
+import {Box, Text, VStack} from "@chakra-ui/react";
 
 
-export default function AuthLayout({ state, setState, onClose }) {
+export default function AuthLayout({state, setState, onClose}) {
     return (
         <Box p={0} m={0}>
             <VStack spacing={6} align="stretch">
-                <Box>{state ? <LoginForm onClose={onClose} /> : <RegisterForm setState={setState} />}</Box>
+                <Box>{state ? <LoginForm onClose={onClose}/> : <RegisterForm setState={setState}/>}</Box>
             </VStack>
 
             <VStack>
@@ -20,7 +20,7 @@ export default function AuthLayout({ state, setState, onClose }) {
                         as="span"
                         onClick={() => setState(prev => !prev)}
                         color="teal"
-                        _hover={{ cursor: "pointer", color: "blue.600" }}
+                        _hover={{cursor: "pointer", color: "blue.600"}}
                     >
                         {state ? "Sign Up" : "Log In"}
                     </Text>

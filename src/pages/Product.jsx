@@ -1,9 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
-import {
-    Box, Text, Image, Flex, Container, Grid, GridItem, Button, Badge, Icon, VStack,
-} from "@chakra-ui/react";
-import {FiChevronLeft, FiChevronRight, FiStar} from "react-icons/fi";
+import {Badge, Box, Button, Container, Flex, Grid, GridItem, Icon, Image, Text, VStack,} from "@chakra-ui/react";
+import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
 import {useDispatch, useSelector} from "react-redux";
 import {motion} from "framer-motion";
 import {addToCart} from "../features/cart/cartAction.js";
@@ -16,7 +14,6 @@ import InfoPanel from "../components/panels/InfoPanel.jsx";
 import ReviewsCard from "../components/cards/ReviewsCard.jsx";
 import SuggestedProductCard from "../components/cards/SuggestedProductCard.jsx";
 import StarRating from "../components/Feedbacks/StarRating.jsx";
-import {getCategories} from "../features/categories/categoriesAction.js";
 
 const MotionBox = motion(Box);
 
@@ -164,7 +161,7 @@ const Product = () => {
 
                         <Number_input
                             handleChange={(value) => setQuantity(value)}
-                            value={quantity}
+                            value={quantity} max={product.stock}
                         />
                         <Flex gap={4} mt={6}>
                             <Button
@@ -182,7 +179,7 @@ const Product = () => {
                                 onClick={() => isAuthenticated ? dispatch(addToCart({
                                     userId,
                                     productId: product.id,
-                                    quantity
+                                    quantity: product.stock > quantity ? quantity : product.stock
                                 })) : alert("Please login to add to cart")}>
                                 Add to Cart
                             </Button>
@@ -222,8 +219,8 @@ const Product = () => {
                                     borderRadius={"50%"}
                                     transform="translate(0, -50%)"
                                     // opacity={0}
-                                    transition="opacity 0.3s"
-                                    _hover={{opacity: 1, bg: "gray.100"}}
+                                    transition="all 0.2s ease-in-out"
+                                    _hover={{opacity: 1, bg: "gray.100", transition: "all 0.2s ease-in-out"}}
                                     w={"50px"}
                                     h={"50px"}
                                     bg={"white"}
@@ -250,8 +247,8 @@ const Product = () => {
                                     borderRadius={"50%"}
                                     transform="translate(0, -50%)"
                                     // opacity={0}
-                                    transition="opacity 0.3s"
-                                    _hover={{opacity: 1, bg: "gray.100"}}
+                                    transition="all 0.2s ease-in-out"
+                                    _hover={{opacity: 1, bg: "gray.100", transition: "all 0.2s ease-in-out"}}
                                     w={"50px"}
                                     h={"50px"}
                                     bg={"white"}
@@ -281,6 +278,7 @@ const Product = () => {
                                     transition: "all 0.2s ease-in-out",
                                     // transform: "scale(1.1)"
                                 }}
+                                transition={"all 0.2s ease-in-out"}
                                 // onMouseEnter={
                                 //     () => setMainImage(thumbnail)
                                 // }

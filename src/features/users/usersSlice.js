@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialUsersState = {
     users: [],
@@ -42,10 +42,10 @@ const usersSlice = createSlice({
         },
         updateUserSuccess: (state, action) => {
             state.isLoading = false;
-            const { id, updatedUser } = action.payload;
+            const {id, updatedUser} = action.payload;
             const index = state.users.findIndex((user) => user.id === id);
             if (index !== -1) {
-                state.users[index] = { ...state.users[index], ...updatedUser };
+                state.users[index] = {...state.users[index], ...updatedUser};
             }
             state.error = null;
         },

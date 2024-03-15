@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {Flex, Accordion, Heading, Text} from "@chakra-ui/react";
+import {Flex, Text} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
 import {getReviewsByProductIdAsync} from "../../features/reviews/reviewsActions";
 import {getUsersAsync} from "../../features/users/usersAction.js";

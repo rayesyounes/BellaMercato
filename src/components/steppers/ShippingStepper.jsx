@@ -1,8 +1,17 @@
 import {
-    Box, Step, StepDescription, Stepper, StepIndicator, StepStatus, StepTitle, StepSeparator, useSteps, Icon
+    Box,
+    Icon,
+    Step,
+    StepDescription,
+    StepIndicator,
+    Stepper,
+    StepSeparator,
+    StepStatus,
+    StepTitle,
+    useSteps
 } from "@chakra-ui/react";
 import {useEffect} from "react";
-import {FaHourglass, FaCheck, FaPlane, FaBox} from "react-icons/fa";
+import {FaBox, FaCheck, FaHourglass, FaPlane} from "react-icons/fa";
 
 
 export default function ShippingStepper({order}) {

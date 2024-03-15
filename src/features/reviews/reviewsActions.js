@@ -1,5 +1,6 @@
-import {getReviewsStart, getReviewsSuccess, getReviewsFailure} from "./reviewsSlice.js";
+import {getReviewsFailure, getReviewsStart, getReviewsSuccess} from "./reviewsSlice.js";
 import axios from "axios";
+
 const API_BASE_URL = "http://localhost:3000";
 
 
@@ -26,7 +27,7 @@ export const getReviewsByProductIdAsync = (productId) => async (dispatch) => {
 }
 
 export const postReviewAsync = (productId, selectedStars, comment) => async (dispatch, getState) => {
-    const { user } = getState().auth;
+    const {user} = getState().auth;
     const review = {
         user_id: user.id,
         product_id: productId,

@@ -1,16 +1,16 @@
-import { Box, VStack } from "@chakra-ui/react";
+import {Box, VStack} from "@chakra-ui/react";
 import UserForm from "../components/forms/UserForm.jsx";
 import ProductForm from "../components/forms/ProductForm.jsx";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
-export default function AddLayout({ onClose, item }) {
-    const { currentPage } = useSelector((state) => state.page);
+export default function AddLayout({onClose, item}) {
+    const {currentPage} = useSelector((state) => state.page);
     const renderForm = (state) => {
         switch (state) {
             case "users":
-                return <UserForm onClose={onClose} item={item} />;
+                return <UserForm onClose={onClose} item={item}/>;
             case "products":
-                return <ProductForm onClose={onClose} item={item} />;
+                return <ProductForm onClose={onClose} item={item}/>;
             case "orders":
                 return null;
             default:

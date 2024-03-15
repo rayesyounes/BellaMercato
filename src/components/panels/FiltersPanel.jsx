@@ -1,5 +1,5 @@
-import {useState, useEffect} from "react";
-import {Flex, Input, InputGroup, InputLeftElement, Box, HStack, useRadioGroup, useRadio} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import {Box, Flex, HStack, Input, InputGroup, InputLeftElement, useRadio, useRadioGroup} from "@chakra-ui/react";
 import {SearchIcon} from "@chakra-ui/icons";
 import AddModal from "../modals/AddModal.jsx";
 import {useSelector} from "react-redux";
@@ -55,7 +55,7 @@ function FiltersPanel({setFilteredData}) {
 
     useEffect(() => {
         console.log(status)
-        if ( currentPage === "history" || currentPage === "orders") {
+        if (currentPage === "history" || currentPage === "orders") {
             let filtered = orders.filter((order) => order.status === status || status === "All");
             if (searchTerm) {
                 filtered = filtered.filter((order) => order.tracking_number.toLowerCase().includes(searchTerm.toLowerCase()));

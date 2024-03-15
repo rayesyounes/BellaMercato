@@ -23,7 +23,7 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
         phone: '' || user.phone,
         emailAddress: '' || user.email,
 
-        country: '' ,
+        country: '',
         postcode: '' || user.zip,
         state: '' || user.state,
         city: '' || user.city,
@@ -119,7 +119,7 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
                 shipping_method: data.shipping_method,
                 email: data.emailAddress,
                 phone: data.phone,
-                notes: data.notes  || 'None',
+                notes: data.notes || 'None',
             }))
     }, [data]);
 

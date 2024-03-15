@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialReviewsState = {
     reviews: [],
@@ -25,5 +25,5 @@ const reviewsSlice = createSlice({
     },
 });
 
-export const { getReviewsStart, getReviewsSuccess, getReviewsFailure } = reviewsSlice.actions;
+export const {getReviewsStart, getReviewsSuccess, getReviewsFailure} = reviewsSlice.actions;
 export default reviewsSlice.reducer;

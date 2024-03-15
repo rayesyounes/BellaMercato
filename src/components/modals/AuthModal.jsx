@@ -1,13 +1,13 @@
 import {
+    Button,
+    Center,
     Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
     ModalBody,
     ModalCloseButton,
-    Center,
+    ModalContent,
+    ModalHeader,
+    ModalOverlay,
     useDisclosure,
-    Button,
 } from "@chakra-ui/react";
 
 import {ArrowForwardIcon} from "@chakra-ui/icons";

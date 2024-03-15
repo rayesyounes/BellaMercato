@@ -1,33 +1,31 @@
 import {
+    Badge,
     Box,
+    Button,
     Drawer,
     DrawerBody,
     DrawerCloseButton,
     DrawerContent,
+    DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
-    useDisclosure,
-    Button,
     Flex,
-    Icon,
-    Text,
-    Divider,
     IconButton,
-    Badge,
-    DrawerFooter,
+    Text,
+    useDisclosure,
 } from "@chakra-ui/react";
 import {AddIcon, DeleteIcon, MinusIcon} from "@chakra-ui/icons";
 import EmptyCartSvg from "../../assets/EmptyCart.svg";
 import CartSvg from "../../assets/Cart.svg";
 import {useNavigate} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {
-    fetchUserCart,
+    clearCart,
     decreaseQuantity,
+    fetchUserCart,
     increaseQuantity,
     removeItem,
-    clearCart,
 } from "../../features/cart/cartAction";
 import {getProductsAsync} from "../../features/products/productsAction";
 
@@ -163,77 +161,77 @@ export default function CartDrawer() {
                                     flexDirection={"row"}
                                 >
 
-                                        <img
-                                            src={product.images[0]}
-                                            alt={product.name}
-                                            width={100}
-                                            style={{borderRadius: "8px",}}
+                                    <img
+                                        src={product.images[0]}
+                                        alt={product.name}
+                                        width={100}
+                                        style={{borderRadius: "8px",}}
 
 
-                                        />
+                                    />
 
                                     <Box w={"100%"}>
-                                    <Flex
-                                        justify="space-between"
-                                        align="center"
-                                    >
-                                        <Text fontWeight="bold">
-                                            {product.name}
-                                        </Text>
-                                        <Text>{`$${product.price.toFixed(
-                                            2
-                                        )} each`}</Text>
-                                    </Flex>
-                                    <Flex
-                                        mt={2}
-                                        justify="space-between"
-                                        align="center"
-                                    >
-                                        <Text>{`Quantity: ${item.quantity}`}</Text>
-                                        <Flex align="center">
-                                            <IconButton
-                                                icon={<AddIcon/>}
-                                                size="sm"
-                                                isDisabled={
-                                                    item.quantity >=
-                                                    product.stock
-                                                }
-                                                onClick={() =>
-                                                    increaseProductQuantity({
-                                                        userId,
-                                                        productId: product.id,
-                                                    })
-                                                }
-                                                aria-label="Increment"
-                                                mr={2}
-                                            />
-                                            <IconButton
-                                                icon={<MinusIcon/>}
-                                                size="sm"
-                                                isDisabled={item.quantity <= 1}
-                                                onClick={() =>
-                                                    decreaseProductQuantity({
-                                                        userId,
-                                                        productId: product.id,
-                                                    })
-                                                }
-                                                aria-label="Decrement"
-                                                mr={2}
-                                            />
-                                            <IconButton
-                                                icon={<DeleteIcon/>}
-                                                size="sm"
-                                                onClick={() =>
-                                                    removeFromCart({
-                                                        userId,
-                                                        productId: product.id,
-                                                    })
-                                                }
-                                                aria-label="Remove"
-                                                colorScheme="red"
-                                            />
+                                        <Flex
+                                            justify="space-between"
+                                            align="center"
+                                        >
+                                            <Text fontWeight="bold">
+                                                {product.name}
+                                            </Text>
+                                            <Text>{`$${product.price.toFixed(
+                                                2
+                                            )} each`}</Text>
                                         </Flex>
-                                    </Flex>
+                                        <Flex
+                                            mt={2}
+                                            justify="space-between"
+                                            align="center"
+                                        >
+                                            <Text>{`Quantity: ${item.quantity}`}</Text>
+                                            <Flex align="center">
+                                                <IconButton
+                                                    icon={<AddIcon/>}
+                                                    size="sm"
+                                                    isDisabled={
+                                                        item.quantity >=
+                                                        product.stock
+                                                    }
+                                                    onClick={() =>
+                                                        increaseProductQuantity({
+                                                            userId,
+                                                            productId: product.id,
+                                                        })
+                                                    }
+                                                    aria-label="Increment"
+                                                    mr={2}
+                                                />
+                                                <IconButton
+                                                    icon={<MinusIcon/>}
+                                                    size="sm"
+                                                    isDisabled={item.quantity <= 1}
+                                                    onClick={() =>
+                                                        decreaseProductQuantity({
+                                                            userId,
+                                                            productId: product.id,
+                                                        })
+                                                    }
+                                                    aria-label="Decrement"
+                                                    mr={2}
+                                                />
+                                                <IconButton
+                                                    icon={<DeleteIcon/>}
+                                                    size="sm"
+                                                    onClick={() =>
+                                                        removeFromCart({
+                                                            userId,
+                                                            productId: product.id,
+                                                        })
+                                                    }
+                                                    aria-label="Remove"
+                                                    colorScheme="red"
+                                                />
+                                            </Flex>
+                                        </Flex>
                                     </Box>
                                     {/*<Divider mt={2}/>*/}
                                 </Box>

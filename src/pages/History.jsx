@@ -96,7 +96,7 @@ export default function History() {
                                         <Badge
                                             variant="subtle"
                                             borderRadius={5}
-                                            colorScheme={order.status === "processing" ? "orange" : order.status === "confirmed" ? "blue" : order.status === "cancelled" ? "red" : order.status === "delivered" ? "green" : order.status === "shipped" ? "purple" :  "gray"}
+                                            colorScheme={order.status === "processing" ? "orange" : order.status === "confirmed" ? "blue" : order.status === "cancelled" ? "red" : order.status === "delivered" ? "green" : order.status === "shipped" ? "purple" : "gray"}
                                         >
                                             {order.status}
                                         </Badge>

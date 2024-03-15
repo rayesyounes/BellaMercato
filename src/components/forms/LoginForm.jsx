@@ -1,14 +1,20 @@
 import {motion} from "framer-motion";
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useRef, useState} from "react";
-import {loginAuth} from "../../features/auth/authAction.js";
+import {loginAuth, resetErors} from "../../features/auth/authAction.js";
 import {useNavigate} from "react-router-dom";
 import {
-    FormControl, FormLabel, Input, InputGroup, InputRightElement, Button, Text, VStack, IconButton, Icon,
+    Button,
+    FormControl,
+    FormLabel,
+    Icon,
+    Input,
+    InputGroup,
+    InputRightElement,
+    Text,
+    VStack,
 } from "@chakra-ui/react";
 import {ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
-import {resetErors} from "../../features/auth/authAction.js";
 
 const MotionFormControl = motion(FormControl);
 const MotionText = motion(Text);
@@ -90,6 +96,7 @@ export default function AnimatedLoginForm({onClose}) {
                     placeholder="Enter your email"
                     isInvalid={!!emailError}
                     variant="flushed"
+                    focusBorderColor="teal.400"
                 />
                 {emailError && (<MotionText
                     color="red.500"
@@ -117,6 +124,7 @@ export default function AnimatedLoginForm({onClose}) {
                         placeholder="Enter your password"
                         isInvalid={!!passwordError}
                         variant="flushed"
+                        focusBorderColor="teal.400"
                     />
                     <InputRightElement width='4.5rem'>
                         {/*<Button variant="ghost" h='1.75rem' size='sm' onClick={handleClick}>*/}
