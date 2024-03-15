@@ -1,7 +1,7 @@
 import {clearAuthError, loginFailure, loginStart, loginSuccess, logout} from "./authSlice";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://bellamercato-api.vercel.app";
 
 export const loginAuth = (authCredential) => async (dispatch) => {
     try {
