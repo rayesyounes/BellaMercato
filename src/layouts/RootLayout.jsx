@@ -9,6 +9,7 @@ import {getBrands} from "../features/brands/brandsAction.js";
 
 export default function RootLayout() {
     const dispatch = useDispatch();
+    const {currentPage} = useSelector((state) => state.page);
     const {isAuthenticated, isAdmin, error} = useSelector(
         (state) => state.auth
     );
@@ -30,7 +31,7 @@ export default function RootLayout() {
     }, [isAuthenticated, isAdmin, error, navigate]);
 
     return (
-        <Grid bg="gray.100">
+        <Grid bg={currentPage === "home" ? "white" : "gray.100"}>
             {!isAdmin && (
                 <GridItem className="sticky-header" gridColumn={"1 / -1"}>
                     <Header/>
