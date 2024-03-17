@@ -230,7 +230,7 @@ const Product = () => {
                                 </Button>
                                 <Zoom>
                                     <Image
-                                        src={mainImage}
+                                        src={`/${mainImage}`}
                                         alt={`Product ${id}`}
                                         bg={"gray.100"}
                                         border={"1px solid gray.200"}
@@ -289,7 +289,7 @@ const Product = () => {
                                 p={thumbnail === mainImage ? 1 : 0}
                             >
                                 <Image
-                                    src={thumbnail}
+                                    src={`/${thumbnail}`}
                                     alt={`Thumbnail ${index + 1}`}
                                     filter={mainImage === thumbnail ? "none" : "grayscale(100%)"}
                                     _hover={{
