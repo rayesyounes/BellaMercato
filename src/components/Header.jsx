@@ -47,7 +47,7 @@ export default function Header() {
     return (
         <Flex
             as="nav"
-            p={4}
+            p={3}
             gap={8}
             bg="white"
             justifyContent={"space-between"}
@@ -62,7 +62,7 @@ export default function Header() {
                     ADMIN
                 </Heading>
             ) : (
-                <Logo color={"teal.500"} bg={"white"}/>
+                <Logo color={"teal.500"} bg={"white"} fontSize={1.6} translateX={2}/>
             )}
 
             {/*{!admin && (*/}
@@ -100,6 +100,11 @@ export default function Header() {
 
                 {!admin && (
                     <>
+                        <NavLink as={ChakraLink} className="navlink" to="/categories">
+                            <Box as="span" {...linkStyles}>
+                                Categories
+                            </Box>
+                        </NavLink>
                         <NavLink as={ChakraLink} className="navlink" to="/shop">
                             <Box as="span" {...linkStyles}>
                                 Shop
@@ -112,11 +117,6 @@ export default function Header() {
                         >
                             <Box as="span" {...linkStyles}>
                                 Sales
-                            </Box>
-                        </NavLink>
-                        <NavLink as={ChakraLink} className="navlink" to="#">
-                            <Box as="span" {...linkStyles}>
-                                Mission
                             </Box>
                         </NavLink>
                         <NavLink as={ChakraLink} className="navlink" to="#">

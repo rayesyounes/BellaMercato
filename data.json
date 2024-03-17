@@ -5,7 +5,7 @@
       "name": "Laptop",
       "price": 1900.99,
       "description": "High-performance laptop with the latest specifications.",
-      "stock": 39,
+      "stock": 38,
       "images": [
         "../public/products/1/1.webp",
         "../public/products/1/2.webp",
@@ -53,7 +53,7 @@
       "name": "Tablet",
       "price": 1490.99,
       "description": "High-performance tablet with the latest specifications.",
-      "stock": 1,
+      "stock": 0,
       "images": [
         "../public/products/5/1.webp",
         "../public/products/5/2.webp",

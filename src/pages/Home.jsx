@@ -2,10 +2,9 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentPage} from "../features/page/PageAction.js";
 import {Box, Container, Image,} from "@chakra-ui/react";
-import HeroSection from "./sections/hero/HeroSection.jsx";
+import HeroSection from "../components/sections/hero/HeroSection.jsx";
 import BannerTop from "../assets/BannerTop.svg";
 import BannerBottom from "../assets/BannerBottom.svg";
-import HeroSlider from "./sections/hero/HeroSlider.jsx";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -15,7 +14,7 @@ export default function Home() {
         dispatch(setCurrentPage("home"));
     }, [dispatch]);
 
-    return (<Container maxW="container.xxl" px={0} minHeight={"lg"} my={0}>
+    return (<Container minW="container.xxl" maxW="100%"  px={0} minHeight={"lg"} my={0}>
 
         <section>
             <HeroSection/>
@@ -26,10 +25,7 @@ export default function Home() {
 
 
         <section>
-            <Box maxW={"99vw"}>
 
-                <HeroSlider/>
-            </Box>
         </section>
 
 

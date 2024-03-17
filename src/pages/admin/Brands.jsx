@@ -7,7 +7,7 @@ export default function Brands() {
     const {currentPage} = useSelector((state) => state.page);
 
     useEffect(() => {
-        dispatch(setCurrentPage("brands"));
+        dispatch(setCurrentPage("admin-brands"));
     }, [dispatch]);
 
     return (
