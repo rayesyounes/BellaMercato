@@ -231,6 +231,7 @@ const Product = () => {
                                 <Zoom>
                                     <Image
                                         src={`/${mainImage}`}
+                                        fallbackSrc="https://via.placeholder.com/600"
                                         alt={`Product ${id}`}
                                         bg={"gray.100"}
                                         border={"1px solid gray.200"}
@@ -290,6 +291,7 @@ const Product = () => {
                             >
                                 <Image
                                     src={`/${thumbnail}`}
+                                    fallbackSrc="https://via.placeholder.com/200"
                                     alt={`Thumbnail ${index + 1}`}
                                     filter={mainImage === thumbnail ? "none" : "grayscale(100%)"}
                                     _hover={{

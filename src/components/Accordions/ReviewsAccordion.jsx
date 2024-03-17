@@ -83,8 +83,8 @@ const ReviewAccordion = ({review, user, replies}) => {
             <Flex direction="column" gap={4}>
                 <Flex alignItems="center" justifyContent="space-between">
                     <Flex alignItems="stretch">
-                        <Avatar size="xs" name={user.username} src={user.avatar}/>
-                        <Heading size="sm" ml={2}>{user.username}</Heading>
+                        <Avatar size="xs" name={user?.username} src={user?.avatar}/>
+                        <Heading size="sm" ml={2}>{user?.username}</Heading>
                     </Flex>
                     <Box bg="gray.50" p={1} px={2} borderRadius="md">
                         <Text fontSize="sm">{new Date(review.date).toDateString()}</Text>

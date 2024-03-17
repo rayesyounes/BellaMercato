@@ -13,11 +13,9 @@ export default function HeroSlide1() {
             bgPosition="center"
             bgRepeat="no-repeat"
             height={"100%"}>
-
             <Text color={"white"} fontWeight={"bold"} fontSize={66}>
                 Explore a World of Products,<br/>Crafted for You
             </Text>
-
         </Flex>
     );
 }
