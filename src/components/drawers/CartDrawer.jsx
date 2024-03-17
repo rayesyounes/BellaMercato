@@ -93,7 +93,7 @@ export default function CartDrawer() {
                 display="inline-block"
                 cursor="pointer"
             >
-                <img src={`/${CartSvg}`} alt="cart"/>
+                <img src={CartSvg} alt="cart"/>
                 {cartItems.length !== 0 && (
                     <Badge
                         w={4}
