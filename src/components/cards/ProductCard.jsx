@@ -79,7 +79,7 @@ function ProductCard({product}) {
             position={"relative"}
         >
             <Image
-                src={image}
+                src={`/${image}`}
                 _hover={{
                     transform: "scale(1.08)", transition: "all 0.4s ease-in-out",
                 }}

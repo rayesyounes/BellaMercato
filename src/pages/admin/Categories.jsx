@@ -7,7 +7,7 @@ export default function Categories() {
     const {currentPage} = useSelector((state) => state.page);
 
     useEffect(() => {
-        dispatch(setCurrentPage("categories"));
+        dispatch(setCurrentPage("admin-categories"));
     }, [dispatch]);
 
     return (
