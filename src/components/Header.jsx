@@ -54,6 +54,7 @@ export default function Header() {
             alignItems="center"
             borderBottom="1px"
             borderColor="gray.200"
+            transition={"all 0.3s ease"}
         >
             {/* Logo */}
             {isAdmin ? (
@@ -61,7 +62,7 @@ export default function Header() {
                     ADMIN
                 </Heading>
             ) : (
-                <Logo>DEMO</Logo>
+                <Logo color={"teal.500"} bg={"white"}/>
             )}
 
             {/*{!admin && (*/}
@@ -95,7 +96,7 @@ export default function Header() {
             {/*)}*/}
 
 
-            <HStack spacing="20px" display={{base: "none", md: "flex"}}>
+            <HStack spacing="20px" display={{base: "none", md: "flex"}} transition={"all 0.3s ease"}>
 
                 {!admin && (
                     <>
@@ -148,12 +149,12 @@ export default function Header() {
             </HStack>
 
             {hidden && (
-                <>
+                <Box>
                     <Spacer/>
                     <HStack display={{base: "none", md: "flex"}}>
                         <AuthModal/>
                     </HStack>
-                </>
+                </Box>
             )}
 
             {/* Mobile Menu */}

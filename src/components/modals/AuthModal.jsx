@@ -31,7 +31,9 @@ export default function AuthModal() {
             </Button>
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered size={"md"}>
-                <ModalOverlay bgGradient={"radial(teal.500,gray.500)"}/>
+                <ModalOverlay
+                    // bgGradient={"linear(to-t, teal.500, teal.500, teal.500)"}
+                />
                 <ModalContent>
                     <ModalHeader>
                         <Center> {state ? "Login" : "Create your Account"}</Center>
