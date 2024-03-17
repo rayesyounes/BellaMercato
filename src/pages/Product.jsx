@@ -79,7 +79,7 @@ const Product = () => {
             transition={{duration: 0.5}}
         >
             <VStack spacing={4}>
-
+                <InfoPanel product={product}/>
                 <Flex
                     w="100%"
                     bg={"white"}
