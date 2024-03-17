@@ -7,11 +7,11 @@
       "description": "High-performance laptop with the latest specifications.",
       "stock": 38,
       "images": [
-        "../public/products/1/1.webp",
-        "../public/products/1/2.webp",
-        "../public/products/1/3.webp",
-        "../public/products/1/4.webp",
-        "../public/products/1/5.webp"
+        "./products/1/1.png",
+        "./products/1/2.webp",
+        "./products/1/3.webp",
+        "./products/1/4.webp",
+        "./products/1/5.webp"
       ],
       "category": [
         "electronics",
@@ -31,11 +31,11 @@
       "description": "High-performance smartphone with the latest specifications.",
       "stock": 75,
       "images": [
-        "../public/products/2/1.webp",
-        "../public/products/2/2.webp",
-        "../public/products/2/3.webp",
-        "../public/products/2/4.webp",
-        "../public/products/2/5.webp"
+        "./products/2/1.webp",
+        "./products/2/2.webp",
+        "./products/2/3.webp",
+        "./products/2/4.webp",
+        "./products/2/5.webp"
       ],
       "category": [
         "electronics",
@@ -55,11 +55,11 @@
       "description": "High-performance tablet with the latest specifications.",
       "stock": 0,
       "images": [
-        "../public/products/5/1.webp",
-        "../public/products/5/2.webp",
-        "../public/products/5/3.webp",
-        "../public/products/5/4.webp",
-        "../public/products/5/5.webp"
+        "./products/5/1.webp",
+        "./products/5/2.webp",
+        "./products/5/3.webp",
+        "./products/5/4.webp",
+        "./products/5/5.webp"
       ],
       "category": [
         "electronics",
