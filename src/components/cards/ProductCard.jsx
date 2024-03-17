@@ -84,7 +84,6 @@ function ProductCard({product}) {
                     transform: "scale(1.08)", transition: "all 0.4s ease-in-out",
                 }}
                 // onMouseEnter={handelImageChange(product.id)}
-                fallbackSrc="https://via.placeholder.com/600"
                 alt={`${name} - Product image`}
                 borderRadius="lg"
                 boxSize="250px"
