@@ -1,50 +1,54 @@
-import {Splide, SplideSlide} from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/splide.min.css';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import {Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import HeroSlide1 from "./heroSlides/HeroSlide1.jsx";
 import HeroSlide2 from "./heroSlides/HeroSlide2.jsx";
 import HeroSlide3 from "./heroSlides/HeroSlide3.jsx";
 
 export default function HeroSlider() {
-    const slideDuration = 10000;
+    const slideDuration = 5000;
     const progressBarAnimationDuration = slideDuration - 500;
 
     return (
-        <Box>
+        <Box maxW={"99.7vw"}>
             <style>
                 {`
+               
                 .my-slider-progress {
-                    position: relative;
+                    position: absolute;
+                    top: 65px;
+                    z-index: 10;
                     width: 100%;
-                    height: 2px; /* Adjust height as needed */
-                    background-color: transparent;
+                    height: 0.2rem; /* Adjust height as needed */
+                    background-color: rgba(255, 255, 255, 0.5);
                 }
                 .my-slider-progress-bar {
                     position: absolute;
                     top: 0;
                     left: 0;
                     height: 100%;
-                    background-color: teal;
+                    background-color: white;
+                    opacity: 0.8;
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
                     animation: my-slider-progress-bar ${progressBarAnimationDuration}ms linear forwards;
                 }
-                // .splide__pagination {
-                //     counter-reset: pagination-num;
-                // }
-                //
-                // .splide__pagination__page:before {
-                //      counter-increment: pagination-num;
-                //      content: counter( pagination-num );
-                // }
                 @keyframes my-slider-progress-bar {
                     0% { width: 0; }
                     100% { width: 100%; }
                 }
+                // .splide__slide.is-active {
+                //     width: 100% !important;
+                //     transition: width 0.5s ease-in-out;
+                // }
+                // .splide__slide {
+                //     width: 40% !important;
+                //     transition: width 0.5s ease-in-out;
+                // }
                 `}
             </style>
-            <div className="my-slider-progress">
-                <div className="my-slider-progress-bar"></div>
-            </div>
+            <Box className="my-slider-progress">
+                <Box className="my-slider-progress-bar"></Box>
+            </Box>
             <Splide
                 onMounted={(splide) => {
                     const progressBar = document.querySelector('.my-slider-progress-bar');
@@ -55,12 +59,17 @@ export default function HeroSlider() {
                     });
                 }}
                 options={{
-                    type: 'fade',
+                    type: 'loop',
+                    direction: 'ttb',
+                    snap: true,
+                    focus: 'center',
                     rewind: true,
-                    height: '80vh',
+                    height: '75vh',
                     autoplay: true,
                     interval: slideDuration,
                     pauseOnHover: false,
+                    pagination: false,
+                    arrows: false,
                 }}
             >
                 <SplideSlide>

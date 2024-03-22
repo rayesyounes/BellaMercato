@@ -39,6 +39,7 @@ export default function Shop() {
     }, ...brand.subbrands.map(subbrand => ({...subbrand, parent: brand.name, type: "subbrand"}))]);
 
     useEffect(() => {
+         window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(setCurrentPage("shop"));
         dispatch(getProductsAsync());
         setCategoriesList(categories);

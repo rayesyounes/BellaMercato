@@ -25,6 +25,7 @@ import {ArrowForwardIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon} fr
 import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
+import { IoHomeOutline } from "react-icons/io5";
 
 function RadioCard({children, handelClick, spec, ...props}) {
     const {getInputProps, getRadioProps} = useRadio(props);
@@ -150,7 +151,9 @@ export default function InfoPanel({product, filters, setFilters, flatCategories,
             <BreadcrumbItem>
                 <Link to={"/"}>
                     <BreadcrumbLink fontSize={"lg"} href="#"
-                                    _hover={{textDecoration: "none", cursor: "pointer"}}>Home</BreadcrumbLink>
+                                    _hover={{textDecoration: "none", cursor: "pointer"}}>
+                        <IoHomeOutline size={20} />
+                    </BreadcrumbLink>
                 </Link>
             </BreadcrumbItem>
 

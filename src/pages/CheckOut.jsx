@@ -14,6 +14,7 @@ export default function CheckOut() {
     const MotionBox = motion(Box);
 
     useEffect(() => {
+         window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(getOrdersAsync())
         dispatch(setCurrentPage("checkout"));
     }, [dispatch]);

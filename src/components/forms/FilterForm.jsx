@@ -111,7 +111,7 @@ export default function FilterForm({filters, setFilters, categoriesList, brandsL
         <FormControl>
             <FormLabel>Categories</FormLabel>
             <CheckboxGroup colorScheme='teal' value={filters.categories}>
-                {categoriesList.map((category) => (<Accordion key={category.id} defaultIndex={[0]} allowMultiple>
+                {categoriesList.map((category) => (<Accordion key={category.id} allowMultiple>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>

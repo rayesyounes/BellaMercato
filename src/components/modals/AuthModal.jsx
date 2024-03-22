@@ -21,7 +21,7 @@ export default function AuthModal() {
     return (
         <>
             <Button
-                size={"sm"}
+                size={"md"}
                 variant="solid"
                 colorScheme="teal"
                 onClick={onOpen}
@@ -32,7 +32,7 @@ export default function AuthModal() {
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered size={"md"}>
                 <ModalOverlay
-                    // bgGradient={"linear(to-t, teal.500, teal.500, teal.500)"}
+                    // bgGradient="linear(to-t, rgba(48, 140, 122, 0.8), rgba(48, 140, 122, 0.4))"
                 />
                 <ModalContent>
                     <ModalHeader>

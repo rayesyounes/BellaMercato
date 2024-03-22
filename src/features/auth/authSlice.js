@@ -2,27 +2,27 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     user: {
-        id: "3",
-        username: 'rayesyounes',
-        first_name: "younes",
-        last_name: "rayes",
-        gender: "m",
-        email: 'rayesyounes@gmail.com',
-        phone: "123-456-7890",
-        password: '11111111',
+        id: "",
+        username: '',
+        first_name: "",
+        last_name: "",
+        gender: "",
+        email: '',
+        phone: "",
+        password: '',
         avatar: "",
-        billingAddress: "456 Oak St, Townsville",
+        billingAddress: "",
         address: '',
-        country: "USA",
-        state: "CA",
-        city: "Los Angeles",
-        zip: "90001",
+        country: "",
+        state: "",
+        city: "",
+        zip: "",
         isAdmin: false,
     },
     error: null,
     isLoading: false,
     isAdmin: false,
-    isAuthenticated: true
+    isAuthenticated: false,
 };
 
 const authSlice = createSlice({

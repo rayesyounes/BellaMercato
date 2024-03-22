@@ -10,7 +10,6 @@ import {useEffect, useState} from "react";
 import HeaderTag from "./tags/HeaderTag.jsx";
 import HeaderMenu from "./menus/HeaderMenu.jsx";
 import CartDrawer from "./drawers/CartDrawer.jsx";
-
 export default function Header() {
     // const {isOpen, onToggle} = useDisclosure();
     const [hidden, setHidden] = useState(true);
@@ -119,20 +118,16 @@ export default function Header() {
                                 Sales
                             </Box>
                         </NavLink>
-                        <NavLink as={ChakraLink} className="navlink" to="#">
+                        <a className="navlink" href={window.location.origin + "#about"}>
                             <Box as="span" {...linkStyles}>
                                 About Us
                             </Box>
-                        </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            className="navlink"
-                            to="#contact"
-                        >
+                        </a>
+                        <a className="navlink" href={window.location.origin + "#contact"}>
                             <Box as="span" {...linkStyles}>
                                 Contact
                             </Box>
-                        </NavLink>
+                        </a>
                         <Spacer/>
                         <Spacer/>
                         <Spacer/>
