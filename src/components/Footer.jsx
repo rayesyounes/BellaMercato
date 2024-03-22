@@ -36,7 +36,7 @@ function Footer() {
                             <Flex gap={2} py={2}>
                                 <IconButton
                                     as={Link}
-                                    href="https://github.com/rayesyounes"
+                                    to="https://github.com/rayesyounes"
                                     aria-label="Github"
                                     icon={<FaGithub/>}
                                     fontSize="22px"
@@ -45,7 +45,7 @@ function Footer() {
                                 />
                                 <IconButton
                                     as={Link}
-                                    href="https://twitter.com/Spoutnikrs"
+                                    to="https://twitter.com/Spoutnikrs"
                                     aria-label="Twitter"
                                     icon={<FaXTwitter/>}
                                     fontSize="22px"
@@ -54,7 +54,7 @@ function Footer() {
                                 />
                                 <IconButton
                                     as={Link}
-                                    href="https://www.linkedin.com/in/rayesyounes"
+                                    to="https://www.linkedin.com/in/rayesyounes"
                                     aria-label="Linkedin"
                                     icon={<FaLinkedin/>}
                                     fontSize="22px"
