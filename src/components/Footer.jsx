@@ -20,7 +20,7 @@ function Footer() {
         <Box bg={"teal.500"} color={"white"} p={10}>
             <Flex flexWrap="wrap" justifyContent="space-between" mx={20}>
                 <Grid templateColumns={{base: "repeat(3, 1fr)", sm: "repeat(4, 1fr)"}} justifyItems={"center"} gap={10}>
-                    <Flex flexDirection="column" gap={3} alignItems="flex-start" flex={1} mb={5}>
+                    <Flex id={"contact"} flexDirection="column" gap={3} alignItems="flex-start" flex={1} mb={5}>
                         <Box>
                             <Heading as="h1" fontSize="xl" fontWeight="bold">
                                 <Logo color={"white"} bg={"teal.500"} fontSize={2} translateX={2.5}/>

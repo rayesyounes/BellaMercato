@@ -11,7 +11,7 @@ import {
 } from "./ordersSlice";
 import axios from "axios";
 
-const API_BASE_URL = "https://bellamercato-api.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 export const getOrdersAsync = (userId) => async (dispatch) => {
     if (userId) {

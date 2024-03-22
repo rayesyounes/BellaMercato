@@ -7,14 +7,14 @@
       "description": "High-performance laptop with the latest specifications.",
       "stock": 38,
       "images": [
-        "./products/1/1.png",
+        "./products/1/1.webp",
         "./products/1/2.webp",
         "./products/1/3.webp",
         "./products/1/4.webp",
         "./products/1/5.webp"
       ],
       "category": [
-        "electronics",
+        "consumer-electronics",
         "computers"
       ],
       "brand": [
@@ -29,7 +29,7 @@
       "name": "Smartphone",
       "price": 970.99,
       "description": "High-performance smartphone with the latest specifications.",
-      "stock": 75,
+      "stock": 74,
       "images": [
         "./products/2/1.webp",
         "./products/2/2.webp",
@@ -38,7 +38,7 @@
         "./products/2/5.webp"
       ],
       "category": [
-        "electronics",
+        "consumer-electronics",
         "smartphones"
       ],
       "brand": [
@@ -53,7 +53,7 @@
       "name": "Tablet",
       "price": 1490.99,
       "description": "High-performance tablet with the latest specifications.",
-      "stock": 0,
+      "stock": -1,
       "images": [
         "./products/5/1.webp",
         "./products/5/2.webp",
@@ -62,7 +62,7 @@
         "./products/5/5.webp"
       ],
       "category": [
-        "electronics",
+        "consumer-electronics",
         "tablets"
       ],
       "brand": [
@@ -198,14 +198,45 @@
       "email": "ggggggggggggggg",
       "phone": "123456789",
       "notes": "Please handle with care."
+    },
+    {
+      "id": "200324195848",
+      "user_id": "3",
+      "products": [
+        {
+          "product_id": "2",
+          "quantity": 1
+        },
+        {
+          "product_id": "5",
+          "quantity": 1
+        }
+      ],
+      "total": 2461.98,
+      "order_date": "2024-03-20T19:58:37Z",
+      "status": "processing",
+      "shipping_address": "Av othman ben affan, Los Angeles, CA, Australia, 90001",
+      "tracking_number": "200324195848",
+      "billing_address": "Av othman ben affan",
+      "payment_method": "",
+      "payment_status": "",
+      "shipping_date": "",
+      "delivery_date": "2024-04-27",
+      "shipping_cost": 0,
+      "tax": 0,
+      "discount": 0,
+      "shipping_method": "standard",
+      "email": "rayesyounes@gmail.com",
+      "phone": "09090909",
+      "notes": "rrrrrrrrrrrrrrrrrrr"
     }
   ],
   "categories": [
     {
-      "id": "electronics",
-      "name": "electronics",
+      "id": "consumer-electronics",
+      "name": "consumer-electronics",
       "description": "The latest electronic products.",
-      "image": "../public/categories/electronics.webp",
+      "image": "https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "color": "#e63946",
       "textColor": "white",
       "link": "/categories?category=electronics",
@@ -236,6 +267,129 @@
           "color": "#606c38",
           "textColor": "white",
           "link": "/shop?category=tablets"
+        }
+      ]
+    },
+    {
+      "id": "men's-clothing",
+      "name": "men's-clothing",
+      "description": "The latest men clothing products.",
+      "image": "https://images.pexels.com/photos/8483487/pexels-photo-8483487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "color": "#5058b3",
+      "textColor": "white",
+      "link": "/categories?category=men-clothing",
+      "subcategories": [
+        {
+          "id": "t-shirts",
+          "name": "t-shirts",
+          "description": "The latest t-shirts products.",
+          "image": "../public/categories/t-shirts.webp",
+          "color": "#457b9d",
+          "textColor": "white",
+          "link": "/shop?category=t-shirts"
+        },
+        {
+          "id": "shirts",
+          "name": "shirts",
+          "description": "The latest shirts products.",
+          "image": "../public/categories/shirts.webp",
+          "color": "#dda15e",
+          "textColor": "white",
+          "link": "/shop?category=shirts"
+        },
+        {
+          "id": "jeans",
+          "name": "jeans",
+          "description": "The latest jeans products.",
+          "image": "../public/categories/jeans.webp",
+          "color": "#606c38",
+          "textColor": "white",
+          "link": "/shop?category=jeans"
+        }
+      ]
+    },
+    {
+      "id": "home-appliances",
+      "name": "home-appliances",
+      "description": "The latest home appliances products.",
+      "image": "https://images.pexels.com/photos/6510952/pexels-photo-6510952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "color": "#62cc88",
+      "textColor": "white",
+      "link": "/categories?category=home-appliances",
+      "subcategories": [
+        {
+          "id": "kitchen",
+          "name": "kitchen",
+          "description": "The latest kitchen products.",
+          "image": "../public/categories/kitchen.webp",
+          "color": "#457b9d",
+          "textColor": "white",
+          "link": "/shop?category=kitchen"
+        },
+        {
+          "id": "cleaning",
+          "name": "cleaning",
+          "description": "The latest cleaning products.",
+          "image": "../public/categories/cleaning.webp",
+          "color": "#dda15e",
+          "textColor": "white",
+          "link": "/shop?category=cleaning"
+        },
+        {
+          "id": "furniture",
+          "name": "furniture",
+          "description": "The latest furniture products.",
+          "image": "../public/categories/furniture.webp",
+          "color": "#606c38",
+          "textColor": "white",
+          "link": "/shop?category=furniture"
+        }
+      ]
+    },
+    {
+      "id": "tools-&-industrial",
+      "name": "tools-&-industrial",
+      "description": "The latest tools & industrial products.",
+      "image": "https://images.pexels.com/photos/9607267/pexels-photo-9607267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "color": "#ffde76",
+      "textColor": "white",
+      "link": "/categories?category=tools-&-industrial",
+      "subcategories": [
+        {
+          "id": "power-tools",
+          "name": "power-tools",
+          "description": "The latest power tools products.",
+          "image": "../public/categories/power-tools.webp",
+          "color": "#457b9d",
+          "textColor": "white",
+          "link": "/shop?category=power-tools"
+        },
+        {
+          "id": "hand-tools",
+          "name": "hand-tools",
+          "description": "The latest hand tools products.",
+          "image": "../public/categories/hand-tools.webp",
+          "color": "#dda15e",
+          "textColor": "white",
+          "link": "/shop?category=hand-tools"
+        },
+        {
+          "id": "industrial",
+          "name": "industrial",
+          "description": "The latest industrial products.",
+          "image": "../public/categories/industrial.webp",
+          "color": "#606c38",
+          "textColor": "white",
+          "link": "/shop?category=industrial"
+        },
+        {
+          "id": "safety",
+          "name": "safety",
+          "description": "The latest safety products.",
+          "image": "../public/categories/safety.webp",
+          "color": "#606c38",
+          "textColor": "white",
+          "link": "/shop?category=safety"
         }
       ]
     }

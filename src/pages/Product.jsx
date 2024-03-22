@@ -43,6 +43,7 @@ const Product = () => {
     }, [quantity])
 
     useEffect(() => {
+         window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(setCurrentPage("product"));
         if (product) {
             setProductImages(product.images);

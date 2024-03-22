@@ -1,7 +1,7 @@
 import {getCategoriesFailure, getCategoriesStart, getCategoriesSuccess} from "./categoriesSlice.js";
 import axios from "axios";
 
-const API_BASE_URL = "https://bellamercato-api.vercel.app";
+const API_BASE_URL = "http://localhost:3000";
 
 export const getCategories = () => async (dispatch) => {
     dispatch(getCategoriesStart());

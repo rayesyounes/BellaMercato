@@ -20,7 +20,7 @@ export default function Sales() {
                 transition={{duration: 0.9}}
             >
 
-                <h1>Sales</h1>
+                <h1>Sales / Under construction</h1>
 
             </MotionBox>
         </Container>

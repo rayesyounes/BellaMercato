@@ -15,6 +15,7 @@ export default function History() {
     const MotionBox = motion(Box);
 
     useEffect(() => {
+         window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(setCurrentPage("history"));
         dispatch(getOrdersAsync(user.id));
     }, [dispatch, user.id]);

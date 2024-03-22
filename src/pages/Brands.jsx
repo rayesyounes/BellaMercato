@@ -7,6 +7,7 @@ export default function Brands() {
     const {currentPage} = useSelector((state) => state.page);
 
     useEffect(() => {
+         window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(setCurrentPage("brands"));
     }, [dispatch]);
 

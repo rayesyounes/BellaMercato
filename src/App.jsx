@@ -23,6 +23,7 @@ import Products from "./pages/admin/Products.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
 import AdminBrands from "./pages/admin/Brands.jsx";
 import AdminCategories from "./pages/admin/Categories.jsx";
+import {Box} from "@chakra-ui/react";
 
 
 const NotFound = () => {
@@ -75,10 +76,10 @@ function App() {
     );
 
     return (
-        <div>
+        <Box>
             <RouterProvider router={router}/>
             <Analytics/>
-        </div>
+        </Box>
     );
 }
 
