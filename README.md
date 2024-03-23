@@ -1,4 +1,4 @@
-# BellaMercato Shop
+# BellaMercato Shop - MVP Version 
 
 ## **Introducing BellaMercato**
 
