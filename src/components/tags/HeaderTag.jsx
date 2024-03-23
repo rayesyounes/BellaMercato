@@ -7,7 +7,7 @@ function HeaderTag({user}) {
     return (
         <Tag size='lg' colorScheme='gray' borderRadius='full'>
             <Avatar
-                src={user.avatar ? user.avatar : user.gender === "m" ? MaleSvg : FemaleSvg}
+                src={user.avatar}
                 size='xs'
                 name={user.last_name + ' ' + user.first_name}
                 ml={-1}

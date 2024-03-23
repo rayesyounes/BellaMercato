@@ -49,7 +49,7 @@
       "createdAt": "2024-03-15T08:30:00Z"
     },
     {
-      "id": "5",
+      "id": "3",
       "name": "Tablet",
       "price": 1490.99,
       "description": "High-performance tablet with the latest specifications.",
@@ -71,68 +71,148 @@
       ],
       "rating": 4.2,
       "createdAt": "2023-01-15T08:30:00Z"
+    },
+    {
+      "id": "4",
+      "name": "T-shirt",
+      "price": 19.99,
+      "description": "High-quality t-shirt made from 100% cotton.",
+      "stock": 0,
+      "images": [
+        "./products/3/1.webp",
+        "./products/3/2.webp",
+        "./products/3/3.webp",
+        "./products/3/4.webp",
+        "./products/3/5.webp"
+      ],
+      "category": [
+        "t-shirts",
+        "men's-clothing"
+      ],
+      "brand": [],
+      "rating": 4.5,
+      "createdAt": "2023-01-15T08:30:00Z"
+    },
+    {
+      "id": "5",
+      "name": "floor washing machine",
+      "price": 900,
+      "description": "High-quality floor washing machine.",
+      "stock": 4,
+      "images": [
+        "./products/4/1.webp",
+        "./products/4/2.webp",
+        "./products/4/3.webp",
+        "./products/4/4.webp",
+        "./products/4/5.webp"
+      ],
+      "category": [
+        "cleaning",
+        "kitchen",
+        "home-appliances"
+      ],
+      "brand": [],
+      "rating": 4.5,
+      "createdAt": "2024-03-23T08:30:00Z"
+    },
+    {
+      "id": "6",
+      "name": "Blender",
+      "price": 580,
+      "description": "High-quality blender",
+      "stock": 10,
+      "images": [
+        "./products/6/1.webp",
+        "./products/6/2.webp",
+        "./products/6/3.webp",
+        "./products/6/4.webp",
+        "./products/6/5.webp"
+      ],
+      "category": [
+        "kitchen",
+        "home-appliances"
+      ],
+      "brand": [],
+      "rating": 4.5,
+      "createdAt": "2024-03-23T08:30:00Z"
     }
   ],
   "reviews": [
     {
-      "id": "3",
+      "id": "1",
       "product_id": 5,
       "user_id": 2,
-      "rating": 4.2,
-      "comment": "Great tablet, I'm very satisfied with my purchase.",
-      "date": "2023-01-15T08:30:00Z"
+      "rating": 4,
+      "comment": "I am extremely happy with my purchase of this fantastic tablet. I highly recommend it to anyone in search of a top-performing device.",
+      "date": "2024-02-15T08:30:00Z"
+    },
+    {
+      "id": "2",
+      "product_id": 5,
+      "user_id": 3,
+      "rating": 4.3,
+      "comment": "I love my new tablet. I think it's great and would recommend it to others.",
+      "date": "2024-01-18T08:30:00Z"
     },
     {
       "id": "3",
-      "product_id": 5,
+      "product_id": 1,
+      "user_id": 2,
+      "rating": 4,
+      "comment": "Great Laptop, I'm very satisfied with my purchase, I recommend it to everyone who wants a high-performance laptop.",
+      "date": "2024-02-15T08:30:00Z"
+    },
+    {
+      "id": "4",
+      "product_id": 1,
       "user_id": 1,
-      "rating": 4.2,
-      "comment": "Great tablet, I'm very satisfied with my purchase.",
-      "date": "2023-01-15T08:30:00Z"
+      "rating": 4.3,
+      "comment": "Great Laptop, I'm very satisfied with my purchase, its performance is excellent and the battery life is very good.",
+      "date": "2024-01-18T08:30:00Z"
     },
     {
-      "user_id": "3",
-      "product_id": "5",
-      "rating": 2,
-      "comment": "r5",
-      "date": "2024-03-03T10:40:26.420Z",
-      "id": "6b39"
+      "id": "3",
+      "product_id": 2,
+      "user_id": 2,
+      "rating": 4,
+      "comment": "Great Smartphone, I'm very satisfied with my purchase, I recommend it to everyone who wants a high-performance smartphone.",
+      "date": "2024-02-15T08:30:00Z"
     },
     {
-      "id": "7394",
-      "user_id": "3",
-      "product_id": "2",
+      "id": "4",
+      "product_id": 2,
+      "user_id": 3,
       "rating": 5,
-      "comment": "fantastic product ",
-      "date": "2024-03-12T00:22:38.930Z"
+      "comment": "I am extremely pleased with my new smartphone and confidently recommend it to anyone seeking a high-performance device.",
+      "date": "2024-01-18T08:30:00Z"
     }
   ],
   "users": [
     {
-      "id": "3",
-      "username": "rayesyounes",
-      "first_name": "younes",
-      "last_name": "rayes",
+      "id": "1",
+      "username": "spoutnikrs",
+      "first_name": "Dennis",
+      "last_name": "Ritchie",
       "gender": "m",
-      "email": "rayesyounes@gmail.com",
+      "email": "spoutnikrs@email.com",
       "phone": 1234567890,
       "password": "11111111",
       "billingAddress": "456 Oak St, Townsville",
       "address": "123 Oak St, Townsville",
       "avatar": "",
-      "country": "USA",
-      "state": "CA",
-      "city": "Los Angeles",
+      "country": "MA",
+      "state": "Nord",
+      "city": "Tangier",
       "zip": "90001",
-      "isAdmin": false
+      "isAdmin": true
     },
     {
       "id": "2",
-      "username": "gracedef",
-      "first_name": "grace",
-      "last_name": "def",
-      "gender": "m",
-      "email": "rayesyounes@gmail.com",
+      "username": "janedoe",
+      "first_name": "jane",
+      "last_name": "doe",
+      "gender": "f",
+      "email": "janedoe@email.com",
       "phone": 1234567890,
       "password": "11111111",
       "billingAddress": "456 Oak St, Townsville",
@@ -145,12 +225,12 @@
       "isAdmin": false
     },
     {
-      "id": "1",
-      "username": "spoutnikrs",
-      "first_name": "speddy",
-      "last_name": "fernandez",
+      "id": "3",
+      "username": "johndoe",
+      "first_name": "john",
+      "last_name": "doe",
       "gender": "m",
-      "email": "rayesyounes@gmail.com",
+      "email": "johndoe@email.com",
       "phone": 1234567890,
       "password": "11111111",
       "billingAddress": "456 Oak St, Townsville",
@@ -163,26 +243,19 @@
       "isAdmin": false
     }
   ],
-  "carts": [
-    {
-      "id": "d752",
-      "user_id": "3",
-      "items": [],
-      "total": 0
-    }
-  ],
+  "carts": [],
   "orders": [
     {
       "id": "1234567890",
       "user_id": 3,
       "products": [
         {
-          "product_id": 1,
+          "product_id": 2,
           "quantity": 2
         }
       ],
       "total": 1179.97,
-      "order_date": "2023-01-15T08:30:00Z",
+      "order_date": "2024-02-15T08:30:00Z",
       "status": "delivered",
       "shipping_address": "123 Main St, Cityville",
       "tracking_number": "1234567890",
@@ -195,40 +268,144 @@
       "tax": 80,
       "discount": 100,
       "shipping_method": "standard",
-      "email": "ggggggggggggggg",
-      "phone": "123456789",
+      "email": "johndoe@email.com",
+      "phone": "1234567890",
       "notes": "Please handle with care."
     },
     {
-      "id": "200324195848",
-      "user_id": "3",
+      "id": "1234567891",
+      "user_id": 3,
       "products": [
         {
-          "product_id": "2",
-          "quantity": 1
-        },
+          "product_id": 1,
+          "quantity": 2
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2024-02-18T08:30:00Z",
+      "status": "shipped",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "1234567891",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "email": "johndoe@email.com",
+      "phone": "1234567890",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "1234567892",
+      "user_id": 3,
+      "products": [
         {
-          "product_id": "5",
+          "product_id": 3,
+          "quantity": 2
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2024-02-19T08:30:00Z",
+      "status": "confirmed",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "1234567892",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "email": "johndoe@email.com",
+      "phone": "1234567890",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "1234567890",
+      "user_id": 3,
+      "products": [
+        {
+          "product_id": 5,
+          "quantity": 2
+        }
+      ],
+      "total": 1179.97,
+      "order_date": "2024-02-15T08:30:00Z",
+      "status": "delivered",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "1234567890",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "email": "johndoe@email.com",
+      "phone": "1234567890",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "1234567893",
+      "user_id": 3,
+      "products": [
+        {
+          "product_id": 4,
+          "quantity": 10
+        }
+      ],
+      "total": 500,
+      "order_date": "2024-02-15T08:30:00Z",
+      "status": "confirmed",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "1234567893",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
+      "shipping_method": "standard",
+      "email": "johndoe@email.com",
+      "phone": "1234567890",
+      "notes": "Please handle with care."
+    },
+    {
+      "id": "1234567894",
+      "user_id": 2,
+      "products": [
+        {
+          "product_id": 6,
           "quantity": 1
         }
       ],
-      "total": 2461.98,
-      "order_date": "2024-03-20T19:58:37Z",
-      "status": "processing",
-      "shipping_address": "Av othman ben affan, Los Angeles, CA, Australia, 90001",
-      "tracking_number": "200324195848",
-      "billing_address": "Av othman ben affan",
-      "payment_method": "",
-      "payment_status": "",
-      "shipping_date": "",
-      "delivery_date": "2024-04-27",
-      "shipping_cost": 0,
-      "tax": 0,
-      "discount": 0,
+      "total": 1179.97,
+      "order_date": "2024-01-15T08:30:00Z",
+      "status": "delivered",
+      "shipping_address": "123 Main St, Cityville",
+      "tracking_number": "1234567894",
+      "billing_address": "456 Oak St, Townsville",
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "shipping_date": "2023-01-16T08:30:00Z",
+      "delivery_date": "2023-01-20T08:30:00Z",
+      "shipping_cost": 19.99,
+      "tax": 80,
+      "discount": 100,
       "shipping_method": "standard",
-      "email": "rayesyounes@gmail.com",
-      "phone": "09090909",
-      "notes": "rrrrrrrrrrrrrrrrrrr"
+      "email": "janedoe@email.com",
+      "phone": "1234567890",
+      "notes": "Please handle with care."
     }
   ],
   "categories": [
@@ -312,8 +489,8 @@
       "id": "home-appliances",
       "name": "home-appliances",
       "description": "The latest home appliances products.",
-      "image": "https://images.pexels.com/photos/6510952/pexels-photo-6510952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "color": "#62cc88",
+      "image": "https://images.pexels.com/photos/213162/pexels-photo-213162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "color": "#0073cd",
       "textColor": "white",
       "link": "/categories?category=home-appliances",
       "subcategories": [

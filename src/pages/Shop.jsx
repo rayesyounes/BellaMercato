@@ -146,11 +146,10 @@ export default function Shop() {
                         initial={{opacity: 0, y: -20}}
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 1.9}}
-                        templateColumns="repeat(3, 2fr)" alignItems={"start"} gap={4}>
+                        templateColumns="repeat(3, 1fr)" alignItems={"start"} gap={4}>
                         {filteredProducts.map((product) => (<ProductCard key={product.id} product={product}/>))}
                     </MotionGrid>)}
                     {/*)}*/}
-
                 </Flex>
             </VStack>
         </Container>
