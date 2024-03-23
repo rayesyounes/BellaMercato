@@ -109,11 +109,7 @@ export default function Header() {
                                 Shop
                             </Box>
                         </NavLink>
-                        <NavLink
-                            as={ChakraLink}
-                            className="navlink"
-                            to="/sales"
-                        >
+                        <NavLink as={ChakraLink} className="navlink" to="/sales">
                             <Box as="span" {...linkStyles}>
                                 Sales
                             </Box>

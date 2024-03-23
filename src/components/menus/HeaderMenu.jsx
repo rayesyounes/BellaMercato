@@ -21,9 +21,9 @@ export default function HeaderMenu({children}) {
                 <MenuGroup title='Menu'>
                     {!isAdmin && (
                         <>
-                            <MenuItem as={Link} to="/profile">Account</MenuItem>
                             <MenuItem as={Link} to="/history">Orders</MenuItem>
                             <MenuItem as={Link} to="/payments" isDisabled>Payments</MenuItem>
+                            <MenuItem as={Link} to="/profile" isDisabled>Account</MenuItem>
                         </>
                     )}
                     {isAdmin && (

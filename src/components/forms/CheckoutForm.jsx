@@ -98,22 +98,14 @@ export default function CheckoutForm({step, setStep, data, setData, countries}) 
         }
     };
 
-    return (<Flex
-        direction="column"
-        initial={{opacity: 0, y: -50}}
-        animate={{opacity: 1, y: 0}}
-        transition={{duration: 0.5}}
-    >
+    return (
         <form>
             <MotionBox
-                width="100%"
-                p="4"
-                borderRadius="lg"
-                initial={{opacity: 0, scale: 0.8}}
-                animate={{opacity: 1, scale: 1}}
-                transition={{duration: 0.5}}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 0.9}}
             >
-                <Flex direction="column" align="start">
+                <Flex direction="column" align="start"  p="4">
 
                     <Box display="grid" gridTemplateColumns="2fr 1fr" gap={3} w="100%">
                         <FormControl mb="4" isInvalid={!!formErrors.address}>
@@ -234,6 +226,5 @@ export default function CheckoutForm({step, setStep, data, setData, countries}) 
                     </Button>
                 </Flex>
             </VStack>
-        </form>
-    </Flex>);
+        </form>);
 }

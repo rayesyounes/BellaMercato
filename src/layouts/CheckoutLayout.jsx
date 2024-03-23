@@ -19,18 +19,18 @@ export default function CheckoutLayout({step, setStep, confirmed, setConfirmed})
     const {orders} = useSelector((state) => state.orders);
     const [countries, setCountries] = useState([]);
     const [data, setData] = useState({
-        address: '' || user.address,
-        phone: '' || user.phone,
-        emailAddress: '' || user.email,
+        address: '' ,
+        phone: '' ,
+        emailAddress: '',
 
         country: '',
-        postcode: '' || user.zip,
-        state: '' || user.state,
-        city: '' || user.city,
+        postcode: '',
+        state: '',
+        city: '',
 
         notes: '',
 
-        cardName: '' || user.first_name + " " + user.last_name,
+        cardName: '' || user.username,
         cardNumber: '',
         cardExpiry: '',
         cardCvc: '',

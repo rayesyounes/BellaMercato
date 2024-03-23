@@ -1,5 +1,5 @@
 import {
-    Badge,
+    Badge, Box,
     Button,
     ButtonGroup,
     Card,
@@ -70,12 +70,12 @@ function ProductCard({product}) {
     // }
 
 
-    return (<Card boxShadow="md" borderRadius="lg">
+    return (<Card boxShadow="md" borderRadius="lg" minH={"70vh"}>
         <CardBody
             display="flex"
             flexDirection="column"
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent="flex-start"
             position={"relative"}
         >
             <Image
@@ -101,16 +101,17 @@ function ProductCard({product}) {
                     </Flex>
                 </Badge>
             </Flex>
-            <Stack mt="6" spacing="3">
-                <Heading size="md">{product.name}</Heading>
-                <Text>{product.description}</Text>
-                <Text color="teal.400" fontSize="2xl">{`$ ${product.price}`}</Text>
-            </Stack>
+            <Flex  mt="6" gap={5} flexDirection={"column"} justifyContent={"space-between"} width={"100%"} height={"100%"} >
+                <Stack spacing={3}>
+                    <Heading size="md">{product.name}</Heading>
+                    <Text>{product.description}</Text>
+                </Stack>
+                <Text color="teal.400" fontSize="2xl">{`$${product.price}`}</Text>
+            </Flex>
         </CardBody>
         <CardFooter
             display="flex"
-            justifyContent="space-between"
-            alignItems="center"
+            justifyContent="flex-end"
             borderTopWidth="1px"
             borderColor="gray.200"
             pt="4"
